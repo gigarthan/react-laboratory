@@ -11,18 +11,19 @@ import SendIcon from '@material-ui/icons/Send';
 import MailIcon from '@material-ui/icons/Mail';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ReportIcon from '@material-ui/icons/Report';
+import Icon from '@material-ui/core/Icon';
 
 export const mailFolderListItems = (
   <div>
     <ListItem button>
       <ListItemIcon>
-        <InboxIcon />
+        <Icon>calendar_today</Icon>
       </ListItemIcon>
       <ListItemText primary="Lab Orders" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <StarIcon />
+        <Icon>add</Icon>
       </ListItemIcon>
       <ListItemText primary="New Lab Test" />
     </ListItem>
@@ -33,19 +34,19 @@ export const otherMailFolderListItems = (
   <div>
     <ListItem button>
       <ListItemIcon>
-        <MailIcon />
+        <Icon>settings</Icon>
       </ListItemIcon>
       <ListItemText primary="Lab Test Manager" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <DeleteIcon />
+        <Icon>settings</Icon>
       </ListItemIcon>
       <ListItemText primary="Laboratory Manager" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <ReportIcon />
+      <Icon>settings</Icon>        
       </ListItemIcon>
       <ListItemText primary="Sample Center Manager" />
     </ListItem>
