@@ -14,7 +14,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from 'containers/tileData';
 
-const drawerWidth = 350;
+const drawerWidth = 300;
 
 const styles = theme => ({
   root: {
