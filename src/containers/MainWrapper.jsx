@@ -14,6 +14,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from 'containers/tileData';
 
+//import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+
 const drawerWidth = 300;
 
 const styles = theme => ({
@@ -99,6 +101,7 @@ class MainWrapper extends React.Component {
 
     return (
       <div className={classes.root}>
+
         <AppBar
           position="absolute"
           className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
