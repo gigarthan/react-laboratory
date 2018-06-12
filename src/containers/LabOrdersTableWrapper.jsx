@@ -6,7 +6,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from '@material-ui/core/Typography';
 
-import LabOrdersTable from '../components/LabOrdersTable';
+import LabOrdersTable from '../components/LabOrders/LabOrdersTable';
 
 
 
@@ -51,7 +51,7 @@ class LabOrdersTablesWrapper extends Component {
     const { columnData } = this.state;
 
     const tableCellData = [
-       { priority: 'high', status: 'Report Issued', reqId: 1234, testName: 'blood test', patientHIN: '12475', reqDate: Date.now(), dueDate: Date.now(), reqPerson: 'wasamtha', comment: 'new test' }
+       { priority: 'high', status: 'Report Issued', reqId: 1234, testName: 'blood test', patientHIN: '12475', reqDate: new Date().toString(), dueDate: new Date().toString(), reqPerson: 'wasamtha', comment: 'new test' }
     ];
 
     return (

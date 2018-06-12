@@ -10,11 +10,11 @@ import MainWrapper from "containers/MainWrapper";
 
 import Login from 'components/Login';
 import Home from 'containers/Home';
-import LabTestWrapper from './components/LabTestWrapper';
-import LabTestManagerWrapper from './components/LabTestManagerWrapper';
-import LaboratoryManagerWrapper from './components/LaboratoryManagerWrapper';
-import SampleCenterManagerWrapper from './components/SampleCenterManagerWrapper';
-import SpecimenInformationWrapper from './components/SpecimenInformationWrapper';
+import LabTestWrapper from './components/NewLabTests/LabTestWrapper';
+import LabTestManagerWrapper from './components/OptionsManager/LabTestManagerWrapper';
+import LaboratoryManagerWrapper from './components/OptionsManager/LaboratoryManagerWrapper';
+import SampleCenterManagerWrapper from './components/OptionsManager/SampleCenterManagerWrapper';
+import SpecimenInformationWrapper from './components/LabOrders/SpecimenInformationWrapper';
 
 class App extends Component {
 
