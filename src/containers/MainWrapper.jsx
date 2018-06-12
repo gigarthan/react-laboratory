@@ -98,6 +98,7 @@ class MainWrapper extends React.Component {
 
   render() {
     const { classes, theme } = this.props;
+    console.log(classes);
 
     return (
       <div className={classes.root}>
