@@ -18,6 +18,7 @@ import SpecimenInformationWrapper from './components/LabOrders/SpecimenInformati
 
 //Erandi
 import NewTestRequestHome from './components/NewTestRequest/NewTestRequestHome';
+import ViewTestRequestsHome from './components/TestRequestsView/ViewTestRequestsHome';
 
 class App extends Component {
 
@@ -47,8 +48,10 @@ class App extends Component {
                 <Route path="/lab-managers" exact component={LaboratoryManagerWrapper} />
                 <Route path="/sample-centers" exact component={SampleCenterManagerWrapper} />
                 <Route path="/specimen-details" exact component={SpecimenInformationWrapper} />
+
                 {/* Erandi*/}
                 <Route path="/test-requests" exact component={NewTestRequestHome}/>
+                <Route path="/test-requests-view" exact component={ViewTestRequestsHome}/>
               </MainWrapper>
             </Grid>
           </Grid>
