@@ -27,6 +27,15 @@ export const mailFolderListItems = (
       </ListItem>
      {/* Added By Erandi  */}
 
+      {/* Added By Erandi */}
+      <ListItem button>
+          <ListItemIcon>
+              <Icon>add</Icon>
+          </ListItemIcon>
+          <ListItemText><Link to="/test-requests-view"> View Test Requests </Link></ListItemText>
+      </ListItem>
+      {/* Added By Erandi  */}
+
     <ListItem button>
       <ListItemIcon>
         <Icon>add</Icon>
