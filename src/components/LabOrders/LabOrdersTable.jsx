@@ -178,7 +178,7 @@ class LabOrdersTable extends React.Component {
 
   componentWillMount() {
     this.setState({ data: this.props.data });
-    this.state.data.sort((a, b) => (a.reqId < b.reqId ? -1 : 1))
+    this.state.data.sort((a, b) => (a._id < b._id ? -1 : 1))
   }
 
   handleRequestSort = (event, property) => {
@@ -234,12 +234,12 @@ class LabOrdersTable extends React.Component {
     this.setState({ rowsPerPage: event.target.value });
   };
 
-  isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
     const { classes } = this.props;
-    const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+    const { order, orderBy, selected, rowsPerPage, page } = this.state;
+    const { data } = this.props;
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);   
 
     return (
       <Paper className={classes.root}>
@@ -256,22 +256,21 @@ class LabOrdersTable extends React.Component {
             />
             <TableBody className="test-request-table" >
               {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
-                const isSelected = this.isSelected(n.id);
                 return (
                   <TableRow
                     hover
                     tabIndex={-1}
-                    key={n.reqId}
+                    key={n._id}
                   >
-                    <TableCell numeric>{n.priority}</TableCell>
-                    <TableCell numeric>{n.status}</TableCell>
-                    <TableCell numeric>{n.reqId}</TableCell>
-                    <TableCell numeric>{n.patientHIN}</TableCell>
-                    <TableCell numeric>{n.testName}</TableCell>
-                    <TableCell numeric>{n.reqDate}</TableCell>
-                    <TableCell numeric>{n.dueDate}</TableCell>
-                    <TableCell numeric>{n.reqPerson}</TableCell>
-                    <TableCell numeric>{n.comment}</TableCell>                    
+                    <TableCell >{n.priority}</TableCell>
+                    <TableCell >{n.status}</TableCell>
+                    <TableCell >{n._id}</TableCell>
+                    <TableCell >{n.patientHIN}</TableCell>
+                    <TableCell >{n.testName}</TableCell>
+                    <TableCell >{n.reqDate}</TableCell>
+                    <TableCell >{n.dueDate}</TableCell>
+                    <TableCell >{n.reqPerson}</TableCell>
+                    <TableCell >{n.comment}</TableCell>                    
                   </TableRow>
                 );
               })}
