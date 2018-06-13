@@ -9,12 +9,33 @@ import { Link } from 'react-router-dom';
 
 export const mailFolderListItems = (
   <div>
+
     <ListItem button>
       <ListItemIcon>
         <Icon>calendar_today</Icon>
       </ListItemIcon>
       <ListItemText><Link to="/"> Lab Orders </Link></ListItemText>
     </ListItem>
+
+
+     {/* Added By Erandi */}
+      <ListItem button>
+          <ListItemIcon>
+              <Icon>add</Icon>
+          </ListItemIcon>
+          <ListItemText><Link to="/test-requests"> New Test Request </Link></ListItemText>
+      </ListItem>
+     {/* Added By Erandi  */}
+
+      {/* Added By Erandi */}
+      <ListItem button>
+          <ListItemIcon>
+              <Icon>add</Icon>
+          </ListItemIcon>
+          <ListItemText><Link to="/test-requests-view"> View Test Requests </Link></ListItemText>
+      </ListItem>
+      {/* Added By Erandi  */}
+
     <ListItem button>
       <ListItemIcon>
         <Icon>add</Icon>
