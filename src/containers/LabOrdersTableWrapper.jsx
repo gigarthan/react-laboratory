@@ -99,7 +99,7 @@ LabOrdersTablesWrapper.propTypes = {
 const withStylesComponent = withStyles(styles)(LabOrdersTablesWrapper);
 
 
-function mapStateToProps({ orders}) {
+function mapStateToProps({ orders }) {
   return { orders };
 }
 
