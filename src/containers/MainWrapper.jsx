@@ -13,6 +13,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from 'containers/tileData';
+import Button from '@material-ui/core/Button';
+import LoginButton from './LoginButton';
 
 //import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
@@ -81,6 +83,9 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
   },
+
+
+
 });
 
 class MainWrapper extends React.Component {
@@ -119,6 +124,10 @@ class MainWrapper extends React.Component {
             <Typography variant="title" color="inherit" noWrap>
               Digital Pulz
             </Typography>
+
+          {/*Added By Erandi*/}
+          <LoginButton />
+
           </Toolbar>
         </AppBar>
         <Drawer

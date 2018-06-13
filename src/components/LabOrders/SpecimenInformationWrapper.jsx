@@ -11,6 +11,7 @@ import List from '@material-ui/core/List';
 import  ListItem  from '@material-ui/core/ListItem';
 import  CardHeader  from '@material-ui/core/CardHeader';
 import PatientDetailCard from './PatientDetailCard';
+import TestDetailsCard from './TestDetailsCard';
 
 export default class SpecimenInformationWrapper extends Component {
 
@@ -22,17 +23,26 @@ export default class SpecimenInformationWrapper extends Component {
         gender: 'Male',
         dob: '26/14/1998',
         patientHIN: '123456'
+      },
+      testDetail: {
+        _id: '1234',
+        category: 'Blood & Disease',
+        subCategory: 'Blood Composition',
+        testName: 'Full Blood Count'
       }
     }
   }
 
   render() {
-    const { patient } = this.state;
+    const { patient, testDetail } = this.state;
     return (
       <div>
-        <Grid container>
+        <Grid container spacing={24}>
           <Grid item md={3} >
             <PatientDetailCard patient={patient} />
+          </Grid>
+          <Grid item md={4} >
+            <TestDetailsCard test={testDetail}  />
           </Grid>
         </Grid>
       </div>
