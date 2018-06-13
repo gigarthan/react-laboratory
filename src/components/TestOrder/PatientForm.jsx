@@ -15,6 +15,7 @@ const styles = theme => ({
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
         width: 200,
+        padding: theme.spacing.unit * 3
 
     },
     menu: {
@@ -35,7 +36,7 @@ const gender = [
   ,
 ];
 
-class RequestForm_patient extends React.Component {
+class PatientForm extends React.Component {
     state = {
         patientHIN:'',
         name: '',
@@ -127,8 +128,8 @@ class RequestForm_patient extends React.Component {
     }
 }
 
-RequestForm_patient.propTypes = {
+PatientForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RequestForm_patient);
+export default withStyles(styles)(PatientForm);
