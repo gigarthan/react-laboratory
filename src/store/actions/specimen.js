@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { BASE_URL, ADD_SPECIMEN, GET_ORDER } from '../types.js';
 
-export function addSpecimen(values) {
+export function addSpecimen(id, values) {
     return async dispatch => {
-        const url = BASE_URL + '/requests/specimen';
+        const url = BASE_URL + '/requests/' + id;
         try {
-            const res = await axios.post(url, values);
+            const res = await axios.put(url, values);
             dispatch({
                 type: ADD_SPECIMEN
             });
