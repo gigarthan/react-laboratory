@@ -26,17 +26,11 @@ const CustomTableCell = withStyles(theme => ({
         color: theme.palette.common.white,
     },
     body: {
-        fontSize: 14,
+        fontSize: 12,
     },
 }))(TableCell);
 
 let counter = 0;
-function createData(name, calories, fat, carbs, protein) {
-    counter += 1;
-    return { id: counter, name, calories, fat, carbs, protein };
-}
-
-
 
 class TestRequestTableHead extends React.Component {
     createSortHandler = property => event => {
@@ -161,8 +155,8 @@ TestRequestTableToolbar = withStyles(toolbarStyles)(TestRequestTableToolbar);
 
 const styles = theme => ({
     root: {
-        width: '100%',
-        marginTop: theme.spacing.unit * 3,
+        width: '65%',
+        marginTop: theme.spacing.unit ,
     },
     table: {
         minWidth: 1020,
@@ -182,7 +176,7 @@ class TestRequestTable extends React.Component {
             selected: [],
             data: [],
             page: 0,
-            rowsPerPage: 5,
+            rowsPerPage: 10,
         };
     }
 
@@ -273,15 +267,26 @@ class TestRequestTable extends React.Component {
                                         tabIndex={-1}
                                         key={n.reqId}
                                     >
-                                        <CustomTableCell numeric>{n.priority}</CustomTableCell>
-                                        <CustomTableCell numeric>{n.status}</CustomTableCell>
                                         <CustomTableCell numeric>{n.reqId}</CustomTableCell>
+
+                                        <CustomTableCell numeric>{n.status}</CustomTableCell>
+
                                         <CustomTableCell numeric>{n.patientHIN}</CustomTableCell>
-                                        <CustomTableCell numeric>{n.testName}</CustomTableCell>
+                                        <CustomTableCell numeric>{n.fullName}</CustomTableCell>
+                                        <CustomTableCell numeric>{n.gender}</CustomTableCell>
+                                        <CustomTableCell numeric>{n.dob}</CustomTableCell>
+
+                                        <CustomTableCell numeric>{n.reqPerson}</CustomTableCell>
                                         <CustomTableCell numeric>{n.reqDate}</CustomTableCell>
                                         <CustomTableCell numeric>{n.dueDate}</CustomTableCell>
-                                        <CustomTableCell numeric>{n.reqPerson}</CustomTableCell>
+
+                                        <CustomTableCell numeric>{n.category}</CustomTableCell>
+                                        <CustomTableCell numeric>{n.subCategory}</CustomTableCell>
+                                        <CustomTableCell numeric>{n.testName}</CustomTableCell>
+                                        <CustomTableCell numeric>{n.priority}</CustomTableCell>
+
                                         <CustomTableCell numeric>{n.comment}</CustomTableCell>
+
                                     </TableRow>
                                 );
                             })}

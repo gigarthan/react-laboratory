@@ -106,3 +106,4 @@ function mapStateToProps({ orders }) {
 const mapDispatchToProps = {getOrders};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStylesComponent);
+//export default (withStylesComponent);

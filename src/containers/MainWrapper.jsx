@@ -13,10 +13,14 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from 'containers/tileData';
-import Button from '@material-ui/core/Button';
-import LoginButton from './LoginButton';
 
-//import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Icon from '@material-ui/core/Icon';
+import { Link } from 'react-router-dom';
+
+
 
 const drawerWidth = 300;
 
@@ -124,10 +128,9 @@ class MainWrapper extends React.Component {
             <Typography variant="title" color="inherit" noWrap>
               Digital Pulz
             </Typography>
-
-          {/*Added By Erandi*/}
-          <LoginButton />
-
+              <ListItem button>
+                  <ListItemText><Link to="/login"> Login </Link></ListItemText>
+              </ListItem>
           </Toolbar>
         </AppBar>
         <Drawer
