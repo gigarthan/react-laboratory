@@ -12,6 +12,7 @@ import MainWrapper from "containers/MainWrapper";
 import Login from 'components/Login';
 import Home from 'containers/Home';
 import LabTestWrapper from './components/NewLabTests/LabTestWrapper';
+
 import LabTestManagerWrapper from './components/OptionsManager/LabTestManagerWrapper';
 import LaboratoryManagerWrapper from './components/OptionsManager/LaboratoryManagerWrapper';
 import SampleCenterManagerWrapper from './components/OptionsManager/SampleCenterManagerWrapper';
@@ -44,10 +45,13 @@ class App extends Component {
             <Grid item md={12}>
               <MainWrapper >
                 <Route path="/" exact component={Home} />
-                <Route path="/lab-tests" exact component={LabTestWrapper} />
+               <Route path="/lab-tests" exact component={LabTestWrapper} />
+
+               {/*<Route path="/lab-tests" exact component={LabTestWrapper}/>*/}
                 <Route path="/lab-test-managers" exact component={LabTestManagerWrapper} />
                 <Route path="/lab-managers" exact component={LaboratoryManagerWrapper} />
                 <Route path="/sample-centers" exact component={SampleCenterManagerWrapper} />
+                <Route path="/specimen-details" exact component={SpecimenInformationWrapper} />
                 <Route path="/requests/:reqId/specimen-details" component={SpecimenInformationWrapper} />
             
                 <Route path="/test-requests-view" exact component={ViewTestRequestsHome}/>
