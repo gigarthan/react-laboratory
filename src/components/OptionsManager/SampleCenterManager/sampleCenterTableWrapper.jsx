@@ -17,9 +17,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 import  SampleCenterTable from './sampleCenterTable';
-// import  SampleCenterTypeTable  from './sampleCenterTypeTable';
+import SampleCenterType from './sampleCenterTable';
+
 
 import { getSampleCenters } from 'store/actions/index';
+import { addSampleCenters } from 'store/actions/sampleCenter';
+
 import { connect } from 'react-redux';
 
 
@@ -51,7 +54,7 @@ class sampleCenterTableWrapper extends Component {
                 'Contact 1',
                 'Contact 2'
             ],
-            sampleCenterColumns: [
+            sampleCenterTypeColumns: [
 
                 'Sample Center Type'
             ]
@@ -86,7 +89,7 @@ class sampleCenterTableWrapper extends Component {
     render() {
         const { classes } = this.props;
         const { value } = this.state;
-        const { columnData } = this.state;
+        const { columnData, sampleCenterTypeColumns } = this.state;
 
 
         return (
@@ -98,6 +101,9 @@ class sampleCenterTableWrapper extends Component {
                             <Tab value="SampleCenters" label="Sample Centers" />
                         </Tabs>
                     </AppBar>
+
+
+
                     {value === "SampleCenterTypes" &&
                     <TabContainer>
 
@@ -109,7 +115,7 @@ class sampleCenterTableWrapper extends Component {
                             className={classes.textField}
                             margin="right"
                         />
-                        <SampleCenterTable columnData={columnData} data={this.props.sampleCenters}/>
+                        <SampleCenterType columnData={sampleCenterTypeColumns} data={this.props.sampleCenters}/>
 
                         <Button onClick={this.handleClickOpen}>Add New Sample Center Type</Button>
 
@@ -118,7 +124,7 @@ class sampleCenterTableWrapper extends Component {
                             onClose={this.handleClose}
                             aria-labelledby="form-dialog-title"
                         >
-                            <DialogTitle id="form-dialog-title">Add new Sample Center</DialogTitle>
+                            <DialogTitle id="form-dialog-title">Add New Sample Center Type</DialogTitle>
                             <DialogContent>
 
                                 <TextField
@@ -142,6 +148,7 @@ class sampleCenterTableWrapper extends Component {
 
 
                     </TabContainer>}
+
 
 
                     {value === "SampleCenters" &&
@@ -192,11 +199,11 @@ class sampleCenterTableWrapper extends Component {
                                     fullWidth
                                 />
                                 <TextField
-                                margin="dense"
-                                id="email"
-                                label="Email"
-                                type = "email"
-                                fullWidth
+                                    margin="dense"
+                                    id="email"
+                                    label="Email"
+                                    type = "email"
+                                    fullWidth
                                 />
 
                                 <TextField
