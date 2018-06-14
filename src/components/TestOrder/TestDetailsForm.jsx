@@ -5,8 +5,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 import Save from '@material-ui/icons/Save';
-import Icon from '@material-ui/core/Icon';
-
+import Button from '@material-ui/core/Button';
+import classNames from 'classnames';
 
 const styles = theme => ({
     container: {
@@ -22,12 +22,21 @@ const styles = theme => ({
     menu: {
         width: 200,
 
-    }
+    },
+    button: {
+        margin: theme.spacing.unit,
+    },
+    leftIcon: {
+        marginRight: theme.spacing.unit,
+    },
+    iconSmall: {
+        fontSize: 25,
+    },
 });
 
 
 const category = [
-  /*  {
+    {
         value: 'male',
         label: 'male',
     },
@@ -35,10 +44,10 @@ const category = [
         value: 'female',
         label: 'female',
     },
-    ,*/
+    ,
 ];
 const subCategory = [
-  /*  {
+    {
         value: 'male',
         label: 'male',
     },
@@ -46,10 +55,10 @@ const subCategory = [
         value: 'female',
         label: 'female',
     },
-    ,*/
+
 ];
 const testName = [
-   /* {
+    {
         value: 'male',
         label: 'male',
     },
@@ -57,7 +66,7 @@ const testName = [
         value: 'female',
         label: 'female',
     },
-    ,*/
+    ,
 ];
 const priority = [
     {
@@ -74,12 +83,8 @@ const priority = [
     }
 ];
 
-class RequestForm_test extends React.Component {
+class TestDetailsForm extends React.Component {
     state = {
-        requestedPerson:'',
-        requestedDepart: '',
-        requestedDate:'',
-        dueDate:'',
         category:'',
         subCategory:'',
         testName:'',
@@ -87,26 +92,6 @@ class RequestForm_test extends React.Component {
         comment:''
     };
 
-    handleChange_requestedPerson = requestedPerson => event => {
-        this.setState({
-            [requestedPerson]: event.target.value,
-        });
-    };
-    handleChange_requestedDepart = requestedDepart => event => {
-        this.setState({
-            [requestedDepart]: event.target.value,
-        });
-    };
-    handleChange_requestedDate = requestedDate => event => {
-        this.setState({
-            [requestedDate]: event.target.value,
-        });
-    };
-    handleChange_dueDate = dueDate => event => {
-        this.setState({
-            [dueDate]: event.target.value,
-        });
-    };
     handleChange_category = category => event => {
         this.setState({
             [category]: event.target.value,
@@ -138,48 +123,6 @@ class RequestForm_test extends React.Component {
 
         return (
             <form className={classes.container} noValidate autoComplete="off">
-                <TextField
-                    id="requestedPerson"
-                    label="Person Requesting"
-                    className={classes.textField}
-                    value={this.state.patientHIN}
-                    onChange={this.handleChange_requestedPerson('requestedPerson')}
-                    margin="normal"
-                />
-                <br/><br/>
-                <TextField
-                    id="requestedDepart"
-                    label="Department"
-                    className={classes.textField}
-                    value={this.state.name}
-                    onChange={this.handleChange_requestedDepart('requestedDepart')}
-                    margin="normal"
-                />
-                <br/><br/>
-                <TextField
-                    id="requestedDate"
-                    label="Date Requested"
-                    className={classes.textField}
-                    value={this.state.name}
-                    onChange={this.handleChange_requestedDate('requestedDate')}
-                    margin="normal"
-                />
-                <br/><br/>
-
-                <TextField
-                    id="dueDate"
-                    label="Due Date"
-                    type="date"
-                    className={classes.textField}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    //helperText="Select the date"
-                    margin="normal"
-                    onChange={this.handleChange_dueDate('dueDate')}
-                />
-                <br/><br/>
-
                 <TextField
                     id="category"
                     select
@@ -275,14 +218,19 @@ class RequestForm_test extends React.Component {
                     margin="normal"
                 />
 
+                <Button variant="contained" size="medium" className={classes.button}>
+                    <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
+                    Submit Request
+                </Button>
+
             </form>
 
         );
     }
 }
 
-RequestForm_test.propTypes = {
+TestDetailsForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RequestForm_test);
+export default withStyles(styles)(TestDetailsForm);

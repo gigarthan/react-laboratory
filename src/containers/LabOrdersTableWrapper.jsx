@@ -8,6 +8,9 @@ import Typography from '@material-ui/core/Typography';
 
 import LabOrdersTable from '../components/LabOrders/LabOrdersTable';
 
+import { getOrders } from './../store/actions/index';
+import { connect } from 'react-redux';
+
 
 
 function TabContainer(props) {
@@ -41,6 +44,10 @@ class LabOrdersTablesWrapper extends Component {
       };
   }
 
+  componentDidMount() {
+    this.props.getOrders();
+  }
+
   handleChange = (event, value) => {
     this.setState({ value });
   };
@@ -50,9 +57,7 @@ class LabOrdersTablesWrapper extends Component {
     const { value } = this.state;
     const { columnData } = this.state;
 
-    const tableCellData = [
-       { priority: 'high', status: 'Report Issued', reqId: 1234, testName: 'blood test', patientHIN: '12475', reqDate: new Date().toString(), dueDate: new Date().toString(), reqPerson: 'wasamtha', comment: 'new test' }
-    ];
+    
 
     return (
       <div>
@@ -67,7 +72,7 @@ class LabOrdersTablesWrapper extends Component {
             </AppBar>
             {value === "opd" && 
                 <TabContainer>
-                   <LabOrdersTable columnData={columnData} data={tableCellData} />
+                   <LabOrdersTable columnData={columnData} data={this.props.orders} />
                 </TabContainer>}
             {value === "inward" && <TabContainer>Item Two</TabContainer>}
             {value === "pcu" && <TabContainer>Item Three</TabContainer>}
@@ -90,4 +95,14 @@ LabOrdersTablesWrapper.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(LabOrdersTablesWrapper);
+
+const withStylesComponent = withStyles(styles)(LabOrdersTablesWrapper);
+
+
+function mapStateToProps({ orders }) {
+  return { orders };
+}
+
+const mapDispatchToProps = {getOrders};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStylesComponent);

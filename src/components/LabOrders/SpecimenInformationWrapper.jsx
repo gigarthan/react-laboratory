@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import  ListItem  from '@material-ui/core/ListItem';
-import  CardHeader  from '@material-ui/core/CardHeader';
 import PatientDetailCard from './PatientDetailCard';
+import TestDetailsCard from './TestDetailsCard';
+import SpecimenDetailsForm from 'containers/SpecimenDetailsForm';
+import { getDetails } from 'store/actions/specimen';
+import { connect } from 'react-redux';
 
-export default class SpecimenInformationWrapper extends Component {
+class SpecimenInformationWrapper extends Component {
 
   constructor(props) {
     super(props);
@@ -22,20 +18,43 @@ export default class SpecimenInformationWrapper extends Component {
         gender: 'Male',
         dob: '26/14/1998',
         patientHIN: '123456'
+      },
+      testDetail: {
+        _id: '1234',
+        category: 'Blood & Disease',
+        subCategory: 'Blood Composition',
+        testName: 'Full Blood Count'
       }
     }
   }
 
+  componentDidMount() {
+    const id = this.props.match.params.reqId;
+    this.props.getDetails(id);
+  }
+
   render() {
-    const { patient } = this.state;
+    const { patient, testDetails } = this.props.specimen;
     return (
       <div>
-        <Grid container>
-          <Grid item md={3} >
+        <Grid container spacing={24}>
+          <Grid item md={3} xs={12} >
             <PatientDetailCard patient={patient} />
+          </Grid>
+          <Grid item md={4} xs={12} >
+            <TestDetailsCard test={testDetails}  />
+          </Grid>
+          <Grid item md={7}>
+            <SpecimenDetailsForm />
           </Grid>
         </Grid>
       </div>
     );
   }
 }
+
+function mapStateToProps({ specimen }) {
+  return({ specimen });
+}
+
+export default connect(mapStateToProps, { getDetails })(SpecimenInformationWrapper);
