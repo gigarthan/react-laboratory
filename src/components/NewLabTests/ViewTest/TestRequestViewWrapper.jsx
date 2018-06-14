@@ -39,16 +39,6 @@ class TestRequestViewWrapper extends Component {
                 { id: 'minAge', numeric: false, disablePadding: false, label: 'Minimum Age' },
                 { id: 'maxAge', numeric: false, disablePadding: false, label: 'Maximum Age' },
                 { id: 'unit', numeric: false, disablePadding: false, label: 'Unit' },
-            ],
-            columnData1:  [
-                { id: 'field', numeric: false, disablePadding: false, label: 'FieldName' },
-                { id: 'subField', numeric: false, disablePadding: false, label: 'SubFieldName' },
-                { id: 'gender', numeric: false, disablePadding: false, label: 'Gender' },
-                { id: 'minValue', numeric: false, disablePadding: false, label: 'Minimum Value' },
-                { id: 'maxValue', numeric: false, disablePadding: false, label: 'Maximum Value' },
-                { id: 'minAge', numeric: false, disablePadding: false, label: 'Minimum Age' },
-                { id: 'maxAge', numeric: false, disablePadding: false, label: 'Maximum Age' },
-                { id: 'unit', numeric: false, disablePadding: false, label: 'Unit' },
             ]
         };
     }
@@ -67,10 +57,6 @@ class TestRequestViewWrapper extends Component {
           //  { priority: 'high', status: 'Report Issued', reqId: 1234, testName: 'blood test', patientHIN: '12475', reqDate: new Date().toString(), dueDate: new Date().toString(), reqPerson: 'wasamtha', comment: 'new test' }
         ];
 
-        const tableCellData1 = [
-            //  { priority: 'high', status: 'Report Issued', reqId: 1234, testName: 'blood test', patientHIN: '12475', reqDate: new Date().toString(), dueDate: new Date().toString(), reqPerson: 'wasamtha', comment: 'new test' }
-        ];
-
         return (
             <div>
                 <div className={classes.root}>
@@ -80,7 +66,6 @@ class TestRequestViewWrapper extends Component {
 
                     <TabContainer>
                         <TestRequestTable columnData={this.state.columnData} data={tableCellData} />
-                        <TestRequestTable columnData1={this.state.columnData} data={tableCellData1} />
                     </TabContainer>
 
                 </div>
