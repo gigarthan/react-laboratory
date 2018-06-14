@@ -25,9 +25,7 @@ function SampleCenterTable(props) {
 
     return (
         <Paper className={classes.root}>
-            {/*<Button variant="contained" color="primary" className={classes.button}>*/}
-                {/*Add New*/}
-            {/*</Button>*/}
+
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
@@ -48,9 +46,10 @@ function SampleCenterTable(props) {
                                     <TableCell>{data.email}</TableCell>
                                     <TableCell>{data.contact1}</TableCell>
                                     <TableCell>{data.contact2}</TableCell>
-                                    <TableCell><Button variant="contained" color="primary" className={classes.button}>
+                                    <TableCell>
+                                        <Button variant="contained" color="primary" className={classes.button}>
                                         Edit
-                                    </Button>
+                                        </Button>
                                     </TableCell>
 
                                 </TableRow>
@@ -63,42 +62,43 @@ function SampleCenterTable(props) {
     );
 }
 
-// function SampleCenterTypeTable(props) {
-//     const { classes, columnData, data } = props;
-//
-//     return (
-//         <Paper className={classes.root}>
-//             <Button variant="contained" color="primary" className={classes.button}>
-//                 Add New
-//             </Button>
-//             <Table className={classes.table}>
-//                 <TableHead>
-//                     <TableRow>
-//                         { columnData.map( tableHeading => {
-//                             return ( <TableCell>{tableHeading}</TableCell>)
-//                         }) }
-//                     </TableRow>
-//                 </TableHead>
-//                 <TableBody>
-//                     {
-//                         data.map( data => {
-//                             return (
-//                                 <TableRow>
-//                                     <TableCell>{data.type}</TableCell>
-//
-//                                     <TableCell>
-//                                     </TableCell>
-//
-//                                 </TableRow>
-//                             );
-//                         } )
-//                     }
-//                 </TableBody>
-//             </Table>
-//         </Paper>
-//     );
-// }
+
+function SampleCenterType(props) {
+    const { classes, columnData, data } = props;
+
+    return (
+        <Paper className={classes.root}>
+
+            <Table className={classes.table}>
+                <TableHead>
+                    <TableRow>
+                        { columnData.map( tableHeading => {
+                            return ( <TableCell>{tableHeading}</TableCell>)
+                        }) }
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {
+                        data.map( data => {
+                            return (
+                                <TableRow>
+                                    <TableCell>{data.type}</TableCell>
+                                    <TableCell>
+                                        <Button variant="contained" color="primary" className={classes.button}>
+                                            Edit
+                                        </Button>
+                                    </TableCell>
+
+                                </TableRow>
+                            );
+                        } )
+                    }
+                </TableBody>
+            </Table>
+        </Paper>
+    );
+}
 
 
 
-export default withStyles(styles)(SampleCenterTable);
+export default withStyles(styles)(SampleCenterTable,SampleCenterType);
