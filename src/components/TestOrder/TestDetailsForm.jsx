@@ -36,7 +36,7 @@ const styles = theme => ({
 
 
 const category = [
-    {
+ /*   {
         value: 'male',
         label: 'male',
     },
@@ -44,21 +44,21 @@ const category = [
         value: 'female',
         label: 'female',
     },
-    ,
+    ,*/
 ];
 const subCategory = [
-    {
+ /*   {
         value: 'male',
         label: 'male',
     },
     {
         value: 'female',
         label: 'female',
-    },
+    },*/
 
 ];
 const testName = [
-    {
+ /*   {
         value: 'male',
         label: 'male',
     },
@@ -66,7 +66,7 @@ const testName = [
         value: 'female',
         label: 'female',
     },
-    ,
+    ,*/
 ];
 const priority = [
     {
