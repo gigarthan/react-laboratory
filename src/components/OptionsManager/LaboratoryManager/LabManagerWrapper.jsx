@@ -14,15 +14,23 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import {Field, reduxForm} from 'redux-form';
+import {renderTextField} from "../../MaterialUi";
 
 
 
 import  LabManagerTable from './LabManagerTable';
+import  LabDepTable from './LabDepTable';
+import  LabTypeTable from './LabTypeTable';
+
 
 
 import { getLabs } from 'store/actions/index';
+import {addLabs} from 'store/actions/index';
+
 import { connect } from 'react-redux';
+
+
 
 
 function TabContainer(props) {
@@ -42,6 +50,7 @@ class LabManagerWrapper extends Component {
         super(props);
         this.state = {
             value: 'labTypes',
+
             columnData:  [
 
                 'Lab Name',
@@ -52,6 +61,14 @@ class LabManagerWrapper extends Component {
                 'Location',
                 'Contact 1',
                 'Contact 2'
+            ],
+
+            labDepColumns:[
+                'Department'
+            ],
+
+            labTypeColumns:[
+                'Lab Type'
             ]
         };
 
@@ -80,16 +97,22 @@ class LabManagerWrapper extends Component {
         this.setState({ value });
     };
 
+    submit = values => {
+        this.props.addLabs(this.props.id, values);
+    };
 
 
 
     render() {
-        const { classes } = this.props;
-        const { value } = this.state;
-        const { columnData } = this.state;
+        const {classes} = this.props;
+        const {value} = this.state;
+        const {columnData,labDepColumns,labTypeColumns} = this.state;
+        const {handleSubmit} = this.props;
 
 
-        return (
+
+
+            return (
             <div>
                 <div className={classes.root}>
                     <AppBar position="static">
@@ -111,7 +134,7 @@ class LabManagerWrapper extends Component {
                         />
 
 
-                        <LabManagerTable columnData={columnData} data={this.props.labs}/>
+                        <LabTypeTable columnData={labTypeColumns} data={this.props.labs}/>
 
                         <Button onClick={this.handleClickOpen}>Add New Laboratory Type</Button>
 
@@ -160,7 +183,7 @@ class LabManagerWrapper extends Component {
                         />
 
 
-                        <LabManagerTable columnData={columnData} data={this.props.labs} />
+                        <LabDepTable columnData={labDepColumns} data={this.props.labs} />
 
                         <Button onClick={this.handleClickOpen}>Add New Department</Button>
 
@@ -245,85 +268,74 @@ class LabManagerWrapper extends Component {
                         >
                             <DialogTitle id="form-dialog-title">Add New Laboratory</DialogTitle>
                             <DialogContent>
-
-                                <TextField
-                                    autoFocus
-                                    margin="dense"
-                                    id="labType"
+                                <form onSubmit={this.props.handleSubmit(this.submit)} >
+                                <Field
+                                    name="labType"
                                     label="Lab Type"
-                                    fullWidth
+                                    component={renderTextField}
                                 />
-                                <TextField
-                                    margin="dense"
-                                    id="department"
+                                <Field
+                                    name="department"
                                     label="Department"
-                                    fullWidth
+                                    component={renderTextField}
                                 />
-                                <TextField
-                                    margin="dense"
-                                    id="depCount"
+                                <Field
+                                    name="depCount"
                                     label="Department Count"
-                                    fullWidth
+                                    component={renderTextField}
                                 />
-                                <TextField
-                                    margin="dense"
-                                    id="labName"
+                                <Field
+                                    name="labName"
                                     label="Lab Name"
-                                    fullWidth
+                                    component={renderTextField}
                                 />
 
-                                <TextField
-                                    margin="dense"
-                                    id="labIncharge"
+                                <Field
+                                    name="labIncharge"
                                     label="Lab Incharge"
-                                    fullWidth
+                                    component={renderTextField}
                                 />
 
-                                <TextField
-                                margin="dense"
-                                id="location"
-                                label="Location"
-                                fullWidth
+                                <Field
+                                    name="location"
+                                    label="Location"
+                                    component={renderTextField}
                                 />
 
-                                <TextField
-                                    margin="dense"
-                                    id="email"
+                                <Field
+                                    name="email"
                                     label="Email"
-                                    fullWidth
+                                    component={renderTextField}
                                 />
 
-                                <TextField
-                                    margin="dense"
-                                    id="contact1"
+                                <Field
+                                    name="contact1"
                                     label="Contact 1"
-                                    fullWidth
+                                    component={renderTextField}
                                 />
 
-                                <TextField
-                                    margin="dense"
-                                    id="contact2"
+                                <Field
+                                    name="contact2"
                                     label="Contact 2"
-                                    fullWidth
+                                    component={renderTextField}
                                 />
 
 
+                                </form>
                             </DialogContent>
                             <DialogActions>
                                 <Button onClick={this.handleClose} color="primary">
                                     Cancel
                                 </Button>
-                                <Button onClick={this.handleSave} color="primary">
-                                    Save
+                                <Button type="submit" onClick={this.submit && this.handleClose} color="primary" >
+                                    Submit
                                 </Button>
+
                             </DialogActions>
+
                         </Dialog>
 
-
-
-
                     </TabContainer>}
-
 
                 </div>
             </div>
@@ -352,7 +364,12 @@ function mapStateToProps({ labs }) {
     return { labs };
 }
 
-const mapDispatchToProps = {getLabs};
+const mapDispatchToProps = {getLabs,addLabs};
+
+const MyForm = reduxForm({
+    form: "labTypes",
+})(withStylesComponent);
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStylesComponent);
 
