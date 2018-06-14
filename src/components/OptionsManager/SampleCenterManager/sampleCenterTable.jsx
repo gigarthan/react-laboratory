@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -38,7 +37,7 @@ function SampleCenterTable(props) {
                     {
                         data.map( data => {
                             return (
-                                <TableRow>
+                                <TableRow key={data.name} >
                                     <TableCell>{data.type}</TableCell>
                                     <TableCell>{data.name}</TableCell>
                                     <TableCell>{data.inCharge}</TableCell>
@@ -62,43 +61,4 @@ function SampleCenterTable(props) {
     );
 }
 
-
-function SampleCenterType(props) {
-    const { classes, columnData, data } = props;
-
-    return (
-        <Paper className={classes.root}>
-
-            <Table className={classes.table}>
-                <TableHead>
-                    <TableRow>
-                        { columnData.map( tableHeading => {
-                            return ( <TableCell>{tableHeading}</TableCell>)
-                        }) }
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {
-                        data.map( data => {
-                            return (
-                                <TableRow>
-                                    <TableCell>{data.type}</TableCell>
-                                    <TableCell>
-                                        <Button variant="contained" color="primary" className={classes.button}>
-                                            Edit
-                                        </Button>
-                                    </TableCell>
-
-                                </TableRow>
-                            );
-                        } )
-                    }
-                </TableBody>
-            </Table>
-        </Paper>
-    );
-}
-
-
-
-export default withStyles(styles)(SampleCenterTable,SampleCenterType);
+export default withStyles(styles)(SampleCenterTable);
