@@ -10,6 +10,11 @@ import Tab from "@material-ui/core/Tab";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 
 
 
@@ -56,9 +61,23 @@ class LabTestWrapper extends Component {
 
     }
 
+    handleClickOpen = () => {
+        this.setState({ open: true });
+    };
+
+    handleClose = () => {
+        this.setState({ open: false });
+    };
+
+    handleSave = () => {
+        this.setState({ open: false });
+    };
+
     handleChange = (event, value) => {
         this.setState({ value });
     };
+
+
 
     render() {
         const { classes } = this.props;
@@ -98,11 +117,64 @@ class LabTestWrapper extends Component {
                         <LabTestTable columnData={columnData} data={this.props.labs} />
 
 
-                        <Button variant="contained" color="primary" className={classes.button}>
-                            Add New Test category
-                        </Button>
+                        <Button onClick={this.handleClickOpen}>Add New Test Category</Button>
+
+                        <Dialog
+                            open={this.state.open}
+                            onClose={this.handleClose}
+                            aria-labelledby="form-dialog-title"
+                        >
+                            <DialogTitle id="form-dialog-title">Add new Sample Center</DialogTitle>
+                            <DialogContent>
+
+                                <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    id="name"
+                                    label="Category Name"
+                                    fullWidth
+                                />
+                                <TextField
+                                    margin="dense"
+                                    id="subName"
+                                    label="Sub Category Name"
+                                    fullWidth
+                                />
+                                <TextField
+                                    margin="dense"
+                                    id="specimenType"
+                                    label="specimen Type"
+                                    fullWidth
+                                />
+                                <TextField
+                                    margin="dense"
+                                    id="SRType"
+                                    label="Specimen Retention Type"
+                                    fullWidth
+                                />
+
+                                <TextField
+                                    margin="dense"
+                                    id="duration"
+                                    label="Duration"
+                                    fullWidth
+                                />
+
+
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={this.handleClose} color="primary">
+                                    Cancel
+                                </Button>
+                                <Button onClick={this.handleSave} color="primary">
+                                    Save
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
 
                     </TabContainer>}
+
+
                     {value === "testSubCategories" &&
                     <TabContainer>
 
