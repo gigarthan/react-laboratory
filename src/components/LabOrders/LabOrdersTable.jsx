@@ -18,6 +18,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
+import { Link } from 'react-router-dom';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
@@ -38,6 +39,7 @@ class LabOrdersTableHead extends React.Component {
     return (
       <TableHead>
         <TableRow>
+            <TableCell></TableCell>
           {this.props.columnData.map(column => {
             return (
               <TableCell
@@ -168,7 +170,7 @@ class LabOrdersTable extends React.Component {
 
     this.state = {
       order: 'asc',
-      orderBy: 'regId',
+      orderBy: '_id',
       selected: [],
       data: [],
       page: 0,
@@ -234,6 +236,30 @@ class LabOrdersTable extends React.Component {
     this.setState({ rowsPerPage: event.target.value });
   };
 
+  renderActions = ({ status, _id }) => {
+      if(status === 'sample_required') {
+        const url = `/requests/${_id}/specimen-details`;
+        return (        
+          <Link to={url} >Add Sample Details</Link>
+        )
+      } else if (status === 'sample_collected') {
+        return (
+          <Link to="">Add Results</Link>
+        )
+      } else if (status === 'report_issued') {
+        return (
+          <div>
+            <div>
+              <Link to="">View Details</Link>
+            </div>
+            <div>
+              <Link to="">View Report</Link>
+            </div>
+          </div>
+        )
+      }
+  };
+
 
   render() {
     const { classes } = this.props;
@@ -262,6 +288,9 @@ class LabOrdersTable extends React.Component {
                     tabIndex={-1}
                     key={n._id}
                   >
+                    <TableCell>
+                      { this.renderActions(n) }
+                    </TableCell>
                     <TableCell >{n.priority}</TableCell>
                     <TableCell >{n.status}</TableCell>
                     <TableCell >{n._id}</TableCell>
