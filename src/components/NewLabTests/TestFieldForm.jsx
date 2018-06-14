@@ -115,16 +115,6 @@ class TestFieldForm extends React.Component {
             { id: 'maxAge', numeric: false, disablePadding: false, label: 'Maximum Age' },
             { id: 'unit', numeric: false, disablePadding: false, label: 'Unit' },
         ],
-        columnData1:  [
-            { id: 'field', numeric: false, disablePadding: false, label: 'FieldName' },
-            { id: 'subField', numeric: false, disablePadding: false, label: 'SubFieldName' },
-            { id: 'gender', numeric: false, disablePadding: false, label: 'Gender' },
-            { id: 'minValue', numeric: false, disablePadding: false, label: 'Minimum Value' },
-            { id: 'maxValue', numeric: false, disablePadding: false, label: 'Maximum Value' },
-            { id: 'minAge', numeric: false, disablePadding: false, label: 'Minimum Age' },
-            { id: 'maxAge', numeric: false, disablePadding: false, label: 'Maximum Age' },
-            { id: 'unit', numeric: false, disablePadding: false, label: 'Unit' },
-        ]
 
     };
 
@@ -377,10 +367,6 @@ class TestFieldForm extends React.Component {
                                 {value === "parentFields" &&
                                 <TabContainer>
                                     <TestRequestTable columnData={columnData} data={tableCellData} />
-                                </TabContainer>}
-                                {value === "subFields" &&
-                                <TabContainer>
-                                    <TestRequestTable1 columnData1={columnData1} data={tableCellData1} />
                                 </TabContainer>}
                                 </div>
                             </div>
