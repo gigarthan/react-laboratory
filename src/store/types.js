@@ -56,4 +56,10 @@ export const GET_BASIC_TESTS = 'GET_BASIC_TESTS';
 
 
 export const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS';
-//>>>>>>> origin/master
+
+
+
+export const ADD_TESTS = 'ADD_TESTS';
+export const GET_LABORATORY = 'GET_LABORATORY';
+export const ADD_TESTS_FIELDS = 'ADD_TESTS_FIELDS';
+
