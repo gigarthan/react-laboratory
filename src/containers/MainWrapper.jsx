@@ -15,7 +15,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from 'containers/tileData';
 import Button from '@material-ui/core/Button';
 import LoginButton from './LoginButton';
-import LabTestNotification from './LabTestNotification';
+// import LabTestNotification from './LabTestNotification';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -24,8 +24,6 @@ import { Link } from 'react-router-dom';
 import AlarmIcon from '@material-ui/icons/Alarm';
 
 
-
-//import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 const drawerWidth = 300;
 
@@ -112,7 +110,6 @@ class MainWrapper extends React.Component {
 
   render() {
     const { classes, theme } = this.props;
-    console.log(classes);
 
     return (
       <div className={classes.root}>
@@ -135,18 +132,9 @@ class MainWrapper extends React.Component {
             </Typography>
 
           {/*Added By Erandi*/}
-          <LoginButton />
-
-              <ListItem button>
-                  <Link to="/notify" className="side-nav-a">
-                      <ListItemIcon>
-                          <AlarmIcon className={classes.icon} />
-                      </ListItemIcon>
-
-                  </Link>
-              </ListItem>
-
-                    </Toolbar>
+        
+            </Toolbar>
+            
         </AppBar>
         <Drawer
           variant="permanent"
