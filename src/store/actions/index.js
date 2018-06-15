@@ -1,9 +1,7 @@
 import axios from 'axios';
-
 import {GET_ORDER, GET_ORDERS} from '../types';
-
-import { GET_SAMPLE_CENTERS } from '../types';
 import { GET_LABS } from '../types';
+import { GET_LAB_TEST_CATEGORIES } from '../types';
 import { GET_LAB_TESTS } from '../types';
 import {GET_TESTS} from "../types";
 import {GET_BASIC_TESTS} from "../types";
@@ -110,14 +108,14 @@ export function addLabs(id) {
 ///////////////////// Lab test manager ////////////////
 
 
-export function getLabTests() {
+export function getLabTestCategories() {
     return async dispatch => {
         const url = BASE_URL + '/test-categories';
 
         try {
             const res = await axios.get(url);
             dispatch({
-                type: GET_LAB_TESTS,
+                type: GET_LAB_TEST_CATEGORIES,
                 payload: res.data
             });
         } catch (error) {

@@ -20,8 +20,8 @@ import  SampleCenterTable from './sampleCenterTable';
 import SampleCenterTypeTable from './SampleCenterTypeTable';
 
 
-import { getSampleCenters } from 'store/actions/index';
-import { addSampleCenters } from 'store/actions/sampleCenter';
+import { addSampleCenters ,getSampleCenters} from 'store/actions/sampleCenter';
+import { addSampleCenterTypes, getSampleCenterTypes } from 'store/actions/sampleCenter';
 
 import { connect } from 'react-redux';
 
@@ -64,10 +64,17 @@ class sampleCenterTableWrapper extends Component {
     }
 
     componentDidMount(){
-
         this.props.getSampleCenters();
+        this.props.getSampleCenterTypes();
 
     }
+
+    submit = values => {
+        this.props.addSampleCenterTypes(values);
+        this.props.addSampleCenters(values);
+        this.handleClose();
+    };
+
 
     handleClickOpen = () => {
         this.setState({ open: true });
@@ -87,9 +94,7 @@ class sampleCenterTableWrapper extends Component {
         this.setState({ value });
     };
 
-    submit = values => {
-        this.props.addSampleCenters(this.props.id, values);
-    };
+
 
 
     render() {
@@ -109,8 +114,6 @@ class sampleCenterTableWrapper extends Component {
                         </Tabs>
                     </AppBar>
 
-
-
                     {value === "SampleCenterTypes" &&
                     <TabContainer>
 
@@ -122,7 +125,7 @@ class sampleCenterTableWrapper extends Component {
                             className={classes.textField}
                             margin="right"
                         />
-                        <SampleCenterTypeTable columnData={sampleCenterTypeColumns} data={this.props.sampleCenters}/>
+                        <SampleCenterTypeTable columnData={sampleCenterTypeColumns} data={this.props.sampleCenterTypes}/>
 
                         <Button onClick={this.handleClickOpen}>Add New Sample Center Type</Button>
 
@@ -133,11 +136,11 @@ class sampleCenterTableWrapper extends Component {
                         >
                             <DialogTitle id="form-dialog-title">Add New Sample Center Type</DialogTitle>
                             <DialogContent>
-                                <form onSubmit={this.props.handleSubmit(this.submit) && this.handleClose} >
+                                <form onSubmit={handleSubmit(this.submit)} >
 
 
                                     <Field
-                                        name="type"
+                                        name="name"
                                         label="Sample Center Type"
                                         component={renderTextField}
                                     />
@@ -179,7 +182,7 @@ class sampleCenterTableWrapper extends Component {
                             <DialogTitle id="form-dialog-title">Add new Sample Center</DialogTitle>
                             <DialogContent>
 
-                                <form onSubmit={this.props.handleSubmit(this.submit)} >
+                                <form onSubmit={handleSubmit(this.submit)} >
 
                                 <Field
                                     name="type"
@@ -258,11 +261,16 @@ sampleCenterTableWrapper.propTypes = {
 const withStylesComponent = withStyles(styles)(sampleCenterTableWrapper);
 
 
-function mapStateToProps({ sampleCenters }) {
-    return { sampleCenters };
+function mapStateToProps({ sampleCenters, sampleCenterTypes }) {
+    return { sampleCenters, sampleCenterTypes };
 }
 
-const mapDispatchToProps = {getSampleCenters,addSampleCenters};
+const mapDispatchToProps = {
+    getSampleCenters,
+    addSampleCenters,
+    addSampleCenterTypes,
+    getSampleCenterTypes
+};
 
 
 const MyForm = reduxForm({

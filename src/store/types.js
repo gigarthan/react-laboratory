@@ -13,6 +13,8 @@ export const GET_SAMPLE_CENTER_TYPES = 'GET_SAMPLE_CENTER_TYPES';
 
 export const ADD_SAMPLE_CENTERS = 'ADD_SAMPLE_CENTERS';
 
+export const ADD_SAMPLE_CENTER_TYPES = 'ADD_SAMPLE_CENTER_TYPES';
+
 
 ///////////////////// Laboratory Manager////////////////
 
@@ -24,4 +26,4 @@ export const GET_LABS = 'GET_LABS';
 ///////////////////// Laboratory Manager////////////////
 
 
-export const GET_LAB_TESTS = 'GET_LAB_TESTS';
+export const GET_LAB_TEST_CATEGORIES = 'GET_LAB_TEST_CATEGORIES';

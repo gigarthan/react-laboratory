@@ -107,7 +107,7 @@ class LabManagerWrapper extends Component {
         const {classes} = this.props;
         const {value} = this.state;
         const {columnData,labDepColumns,labTypeColumns} = this.state;
-        const {handleSubmit} = this.props;
+        const { handleSubmit } = this.props;
 
 
 
@@ -134,7 +134,7 @@ class LabManagerWrapper extends Component {
                         />
 
 
-                        <LabTypeTable columnData={labTypeColumns} data={this.props.labs}/>
+                        <LabTypeTable columnData={labTypeColumns} data={this.props.laboratory}/>
 
                         <Button onClick={this.handleClickOpen}>Add New Laboratory Type</Button>
 
@@ -183,7 +183,7 @@ class LabManagerWrapper extends Component {
                         />
 
 
-                        <LabDepTable columnData={labDepColumns} data={this.props.labs} />
+                        <LabDepTable columnData={labDepColumns} data={this.props.laboratory} />
 
                         <Button onClick={this.handleClickOpen}>Add New Department</Button>
 
@@ -257,7 +257,7 @@ class LabManagerWrapper extends Component {
                         />
 
 
-                        <LabManagerTable columnData={columnData} data={this.props.labs} />
+                        <LabManagerTable columnData={columnData} data={this.props.laboratory} />
 
                         <Button onClick={this.handleClickOpen}>Add New Laboratory</Button>
 
@@ -268,7 +268,7 @@ class LabManagerWrapper extends Component {
                         >
                             <DialogTitle id="form-dialog-title">Add New Laboratory</DialogTitle>
                             <DialogContent>
-                                <form onSubmit={this.props.handleSubmit(this.submit)} >
+                                <form onSubmit={handleSubmit(this.submit)} >
                                 <Field
                                     name="labType"
                                     label="Lab Type"
@@ -360,8 +360,8 @@ LabManagerWrapper.propTypes = {
 const withStylesComponent = withStyles(styles)(LabManagerWrapper);
 
 
-function mapStateToProps({ labs }) {
-    return { labs };
+function mapStateToProps({ laboratory }) {
+    return { laboratory };
 }
 
 const mapDispatchToProps = {getLabs,addLabs};
@@ -371,6 +371,6 @@ const MyForm = reduxForm({
 })(withStylesComponent);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStylesComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(MyForm);
 
 

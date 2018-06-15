@@ -19,7 +19,7 @@ const styles = theme => ({
     },
 });
 
-function LabTypeTable(props) {
+function LabTestSubTable(props) {
     const { classes, columnData, data } = props;
 
     return (
@@ -38,7 +38,7 @@ function LabTypeTable(props) {
                         data.map( data => {
                             return (
                                 <TableRow key={data.name}>
-                                    <TableCell>{data.subName}</TableCell>
+                                    <TableCell>{data.subCategoryName}</TableCell>
                                     <TableCell>
                                         <Button variant="contained" color="primary" className={classes.button}>
                                             Edit
@@ -55,4 +55,4 @@ function LabTypeTable(props) {
     );
 }
 
-export default withStyles(styles)(LabTypeTable);
+export default withStyles(styles)(LabTestSubTable);

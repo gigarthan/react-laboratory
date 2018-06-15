@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -24,7 +25,6 @@ function LabTestCategoryTable(props) {
 
     return (
         <Paper className={classes.root}>
-
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
@@ -37,12 +37,15 @@ function LabTestCategoryTable(props) {
                     {
                         data.map( data => {
                             return (
-                                <TableRow key={data.name}>
+                                <TableRow>
                                     <TableCell>{data.name}</TableCell>
-                                    <TableCell>
-                                        <Button variant="contained" color="primary" className={classes.button}>
-                                            Edit
-                                        </Button>
+                                    <TableCell>{data.subCategoryName}</TableCell>
+                                    <TableCell>{data.specimenType}</TableCell>
+                                    <TableCell>{data.specimenRetentionType}</TableCell>
+                                    <TableCell>{data.duration}</TableCell>
+                                    <TableCell><Button variant="contained" color="primary" className={classes.button}>
+                                        Edit
+                                    </Button>
                                     </TableCell>
 
                                 </TableRow>
@@ -54,5 +57,9 @@ function LabTestCategoryTable(props) {
         </Paper>
     );
 }
+
+
+
+
 
 export default withStyles(styles)(LabTestCategoryTable);
