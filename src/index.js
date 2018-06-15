@@ -9,7 +9,11 @@ import registerServiceWorker from './registerServiceWorker';
 
 const state = {
     orders: [],
-    specimen: { patient: {}, testDetails: {}}
+    specimen: { patient: {}, testDetails: {}},
+    testResults: {
+        fields: [],
+        patient: {}
+    }
 };
 
 const store = configStore(state);

@@ -8,11 +8,13 @@ import sampleCenterReducer from './reduce_sampleCenters';
 import labManagerReducer from './reduce_labManager';
 
 import labTestManagerReducer from './reduce_labTestManager';
+import resultReducer from './reduce_results';
 
 const rootReducer = combineReducers({
     form: formReducer,
     orders: orderReducer,
     specimen: specimenReducer,
+    testResults: resultReducer,
 
 
     ///////////////////// Sample centers ////////////////

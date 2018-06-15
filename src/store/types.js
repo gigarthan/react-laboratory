@@ -2,7 +2,8 @@ export const BASE_URL = 'http://localhost:8000/api';
 export const GET_ORDERS = 'GET_ORDERS';
 export const GET_ORDER = 'GET_ORDER';
 export const ADD_SPECIMEN = 'ADD_SPECIMEN';
-
+export const GET_TEST_RESULT_FIELDS = 'TEST_RESULT_FIELDS';
+export const ADD_TEST_RESULTS = 'ADD_TEST_RESULTS';
 
 
 ///////////////////// Sample centers ////////////////

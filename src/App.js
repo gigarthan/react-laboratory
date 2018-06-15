@@ -19,6 +19,7 @@ import SampleCenterManagerWrapper from './components/OptionsManager/SampleCenter
 import SpecimenInformationWrapper from './components/LabOrders/SpecimenInformationWrapper';
 
 import ViewTestRequestsHome from './components/TestRequestsView/ViewTestRequestsHome';
+import TestResultsWrapper from './components/LabOrders/TestResultsWrapper';
 
 
 
@@ -53,7 +54,7 @@ class App extends Component {
                 <Route path="/sample-centers" exact component={SampleCenterManagerWrapper} />
                 <Route path="/specimen-details" exact component={SpecimenInformationWrapper} />
                 <Route path="/requests/:reqId/specimen-details" component={SpecimenInformationWrapper} />
-            
+                <Route path="/requests/:reqId/test-results" component={TestResultsWrapper} />
                 <Route path="/test-requests-view" exact component={ViewTestRequestsHome}/>
               </MainWrapper>
             </Grid>
