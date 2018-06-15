@@ -10,6 +10,8 @@ import labManagerReducer from './reduce_labManager';
 // import labTestManagerReducer from './reduce_labTestManager';
 import resultReducer from './reduce_results';
 import labTestCategoryReducer from './reduce_labTestCategory';
+import labTypesReducer from './reduce_labTypes';
+import labDepartmentReducer from './reduce_labDepartments';
 
 import getLabTestManagerReducer from './reduce_getLabTestManager';
 import getBasicLabTestManagerReducer from './reduce_getBasicLabTestManager';
@@ -66,13 +68,16 @@ const rootReducer = combineReducers({
 
 
     laboratory:labManagerReducer,
+    labTypes: labTypesReducer,
+    labDepartments : labDepartmentReducer,
 
 
-    ///////////////////// Laboratories ////////////////
+    ///////////////////// Lab tests ////////////////
 
 
     labTestCategories : labTestCategoryReducer,
-    // labTests:labTestManagerReducer,
+
+
     //labTests:labTestManagerReducer,
 
 
