@@ -19,18 +19,8 @@ const styles = theme => ({
     },
 });
 
-let id = 0;
-function createData(field, gender, minAge, maxAge, minValue, maxValue, unit) {
-    id += 1;
-    return { field, gender, minAge, maxAge, minValue, maxValue, unit };
-}
-
-const data = [
-
-];
-
 function TestRequestTable(props) {
-    const { classes } = props;
+    const { classes, data } = props;
 
     return (
         <Paper className={classes.root}>
