@@ -13,10 +13,13 @@ import labTestCategoryReducer from './reduce_labTestCategory';
 import getLabTestManagerReducer from './reduce_getLabTestManager';
 import getBasicLabTestManagerReducer from './reduce_getBasicLabTestManager';
 import getNotificationManagerReducer from './reduce_getNotificationManager';
+import addTestReducer from './reduce_tests'
+import ageLaboratoryReducer from './reduce_tests'
+import addTestFieldReducer from './reduce_testsFields'
 
-import viewRequestReducer from './reduce_newTestOrder';
-import newOrderReducer from './reduce_newOrder';
-import labDetailsReducer from './reduce_newOrder';
+//import viewRequestReducer from './reduce_newTestOrder';
+//import newOrderReducer from './reduce_newOrder';
+//import labDetailsReducer from './reduce_newOrder';
 
 const rootReducer = combineReducers({
     form: formReducer,
@@ -24,23 +27,18 @@ const rootReducer = combineReducers({
     specimen: specimenReducer,
 
 
-//<<<<<<< HEAD
-
-
-
 /////////////////    TEST REQUESTS VIEW     ////////////////////
 
-    viewOrders: viewRequestReducer,
+    //viewOrders: viewRequestReducer,
 
 
 /////////////////    ADD NEW ORDER     ////////////////////
 
-    newOrder: newOrderReducer,
+    //newOrder: newOrderReducer,
 
-    labDetails :labDetailsReducer,
+    //labDetails :labDetailsReducer,
 
 
-//=======
     ///////////////////// Sample centers ////////////////
 
     sampleCenters:sampleCenterReducer,
@@ -78,8 +76,17 @@ const rootReducer = combineReducers({
     ///////////////////// GetNotifications ////////////////
 
 
-    notification:getNotificationManagerReducer
-//>>>>>>> origin/master
+
+    notification:getNotificationManagerReducer,
+
+
+    notification:getNotificationManagerReducer,
+
+
+    test:addTestReducer,
+    lab:ageLaboratoryReducer,
+    testField:addTestFieldReducer
+
 
 });
 
