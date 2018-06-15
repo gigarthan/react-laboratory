@@ -6,7 +6,10 @@ export default class SampleCenterManagerWrapper extends Component {
     return (
       <div>
         <SampleCenterTableWrapper />
+
       </div>
+
+
     )
   }
 }

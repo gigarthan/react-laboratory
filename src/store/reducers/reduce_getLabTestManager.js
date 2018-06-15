@@ -1,8 +1,8 @@
-import { GET_ORDERS, ADD_SPECIMEN } from './../types';
+import { GET_TESTS, ADD_SPECIMEN } from './../types';
 
 export default function(state = [], action) {
     switch (action.type) {
-        case GET_ORDERS:
+        case GET_TESTS:
             return action.payload;
         default:
             return state;

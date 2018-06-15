@@ -2,16 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-//import Tabs from "@material-ui/core/Tabs";
-//import Tab from "@material-ui/core/Tab";
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import Divider from '@material-ui/core/Divider';
 
-import TestFieldForm from './TestFieldForm';
-import LabTestForm from './LabTestForm';
-import RequestButton from './RequestButton';
-
+import HomeContent from './HomeContent';
 
 function TabContainer(props) {
     return (
@@ -26,7 +21,7 @@ TabContainer.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-class LabTestWrapper extends Component {
+class HomeWrapper extends Component {
     constructor(props) {
         super(props);
     }
@@ -40,36 +35,13 @@ class LabTestWrapper extends Component {
                     <AppBar position="static">
                         <Toolbar>
                             <Typography variant="title" color="inherit">
-                                New Laboratory Test
+                                Home
                             </Typography>
                         </Toolbar>
                     </AppBar>
-                    <br/><br/><br/>
-
-                    <Typography  variant="title" color="inherit">
-                        <u>Laboratory Test</u>
-                    </Typography>
                     <TabContainer>
-                        <LabTestForm />
+                        <HomeContent />
                     </TabContainer>
-                    <br/><br/>
-                    <Divider />
-
-                    <br/>
-                    <TabContainer>
-                        <RequestButton />
-                    </TabContainer>
-                    <br/>
-                    <Typography padding="3*3" variant="title" color="inherit">
-                        <u>Test Fields</u>
-                    </Typography>
-                    <TabContainer>
-                        <TestFieldForm />
-                    </TabContainer>
-
-                    <br/><br/>
-                    <Divider />
-
 
                 </div>
             </div>
@@ -84,8 +56,8 @@ const styles = theme => ({
     },
 });
 
-LabTestWrapper.propTypes = {
+HomeWrapper.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(LabTestWrapper);
+export default withStyles(styles)(HomeWrapper);

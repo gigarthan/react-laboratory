@@ -14,12 +14,15 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from 'containers/tileData';
 
+import Button from '@material-ui/core/Button';
+import LoginButton from './LoginButton';
+import LabTestNotification from './LabTestNotification';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Icon from '@material-ui/core/Icon';
 import { Link } from 'react-router-dom';
-
+import AlarmIcon from '@material-ui/icons/Alarm';
 
 
 const drawerWidth = 300;
@@ -128,10 +131,27 @@ class MainWrapper extends React.Component {
             <Typography variant="title" color="inherit" noWrap>
               Digital Pulz
             </Typography>
+{/*<<<<<<< HEAD*/}
               {/*<ListItem button>
                   <ListItemText><Link to="/login"> Login </Link></ListItemText>
               </ListItem>*/}
           </Toolbar>
+
+
+          {/*Added By Erandi*/}
+          <LoginButton />
+
+              <ListItem button>
+                  <Link to="/notify" className="side-nav-a">
+                      <ListItemIcon>
+                          <AlarmIcon className={classes.icon} />
+                      </ListItemIcon>
+
+                  </Link>
+              </ListItem>
+
+
+{/*>>>>>>> origin/master*/}
         </AppBar>
         <Drawer
           variant="permanent"

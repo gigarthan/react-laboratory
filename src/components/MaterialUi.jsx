@@ -3,8 +3,10 @@ import { TextField, RadioGroup, Select, Checkbox } from '@material-ui/core';
 
 export const renderTextField = ({input, label, meta: {touched, error}, ...custom}) => (
     <TextField
-      label={label}  
+      label={label}
+      fullWidth={true}  
       {...input}
+      {...custom}
     />
 );
 
@@ -52,5 +54,6 @@ export const renderDatePicker = ({input, label, ...rest}) => (
     }}
     {...input}
     {...rest}
+    fullWidth={true}
   />
 )

@@ -12,7 +12,8 @@ export default function(state = {}, action) {
             };
             const { fullName, patientHIN, dob, gender } = specimen;
             const patient = { fullName, patientHIN, dob, gender };
-            return { testDetails, patient};
+            const specimenData = specimen.specimen;
+            return { testDetails, patient, specimenData};
 
         default:
             return state;
