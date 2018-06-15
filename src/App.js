@@ -12,14 +12,13 @@ import MainWrapper from "containers/MainWrapper";
 import Login from 'components/Login';
 import Home from 'containers/Home';
 import LabTestWrapper from './components/NewLabTests/LabTestWrapper';
-
 import LabTestManagerWrapper from './components/OptionsManager/LabTestManagerWrapper';
 import LaboratoryManagerWrapper from './components/OptionsManager/LaboratoryManagerWrapper';
 import SampleCenterManagerWrapper from './components/OptionsManager/SampleCenterManagerWrapper';
 import SpecimenInformationWrapper from './components/LabOrders/SpecimenInformationWrapper';
 
 //Erandi
-import NewTestRequestHome from './components/NewTestRequest/NewTestRequestHome';
+import TestOrder from './components/TestOrder/TestOrderHome';
 import ViewTestRequestsHome from './components/TestRequestsView/ViewTestRequestsHome';
 
 
@@ -56,7 +55,7 @@ class App extends Component {
                 <Route path="/specimen-details" exact component={SpecimenInformationWrapper} />
                 <Route path="/requests/:reqId/specimen-details" component={SpecimenInformationWrapper} />
                 {/* Erandi*/}
-                <Route path="/test-requests" exact component={NewTestRequestHome}/>
+                {/*<Route path="/test-requests" exact component={NewTestRequestHome}/>*/}
                 <Route path="/test-requests-view" exact component={ViewTestRequestsHome}/>
               </MainWrapper>
             </Grid>

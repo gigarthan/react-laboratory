@@ -38,14 +38,14 @@ class SpecimenInformationWrapper extends Component {
     return (
       <div>
         <Grid container spacing={24}>
-          <Grid item md={3} xs={12} >
+          <Grid item md={5} xs={12} >
             <PatientDetailCard patient={patient} />
           </Grid>
-          <Grid item md={4} xs={12} >
+          <Grid item md={5} xs={12} >
             <TestDetailsCard test={testDetails}  />
           </Grid>
-          <Grid item md={7}>
-            <SpecimenDetailsForm />
+          <Grid item md={10}>
+            <SpecimenDetailsForm id={testDetails._id} />
           </Grid>
         </Grid>
       </div>

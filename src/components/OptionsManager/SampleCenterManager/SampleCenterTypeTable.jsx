@@ -19,7 +19,7 @@ const styles = theme => ({
     },
 });
 
-function SampleCenterTable(props) {
+function SampleCenterTypeTable(props) {
     const { classes, columnData, data } = props;
 
     return (
@@ -37,17 +37,11 @@ function SampleCenterTable(props) {
                     {
                         data.map( data => {
                             return (
-                                <TableRow key={data.name} >
+                                <TableRow key={data.name}>
                                     <TableCell>{data.type}</TableCell>
-                                    <TableCell>{data.name}</TableCell>
-                                    <TableCell>{data.inCharge}</TableCell>
-                                    <TableCell>{data.location}</TableCell>
-                                    <TableCell>{data.email}</TableCell>
-                                    <TableCell>{data.contact1}</TableCell>
-                                    <TableCell>{data.contact2}</TableCell>
                                     <TableCell>
                                         <Button variant="contained" color="primary" className={classes.button}>
-                                        Edit
+                                            Edit
                                         </Button>
                                     </TableCell>
 
@@ -61,4 +55,4 @@ function SampleCenterTable(props) {
     );
 }
 
-export default withStyles(styles)(SampleCenterTable);
+export default withStyles(styles)(SampleCenterTypeTable);

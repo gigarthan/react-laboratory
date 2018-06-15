@@ -11,6 +11,7 @@ export const GET_SAMPLE_CENTERS = 'GET_SAMPLE_CENTERS';
 
 export const GET_SAMPLE_CENTER_TYPES = 'GET_SAMPLE_CENTER_TYPES';
 
+export const ADD_SAMPLE_CENTERS = 'ADD_SAMPLE_CENTERS';
 
 
 ///////////////////// Laboratory Manager////////////////

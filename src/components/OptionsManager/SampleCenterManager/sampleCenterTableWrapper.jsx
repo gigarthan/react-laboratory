@@ -1,6 +1,5 @@
 //IT16139640
 
-
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -14,12 +13,16 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import {Field, reduxForm} from 'redux-form';
+import {renderTextField} from "../../MaterialUi";
 
 import  SampleCenterTable from './sampleCenterTable';
-// import  SampleCenterTypeTable  from './sampleCenterTypeTable';
+import SampleCenterTypeTable from './SampleCenterTypeTable';
+
 
 import { getSampleCenters } from 'store/actions/index';
+import { addSampleCenters } from 'store/actions/sampleCenter';
+
 import { connect } from 'react-redux';
 
 
@@ -51,7 +54,7 @@ class sampleCenterTableWrapper extends Component {
                 'Contact 1',
                 'Contact 2'
             ],
-            sampleCenterColumns: [
+            sampleCenterTypeColumns: [
 
                 'Sample Center Type'
             ]
@@ -74,19 +77,26 @@ class sampleCenterTableWrapper extends Component {
         this.setState({ open: false });
     };
 
-    handleSave = () => {
-        this.setState({ open: false });
+    handleSave = values => {
+        console.log('click');
+        console.log(values);
+        // this.setState({ open: false });
     };
 
     handleChange = (event, value) => {
         this.setState({ value });
     };
 
+    submit = values => {
+        this.props.addSampleCenters(this.props.id, values);
+    };
+
 
     render() {
         const { classes } = this.props;
         const { value } = this.state;
-        const { columnData } = this.state;
+        const { columnData, sampleCenterTypeColumns } = this.state;
+        const { handleSubmit } = this.props;
 
 
         return (
@@ -98,6 +108,9 @@ class sampleCenterTableWrapper extends Component {
                             <Tab value="SampleCenters" label="Sample Centers" />
                         </Tabs>
                     </AppBar>
+
+
+
                     {value === "SampleCenterTypes" &&
                     <TabContainer>
 
@@ -109,7 +122,7 @@ class sampleCenterTableWrapper extends Component {
                             className={classes.textField}
                             margin="right"
                         />
-                        <SampleCenterTable columnData={columnData} data={this.props.sampleCenters}/>
+                        <SampleCenterTypeTable columnData={sampleCenterTypeColumns} data={this.props.sampleCenters}/>
 
                         <Button onClick={this.handleClickOpen}>Add New Sample Center Type</Button>
 
@@ -118,30 +131,30 @@ class sampleCenterTableWrapper extends Component {
                             onClose={this.handleClose}
                             aria-labelledby="form-dialog-title"
                         >
-                            <DialogTitle id="form-dialog-title">Add new Sample Center</DialogTitle>
+                            <DialogTitle id="form-dialog-title">Add New Sample Center Type</DialogTitle>
                             <DialogContent>
+                                <form onSubmit={this.props.handleSubmit(this.submit) && this.handleClose} >
 
-                                <TextField
-                                    autoFocus
-                                    margin="dense"
-                                    id="type"
-                                    label="Sample Center Type"
-                                    fullWidth
+
+                                    <Field
+                                        name="type"
+                                        label="Sample Center Type"
+                                        component={renderTextField}
                                     />
-
+                                    <Button type="submit" color="primary">
+                                        Save
+                                    </Button>
+                                </form>
                             </DialogContent>
                             <DialogActions>
                                 <Button onClick={this.handleClose} color="primary">
                                     Cancel
                                 </Button>
-                                <Button onClick={this.handleSave} color="primary">
-                                    Save
-                                </Button>
+
                             </DialogActions>
                         </Dialog>
-
-
                     </TabContainer>}
+
 
 
                     {value === "SampleCenters" &&
@@ -166,67 +179,61 @@ class sampleCenterTableWrapper extends Component {
                             <DialogTitle id="form-dialog-title">Add new Sample Center</DialogTitle>
                             <DialogContent>
 
-                                <TextField
-                                    autoFocus
-                                    margin="dense"
-                                    id="type"
+                                <form onSubmit={this.props.handleSubmit(this.submit)} >
+
+                                <Field
+                                    name="type"
                                     label="Sample Center Type"
-                                    fullWidth
+                                    component={renderTextField}
                                 />
-                                <TextField
-                                    margin="dense"
-                                    id="name"
+                                <Field
+                                    name="name"
                                     label="Sample Center Name"
-                                    fullWidth
+                                    component={renderTextField}
                                 />
-                                <TextField
-                                    margin="dense"
-                                    id="inCharge"
+                                <Field
+                                    name="inCharge"
                                     label="Incharge"
-                                    fullWidth
+                                    component={renderTextField}
                                 />
-                                <TextField
-                                    margin="dense"
-                                    id="name"
+                                <Field
+                                    name="location"
                                     label="Location"
-                                    fullWidth
+                                    component={renderTextField}
                                 />
-                                <TextField
-                                margin="dense"
-                                id="email"
-                                label="Email"
-                                type = "email"
-                                fullWidth
+                                <Field
+                                    name="email"
+                                    label="Email"
+                                    component={renderTextField}
                                 />
 
-                                <TextField
-                                    margin="dense"
-                                    id="email"
+                                <Field
+                                    name="contact1"
                                     label="contact 1"
-                                    fullWidth
+                                    component={renderTextField}
                                 />
-                                <TextField
-                                    margin="dense"
-                                    id="email"
+                                <Field
+                                    name="contact2"
                                     label="contact 2"
-                                    fullWidth
+                                    component={renderTextField}
                                 />
+                                    <Button type="submit" color="primary">
+                                        Save
+                                    </Button>
 
+                                </form>
 
                             </DialogContent>
+
                             <DialogActions>
                                 <Button onClick={this.handleClose} color="primary">
                                     Cancel
                                 </Button>
-                                <Button onClick={this.handleSave} color="primary">
-                                    Save
-                                </Button>
+
                             </DialogActions>
                         </Dialog>
 
-
                     </TabContainer>}
-
 
                 </div>
             </div>
@@ -255,8 +262,13 @@ function mapStateToProps({ sampleCenters }) {
     return { sampleCenters };
 }
 
-const mapDispatchToProps = {getSampleCenters};
+const mapDispatchToProps = {getSampleCenters,addSampleCenters};
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStylesComponent);
+
+const MyForm = reduxForm({
+    form: "sampleCenterType",
+})(withStylesComponent);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyForm);
 
 
