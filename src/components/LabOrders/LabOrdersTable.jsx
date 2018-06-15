@@ -19,13 +19,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import { Link } from 'react-router-dom';
-
-let counter = 0;
-function createData(name, calories, fat, carbs, protein) {
-  counter += 1;
-  return { id: counter, name, calories, fat, carbs, protein };
-}
-
+import { BASE_URL } from 'store/types';
 
 
 class LabOrdersTableHead extends React.Component {
@@ -243,17 +237,20 @@ class LabOrdersTable extends React.Component {
           <Link to={url} >Add Sample Details</Link>
         )
       } else if (status === 'sample_collected') {
+        const url = `/requests/${_id}/test-results`;
         return (
-          <Link to="">Add Results</Link>
+          <Link to={url}>Add Results</Link>
         )
       } else if (status === 'report_issued') {
+        const viewUrl = `/requests/${_id}/specimen-details`;
+        const reportUrl = `${BASE_URL}/test-results/reports/${_id}`;
         return (
           <div>
             <div>
-              <Link to="">View Details</Link>
+              <Link to={viewUrl}>View Details</Link>
             </div>
             <div>
-              <Link to="">View Report</Link>
+              <a href={reportUrl} target="_blank" >View Report</a>
             </div>
           </div>
         )

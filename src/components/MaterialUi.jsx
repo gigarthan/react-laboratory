@@ -40,6 +40,7 @@ export  const renderSelectField = ({
       {...input}
       onChange={(event, index, value) => input.onChange(value)}
       children={children}
+      fullWidth
       {...custom}
     />
   )

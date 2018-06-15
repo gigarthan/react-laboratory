@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import Divider from '@material-ui/core/Divider';
 
-import OrderForm from './OrderForm'
+import HomeContent from './HomeContent';
 
 function TabContainer(props) {
     return (
@@ -21,12 +21,12 @@ TabContainer.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-class NewTestRequestFormWrapper extends Component {
+class HomeWrapper extends Component {
     constructor(props) {
         super(props);
     }
 
-render() {
+    render() {
         const { classes } = this.props;
 
         return (
@@ -35,15 +35,13 @@ render() {
                     <AppBar position="static">
                         <Toolbar>
                             <Typography variant="title" color="inherit">
-                                Test Request Form
+                                Home
                             </Typography>
                         </Toolbar>
                     </AppBar>
                     <TabContainer>
-                        <OrderForm />
+                        <HomeContent />
                     </TabContainer>
-
-                    <Divider />
 
                 </div>
             </div>
@@ -58,8 +56,8 @@ const styles = theme => ({
     },
 });
 
-NewTestRequestFormWrapper.propTypes = {
+HomeWrapper.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(NewTestRequestFormWrapper);
+export default withStyles(styles)(HomeWrapper);

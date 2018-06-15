@@ -1,8 +1,30 @@
 export const BASE_URL = 'http://localhost:8000/api';
 export const GET_ORDERS = 'GET_ORDERS';
+
 export const GET_ORDER = 'GET_ORDER';
 export const ADD_SPECIMEN = 'ADD_SPECIMEN';
+export const GET_TEST_RESULT_FIELDS = 'TEST_RESULT_FIELDS';
+export const ADD_TEST_RESULTS = 'ADD_TEST_RESULTS';
+export const AUTHENTICATED = 'AUTHENTICATED';
+export const AUTHENTICATION_ERROR = 'AUTHENTICATION_ERROR';
+export const UNAUTHENTICATED = 'UNAUTHENTICATED';
 
+
+//<<<<<<< HEAD
+////////////////////     TEST REQUESTS VIEW     //////////////////////
+
+export const VIEW_REQUESTS = 'VIEW_REQUESTS';
+
+
+//<<<<<<< HEAD
+////////////////////     TEST REQUESTS VIEW     //////////////////////
+
+export const VIEW_REQUESTS = 'VIEW_REQUESTS';
+
+////////////////////     TEST ORDER     //////////////////////
+
+export const ADD_ORDER = 'ADD_ORDER';
+export const GET_LAB_DETAILS = 'GET_LAB_DETAILS'
 
 
 ///////////////////// Sample centers ////////////////
@@ -45,3 +67,11 @@ export const GET_BASIC_TESTS = 'GET_BASIC_TESTS';
 
 
 export const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS';
+
+
+export const ADD_LAB_TEST_CATEGORY = 'ADD_LAB_TEST_CATEGORY';
+
+export const ADD_TESTS = 'ADD_TESTS';
+export const GET_LABORATORY = 'GET_LABORATORY';
+export const ADD_TESTS_FIELDS = 'ADD_TESTS_FIELDS';
+

@@ -7,11 +7,20 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Icon from '@material-ui/core/Icon';
 import { Link } from 'react-router-dom';
 
+//Erandi
+import SvgIcon from '@material-ui/core/SvgIcon';
+
 export const mailFolderListItems = (
   <div>
 
+      <ListItem button>
+          <SvgIcon>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" color="grey" />
+          </SvgIcon>
+          <ListItemText><Link to="/"> Home </Link></ListItemText>
+      </ListItem>
     <ListItem button>
-      <Link to="/" className="side-nav-a" > 
+      <Link to="/" className="side-nav-a" >
         <ListItemIcon>
           <Icon>calendar_today</Icon>
         </ListItemIcon>
@@ -22,7 +31,7 @@ export const mailFolderListItems = (
 
      {/* Added By Erandi */}
       <ListItem button>
-        <Link to="/test-requests" className="side-nav-a">
+        <Link to="/order" className="side-nav-a">
           <ListItemIcon>
               <Icon>add</Icon>
           </ListItemIcon>
@@ -43,7 +52,7 @@ export const mailFolderListItems = (
       {/* Added By Erandi  */}
 
     <ListItem button>
-    <Link to="/lab-tests" className="side-nav-a"> 
+    <Link to="/lab-tests" className="side-nav-a">
       <ListItemIcon>
         <Icon>add</Icon>
       </ListItemIcon>

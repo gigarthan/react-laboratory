@@ -1,264 +1,158 @@
 //IT16139640
-
-
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import {renderTextField} from "../../MaterialUi";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 
+import LabTestCategoryTable from "./LabTestCategoryTable";
+import LabTestSubTable from "./LabTestSubTable";
 
-import LabTestCategoryTable from './LabTestCategoryTable';
-import LabTestSubTable from './LabTestSubTable';
+import { getLabTestCategories, getBasicAddedLabTests } from "store/actions/index";
 
-import { getLabTestCategories } from 'store/actions/index';
+import TestRequestTable from "./TestRequestTable";
 
-import  TestRequestTable from './TestRequestTable';
-
-import { getLabTests } from 'store/actions/index';
-import { connect } from 'react-redux';
-import {reduxForm,Field} from "redux-form";
-
-
-import { getBasicAddedLabTests } from 'store/actions/index';
+import { getLabTests } from "store/actions/index";
+import { connect } from "react-redux";
+import TestCategoriesDialog from "./TestCategoriesDialog";
 
 function TabContainer(props) {
-    return (
-        <Typography component="div" style={{ padding: 8 * 3 }}>
-            {props.children}
-        </Typography>
-    );
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {props.children}
+    </Typography>
+  );
 }
 
 TabContainer.propTypes = {
-    children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 class LabTestWrapper extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: 'labs',
-            columnData:  [
-
-                'Name',
-                'Sub Category Name',
-                'Specimen Type',
-                'Specimen Retention Type',
-                'Duration'
-            ],
-            categoryColumn :[
-                'Category Name'
-
-            ],
-            subCategoryColumn :[
-                'Sub Category Name'
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: "testNames",
+      columnData: [
+        "Name",
+        "Sub Category Name",
+        "Specimen Type",
+        "Specimen Retention Type",
+        "Duration"
+      ],
+      categoryColumn: [
+          "Category Name",
+          "Sub Category",
+          "Specimen",
+          "Specimen Retention Type",
+          "Duration"
         ],
-            columnData1:  [
-                { id: 'laboratory', numeric: false, disablePadding: false, label: 'Laboratory' },
-                { id: 'category', numeric: false, disablePadding: false, label: 'Category' },
-                { id: 'subCategory', numeric: false, disablePadding: false, label: 'Sub Category' },
-                { id: 'testName', numeric: false, disablePadding: false, label: 'Test Name' }
-            ]
-
-
-
-        };
-
-
-    }
-
-    componentDidMount(){
-
-        this.props.getLabTestCategories();
-        this.props.getBasicAddedLabTests();
-
-    }
-
-    handleClickOpen = () => {
-        this.setState({ open: true });
+      subCategoryColumn: ["Sub Category Name"],
+      openTestCategoriesDialog: false,
+      
     };
+  }
 
-    handleClose = () => {
-        this.setState({ open: false });
-    };
-
-    handleSave = () => {
-        this.setState({ open: false });
-    };
-
-    handleChange = (event, value) => {
-        this.setState({ value });
-    };
-
-    submit = values => {
-        this.props.addLabTestCategories(this.props.id, values);
-    };
-
-    render() {
-        const { classes } = this.props;
-        const { value } = this.state;
-        const { categoryColumn,subCategoryColumn} = this.state;
-        const { handleSubmit } = this.state;
+  componentDidMount() {
+    this.props.getLabTestCategories();
+    this.props.getBasicAddedLabTests();
 
 
-        return (
-            <div>
-                <div className={classes.root}>
-                    <AppBar position="static">
-                        <Tabs value={value} onChange={this.handleChange}>
-                            <Tab value="testNames" label="Test Names" />
-                            <Tab value="testCategories" label="Test Categories" />
-                            <Tab value="testSubCategories" label="Test SubCategories" />
-                        </Tabs>
-                    </AppBar>
-                    {value === "testNames" &&
-                    <TabContainer>
+  }
 
-                        <TestRequestTable data={this.props.basicTestField}/>
-                    </TabContainer>}
+  handleClickOpen = dialogBox => event => {
+    this.setState({ [dialogBox]: true });
+  };
 
-                    {value === "testCategories" &&
-                    <TabContainer>
+  handleClose = dialogBox => event => {
+    this.setState({ [dialogBox]: false });
+  };
 
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
 
-                            <TextField
-                                id="search"
-                                label="Search Test Categories"
-                                type="search"
-                                className={classes.textField}
-                                margin="right"
-                            />
+  render() {
+    const { classes } = this.props;
+    const { value } = this.state;
+    const { categoryColumn, subCategoryColumn } = this.state;
 
+    return (
+      <div>
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Tabs value={value} onChange={this.handleChange}>
+              <Tab value="testNames" label="Test Names" />
+              <Tab value="testCategories" label="Test Categories" />
+              <Tab value="testSubCategories" label="Test SubCategories" />
+            </Tabs>
+          </AppBar>
+          {value === "testNames" && (
+            <TabContainer>
+              <TestRequestTable data={this.props.basicTestField} />
+            </TabContainer>
+          )}
 
-                        <LabTestCategoryTable columnData={categoryColumn} data={this.props.labCategories} />
+          {value === "testCategories" && (
+            <TabContainer>
+              <LabTestCategoryTable
+                columnData={categoryColumn}
+                data={this.props.labTestCategories}
+              />
+              <Button onClick={this.handleClickOpen('openTestCategoriesDialog')} >
+                Add New Test Category
+              </Button>
+              <TestCategoriesDialog open={this.state.openTestCategoriesDialog} onClose={this.handleClose} />
+            </TabContainer>
+          )}
 
+          {value === "testSubCategories" && (
+            <TabContainer>   
+              <LabTestSubTable
+                columnData={subCategoryColumn}
+                data={[]}
+              />
 
-                        <Button onClick={this.handleClickOpen}>Add New Test Category</Button>
-
-                        <Dialog
-                            open={this.state.open}
-                            onClose={this.handleClose}
-                            aria-labelledby="form-dialog-title"
-                        >
-                            <DialogTitle id="form-dialog-title">Add new Sample Center</DialogTitle>
-                            <DialogContent>
-
-                                <form onSubmit={handleSubmit(this.submit) && this.handleClose}>
-
-                                    <Field
-                                        name="name"
-                                        label="Category Name"
-                                        component={renderTextField}
-                                    />
-                                    <Field
-                                        name="subName"
-                                        label="Sub Category Name"
-                                        component={renderTextField}
-                                    />
-                                    <Field
-                                        name="specimenType"
-                                        label="specimen Type"
-                                        component={renderTextField}
-                                    />
-                                    <Field
-                                        name="SRType"
-                                        label="Specimen Retention Type"
-                                        component={renderTextField}
-                                    />
-
-                                    <Field
-                                        name="duration"
-                                        label="Duration"
-                                        component={renderTextField}
-                                    />
-
-                                    <Button type="submit" color="primary">
-                                        Save
-                                    </Button>
-
-                                </form>
-
-                            </DialogContent>
-                            <DialogActions>
-                                <Button onClick={this.handleClose} color="primary">
-                                    Cancel
-                                </Button>
-
-                            </DialogActions>
-                        </Dialog>
-
-                    </TabContainer>}
-
-
-                    {value === "testSubCategories" &&
-                    <TabContainer>
-
-                        <TextField
-                            id="search"
-                            label="Search Test Sub Categories"
-                            type="search"
-                            className={classes.textField}
-                            margin="right"
-                        />
-
-                        <LabTestSubTable columnData={subCategoryColumn} data={this.props.labCategories} />
-
-                        <Button variant="contained" color="primary" className={classes.button}>
-                            Add New Test Sub category
-                        </Button>
-
-
-
-                    </TabContainer>}
-
-
-                </div>
-            </div>
-        );
-    }
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+              >
+                Add New Test Sub category
+              </Button>
+            </TabContainer>
+          )}
+        </div>
+      </div>
+    );
+  }
 }
 
-
 const styles = theme => ({
-    root: {
-        flexGrow: 1,
-        backgroundColor: theme.palette.background.paper,
-    },
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper
+  }
 });
 
 LabTestWrapper.propTypes = {
-    classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired
 };
-
-
 
 const withStylesComponent = withStyles(styles)(LabTestWrapper);
 
-
-function mapStateToProps({ labCategories , basicTestField}) {
-    return { labCategories , basicTestField };
+function mapStateToProps({ labTestCategories, basicTestField }) {
+  return { labTestCategories, basicTestField };
 }
 
+const mapDispatchToProps = { getLabTestCategories, getBasicAddedLabTests };
 
-const mapDispatchToProps = {getLabTestCategories, getBasicAddedLabTests};
-
-
-// const MyForm = reduxForm({
-//     form: "sampleCenterType",
-// })(withStylesComponent);
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(withStylesComponent);
-
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStylesComponent);

@@ -1,27 +1,25 @@
 //IT16139640
 
+
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import {Field, reduxForm} from 'redux-form';
-import {renderTextField} from "../../MaterialUi";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import { Field, reduxForm } from "redux-form";
+import { renderTextField } from "../../MaterialUi";
 
-
-
-import  LabManagerTable from './LabManagerTable';
-import  LabDepTable from './LabDepTable';
-import  LabTypeTable from './LabTypeTable';
-
+import LabManagerTable from "./LabManagerTable";
+import LabDepTable from "./LabDepTable";
+import LabTypeTable from "./LabTypeTable";
 
 
 import { getLabs, addLabs, addLabDepartments,getLabDepartments,getLabTypes,addLabTypes } from 'store/actions/laboratory';
@@ -33,11 +31,11 @@ import { connect } from 'react-redux';
 
 
 function TabContainer(props) {
-    return (
-        <Typography component="div" style={{ padding: 8 * 3 }}>
-            {props.children}
-        </Typography>
-    );
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {props.children}
+    </Typography>
+  );
 }
 
 TabContainer.propTypes = {
@@ -50,17 +48,16 @@ class LabManagerWrapper extends Component {
         this.state = {
             value: 'labTypes',
 
-            columnData:  [
-
-                'Lab Name',
-                'Lab Type',
-                'Department',
-                'Count',
-                'Lab Incharge',
-                'Location',
-                'Contact 1',
-                'Contact 2'
-            ],
+      columnData: [
+        "Lab Name",
+        "Lab Type",
+        "Department",
+        "Count",
+        "Lab Incharge",
+        "Location",
+        "Contact 1",
+        "Contact 2"
+      ],
 
             labDepColumns:[
                 'Department'
@@ -68,8 +65,7 @@ class LabManagerWrapper extends Component {
 
             labTypeColumns:[
                 'Lab Type'
-            ],
-            labTypes: ''
+            ]
         };
 
 
