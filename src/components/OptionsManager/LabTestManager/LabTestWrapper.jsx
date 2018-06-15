@@ -17,16 +17,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import {renderTextField} from "../../MaterialUi";
 
 
-
-import  LabTestTable from './LabTestTabel';
 import LabTestCategoryTable from './LabTestCategoryTable';
 import LabTestSubTable from './LabTestSubTable';
 
-
-
-import { getLabTests } from 'store/actions/index';
+import { getLabTestCategories } from 'store/actions/index';
 import { connect } from 'react-redux';
-import {reduxForm} from "redux-form";
+import {reduxForm,Field} from "redux-form";
 
 
 
@@ -70,7 +66,7 @@ class LabTestWrapper extends Component {
 
     componentDidMount(){
 
-        this.props.getLabTests();
+        this.props.getLabTestCategories();
 
     }
 
@@ -97,7 +93,7 @@ class LabTestWrapper extends Component {
     render() {
         const { classes } = this.props;
         const { value } = this.state;
-        const { columnData ,categoryColumn,subCategoryColumn} = this.state;
+        const { categoryColumn,subCategoryColumn} = this.state;
         const { handleSubmit } = this.state;
 
 
@@ -114,7 +110,7 @@ class LabTestWrapper extends Component {
                     {value === "testNames" &&
                     <TabContainer>
 
-                        <LabTestTable columnData={columnData} data={this.props.labs}/>
+                        {/*<LabTestTable columnData={columnData} data={this.props.labs}/>*/}
                     </TabContainer>}
 
                     {value === "testCategories" &&
@@ -130,7 +126,7 @@ class LabTestWrapper extends Component {
                             />
 
 
-                        <LabTestCategoryTable columnData={categoryColumn} data={this.props.labs} />
+                        <LabTestCategoryTable columnData={categoryColumn} data={this.props.labCategories} />
 
 
                         <Button onClick={this.handleClickOpen}>Add New Test Category</Button>
@@ -143,30 +139,30 @@ class LabTestWrapper extends Component {
                             <DialogTitle id="form-dialog-title">Add new Sample Center</DialogTitle>
                             <DialogContent>
 
-                                <form onSubmit={this.props.handleSubmit(this.submit) && this.handleClose}>
+                                <form onSubmit={handleSubmit(this.submit) && this.handleClose}>
 
-                                    <TextField
+                                    <Field
                                         name="name"
                                         label="Category Name"
                                         component={renderTextField}
                                     />
-                                    <TextField
+                                    <Field
                                         name="subName"
                                         label="Sub Category Name"
                                         component={renderTextField}
                                     />
-                                    <TextField
+                                    <Field
                                         name="specimenType"
                                         label="specimen Type"
                                         component={renderTextField}
                                     />
-                                    <TextField
+                                    <Field
                                         name="SRType"
                                         label="Specimen Retention Type"
                                         component={renderTextField}
                                     />
 
-                                    <TextField
+                                    <Field
                                         name="duration"
                                         label="Duration"
                                         component={renderTextField}
@@ -201,7 +197,7 @@ class LabTestWrapper extends Component {
                             margin="right"
                         />
 
-                        <LabTestSubTable columnData={subCategoryColumn} data={this.props.labs} />
+                        <LabTestSubTable columnData={subCategoryColumn} data={this.props.labCategories} />
 
                         <Button variant="contained" color="primary" className={classes.button}>
                             Add New Test Sub category
@@ -235,15 +231,15 @@ LabTestWrapper.propTypes = {
 const withStylesComponent = withStyles(styles)(LabTestWrapper);
 
 
-function mapStateToProps({ labTests }) {
-    return { labTests };
+function mapStateToProps({ labCategories }) {
+    return { labCategories };
 }
 
-const mapDispatchToProps = {getLabTests};
+const mapDispatchToProps = {getLabTestCategories};
 
-const MyForm = reduxForm({
-    form: "sampleCenterType",
-})(withStylesComponent);
+// const MyForm = reduxForm({
+//     form: "sampleCenterType",
+// })(withStylesComponent);
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStylesComponent);

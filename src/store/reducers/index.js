@@ -4,9 +4,11 @@ import { reducer as formReducer } from 'redux-form';
 import orderReducer from './reduce_orders';
 import specimenReducer from './reduce_specimen';
 import sampleCenterReducer from './reduce_sampleCenters';
+import sampleCenterTypesReducer from './reduce_sampleCenterTypes';
 import labManagerReducer from './reduce_labManager';
+//import labTestManagerReducer from './reduce_labTestManager';
 
-import labTestManagerReducer from './reduce_labTestManager';
+import labTestCategoryReducer from './reduce_labTestCategory';
 
 const rootReducer = combineReducers({
     form: formReducer,
@@ -18,19 +20,21 @@ const rootReducer = combineReducers({
 
     sampleCenters:sampleCenterReducer,
 
-    //sampleCenterTypes:sampleCenterTypesReducer
+    sampleCenterTypes:sampleCenterTypesReducer,
 
 
     ///////////////////// Laboratories ////////////////
 
 
-    labs:labManagerReducer,
+    laboratory:labManagerReducer,
 
 
     ///////////////////// Laboratories ////////////////
 
 
-    labTests:labTestManagerReducer
+    labTestCategory : labTestCategoryReducer,
+
+
 
 });
 
