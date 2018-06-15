@@ -3,6 +3,18 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import {Field, reduxForm} from 'redux-form';
+import {renderTextField} from "../MaterialUi";
+import {renderSelectField} from "../MaterialUi";
+import Save from '@material-ui/icons/Save';
+import { addTests } from 'store/actions/labTest';
+import { connect } from 'react-redux';
+import classNames from "classnames";
 
 const styles = theme => ({
     container: {
@@ -59,87 +71,44 @@ class LabTestForm extends React.Component {
         });
     };
 
+    submit = values => {
+        this.props.addTests(values);
+    };
+
     render() {
         const {classes} = this.props;
+        const { handleSubmit } = this.props;
 
         return (
-            <form className={classes.container} noValidate autoComplete="off">
-                <TextField
-                    id="Laboratory"
-                    select
-                    label="Select Laboratory"
-                    className={classes.textField}
-                    value={this.state.Laboratory}
-                    onChange={this.handleChange_Laboratory('Laboratory')}
-                    SelectProps={{
-                        MenuProps: {
-                            className: classes.menu,
-                        },
-                    }}
-
-                    margin="normal"
-                >
-                    {Laboratory.map(option => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField>
-
-                <TextField
-                    id="Category"
-                    select
-                    label="Select Category"
-                    className={classes.textField}
-                    value={this.state.Category}
-                    onChange={this.handleChange_Category('Category')}
-                    SelectProps={{
-                        MenuProps: {
-                            className: classes.menu,
-                        },
-                    }}
-
-                    margin="normal"
-                >
-                    {Category.map(option => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField>
-
-                <TextField
-                    id="SubCategory"
-                    select
-                    label="Select Sub Category"
-                    className={classes.textField}
-                    value={this.state.SubCategory}
-                    onChange={this.handleChange_SubCategory('SubCategory')}
-                    SelectProps={{
-                        MenuProps: {
-                            className: classes.menu,
-                        },
-                    }}
-
-                    margin="normal"
-                >
-                    {SubCategory.map(option => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField>
-
-                <TextField
-                    id="TestName"
-                    label="Test Name"
-                    className={classes.textField}
-                    value={this.state.TestName}
-                    onChange={this.handleChange_TestName('TestName')}
-                    margin="normal"
-
+            <form onSubmit={handleSubmit(this.submit)}>
+                <Field
+                    name="laboratory"
+                    label="Laboratory"
+                    component={renderSelectField}
                 />
 
+                <Field
+                    name="category"
+                    label="Select Category"
+                    component={renderSelectField}
+                />
+
+                <Field
+                    name="subCategory"
+                    label="Select Sub Categor"
+                    component={renderSelectField}
+                />
+
+                <Field
+                    name="testName"
+                    label="Test Name"
+                    component={renderTextField}
+                />
+
+                <Button type="submit" color="primary">
+                    <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
+                    Save
+                </Button>
             </form>
         );
     }
@@ -149,4 +118,18 @@ LabTestForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(LabTestForm);
+const withStylesComponent = withStyles(styles)(LabTestForm);
+
+function mapStateToProps({ test }) {
+    return { test };
+}
+
+const mapDispatchToProps = {
+    addTests
+};
+
+const MyForm = reduxForm({
+    form: "labTest",
+})(withStylesComponent);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyForm);
