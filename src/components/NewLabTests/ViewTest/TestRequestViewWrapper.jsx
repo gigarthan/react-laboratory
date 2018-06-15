@@ -5,12 +5,11 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from '@material-ui/core/Typography';
-import Toolbar from '@material-ui/core/Toolbar';
-import Divider from '@material-ui/core/Divider';
-
 
 import TestRequestTable from './TestRequestTable';
-import TestRequestTable1 from './TestRequestTable1';
+
+import { getAddedLabTests } from 'store/actions/index';
+import { connect } from 'react-redux';
 
 
 
@@ -43,6 +42,10 @@ class TestRequestViewWrapper extends Component {
         };
     }
 
+    componentDidMount(){
+        this.props.getAddedLabTests();
+    }
+
     handleChange = (event, value) => {
         this.setState({ value });
     };
@@ -51,7 +54,6 @@ class TestRequestViewWrapper extends Component {
         const { classes } = this.props;
         const { value } = this.state;
         const { columnData } = this.state;
-        const { columnData1 } = this.state;
 
         const tableCellData = [
           //  { priority: 'high', status: 'Report Issued', reqId: 1234, testName: 'blood test', patientHIN: '12475', reqDate: new Date().toString(), dueDate: new Date().toString(), reqPerson: 'wasamtha', comment: 'new test' }
@@ -65,7 +67,7 @@ class TestRequestViewWrapper extends Component {
                     </AppBar>
 
                     <TabContainer>
-                        <TestRequestTable columnData={this.state.columnData} data={tableCellData} />
+                        <TestRequestTable columnData={this.state.columnData} data={this.props.testField} />
                     </TabContainer>
 
                 </div>
@@ -85,4 +87,12 @@ TestRequestViewWrapper.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(TestRequestViewWrapper);
+const withStylesComponent = withStyles(styles)(TestRequestViewWrapper);
+
+function mapStateToProps({ testField }) {
+    return { testField };
+}
+
+const mapDispatchToProps = {getAddedLabTests};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStylesComponent);

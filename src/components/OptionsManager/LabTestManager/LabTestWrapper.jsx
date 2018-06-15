@@ -17,14 +17,20 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import {renderTextField} from "../../MaterialUi";
 
 
+
 import LabTestCategoryTable from './LabTestCategoryTable';
 import LabTestSubTable from './LabTestSubTable';
 
 import { getLabTestCategories } from 'store/actions/index';
+
+import  TestRequestTable from './TestRequestTable';
+
+import { getLabTests } from 'store/actions/index';
 import { connect } from 'react-redux';
 import {reduxForm,Field} from "redux-form";
 
 
+import { getBasicAddedLabTests } from 'store/actions/index';
 
 function TabContainer(props) {
     return (
@@ -57,8 +63,16 @@ class LabTestWrapper extends Component {
             ],
             subCategoryColumn :[
                 'Sub Category Name'
-
+        ],
+            columnData1:  [
+                { id: 'laboratory', numeric: false, disablePadding: false, label: 'Laboratory' },
+                { id: 'category', numeric: false, disablePadding: false, label: 'Category' },
+                { id: 'subCategory', numeric: false, disablePadding: false, label: 'Sub Category' },
+                { id: 'testName', numeric: false, disablePadding: false, label: 'Test Name' }
             ]
+
+
+
         };
 
 
@@ -67,6 +81,7 @@ class LabTestWrapper extends Component {
     componentDidMount(){
 
         this.props.getLabTestCategories();
+        this.props.getBasicAddedLabTests();
 
     }
 
@@ -110,7 +125,7 @@ class LabTestWrapper extends Component {
                     {value === "testNames" &&
                     <TabContainer>
 
-                        {/*<LabTestTable columnData={columnData} data={this.props.labs}/>*/}
+                        <TestRequestTable data={this.props.basicTestField}/>
                     </TabContainer>}
 
                     {value === "testCategories" &&
@@ -231,11 +246,13 @@ LabTestWrapper.propTypes = {
 const withStylesComponent = withStyles(styles)(LabTestWrapper);
 
 
-function mapStateToProps({ labCategories }) {
-    return { labCategories };
+function mapStateToProps({ labCategories , basicTestField}) {
+    return { labCategories , basicTestField };
 }
 
-const mapDispatchToProps = {getLabTestCategories};
+
+const mapDispatchToProps = {getLabTestCategories, getBasicAddedLabTests};
+
 
 // const MyForm = reduxForm({
 //     form: "sampleCenterType",
