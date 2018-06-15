@@ -39,7 +39,7 @@ const rootReducer = combineReducers({
     labTestCategory : labTestCategoryReducer,
 
 
-    labTests:labTestManagerReducer,
+    //labTests:labTestManagerReducer,
 
 
     ///////////////////// GetTests ////////////////
