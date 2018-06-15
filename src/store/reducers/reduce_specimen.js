@@ -10,7 +10,7 @@ export default function(state = {}, action) {
                 subCategory: specimen.subCategory,
                 testName: specimen.testName
             };
-            const { fullName, patientHIN, dob, gender } = specimen; 
+            const { fullName, patientHIN, dob, gender } = specimen;
             const patient = { fullName, patientHIN, dob, gender };
             const specimenData = specimen.specimen;
             return { testDetails, patient, specimenData};

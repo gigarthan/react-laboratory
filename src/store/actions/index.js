@@ -8,6 +8,10 @@ import {GET_BASIC_TESTS} from "../types";
 import { GET_SAMPLE_CENTER_TYPES } from '../types';
 import {GET_NOTIFICATIONS} from '../types';
 
+
+import {VIEW_REQUESTS, ADD_ORDER} from '../types';
+
+
 const BASE_URL = 'http://localhost:8000/api';
 
 export function getOrders() {
@@ -24,7 +28,27 @@ export function getOrders() {
             console.log(error);
         }
     }
-}
+};
+
+
+
+///////////////////////////    TEST REQUESTS VIEW      ///////////////////////////////
+
+export function viewOrderRequests() {
+    return async dispatch => {
+        const urlView = BASE_URL + '/requests';
+
+        try {
+            const res = await axios.get(urlView);
+            dispatch({
+                type: VIEW_REQUESTS
+
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+};
 
 
 ///////////////////// Sample centers ////////////////
@@ -136,6 +160,7 @@ export function getAddedLabTests() {
             const res = await axios.get(url);
             dispatch({
                 type: GET_TESTS,
+
                 payload: res.data
             });
         } catch (error) {
@@ -143,6 +168,7 @@ export function getAddedLabTests() {
         }
     }
 };
+
 
 
 ///////////////////// Get Lab test manager ////////////////
@@ -184,3 +210,4 @@ export function getNotifications() {
         }
     }
 };
+

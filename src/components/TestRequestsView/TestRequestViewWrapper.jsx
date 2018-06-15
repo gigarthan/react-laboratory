@@ -2,16 +2,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
-import Divider from '@material-ui/core/Divider';
-
 
 import TestRequestViewTable from './TestRequestTable';
+import SearchBar from './SearchBar';
 
-
+import { viewOrderRequests } from 'store/actions/index';
+import { connect } from 'react-redux';
 
 function TabContainer(props) {
     return (
@@ -29,19 +27,36 @@ class TestRequestViewWrapper extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'opd',
+
             columnData:  [
-                { id: 'priority', numeric: false, disablePadding: false, label: 'Priority' },
-                { id: 'status', numeric: false, disablePadding: false, label: 'Status' },
+
+                { id: '', numeric: false, disablePadding: false, label: '' },
+
                 { id: 'requestId', numeric: false, disablePadding: false, label: 'Request Id' },
+                { id: 'status', numeric: false, disablePadding: false, label: 'Status' },
                 { id: 'patientsHIN', numeric: false, disablePadding: false, label: 'Patient\'s HIN' },
-                { id: 'testName', numeric: false, disablePadding: false, label: 'Test Name' },
+
+                { id: 'fullName', numeric: false, disablePadding: false, label: 'Patient Name' },
+                { id: 'gender', numeric: false, disablePadding: false, label: 'Gender' },
+                { id: 'dob', numeric: false, disablePadding: false, label: 'Date Of Birth' },
+
+                { id: 'reqPerson', numeric: false, disablePadding: false, label: 'Req. Person' },
                 { id: 'reqDate', numeric: false, disablePadding: false, label: 'Requested Date' },
                 { id: 'dueDate', numeric: false, disablePadding: false, label: 'Due Date' },
-                { id: 'reqPerson', numeric: false, disablePadding: false, label: 'Req. Person' },
+
+                { id: 'category', numeric: false, disablePadding: false, label: 'Category' },
+                { id: 'subCategory', numeric: false, disablePadding: false, label: 'Sub Category' },
+                { id: 'testName', numeric: false, disablePadding: false, label: 'Test Name' },
+
+                { id: 'priority', numeric: false, disablePadding: false, label: 'Priority' },
                 { id: 'comment', numeric: false, disablePadding: false, label: 'Comment' },
             ]
         };
+    }
+
+
+    componentDidMount() {
+        this.props.viewOrderRequests();
     }
 
     handleChange = (event, value) => {
@@ -52,10 +67,6 @@ class TestRequestViewWrapper extends Component {
         const { classes } = this.props;
         const { value } = this.state;
         const { columnData } = this.state;
-
-        const tableCellData = [
-            { priority: 'high', status: 'Report Issued', reqId: 1234, testName: 'blood test', patientHIN: '12475', reqDate: new Date().toString(), dueDate: new Date().toString(), reqPerson: 'wasamtha', comment: 'new test' }
-        ];
 
         return (
             <div>
@@ -69,8 +80,11 @@ class TestRequestViewWrapper extends Component {
                     </AppBar>
 
                     <TabContainer>
-                        <TestRequestViewTable columnData={columnData} data={tableCellData} />
-                    </TabContainer>}
+                        <SearchBar/>
+                    </TabContainer>
+                    <TabContainer>
+                        <TestRequestViewTable columnData={columnData} data={this.props.orders} />
+                    </TabContainer>
 
                 </div>
             </div>
@@ -89,4 +103,15 @@ TestRequestViewWrapper.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(TestRequestViewWrapper);
+//export default withStyles(styles)(TestRequestViewWrapper);
+
+const withStylesComponent = withStyles(styles)(TestRequestViewWrapper);
+
+
+function mapStateToProps({ orders }) {
+    return { orders };
+}
+
+const mapDispatchToProps = {viewOrderRequests};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStylesComponent);
