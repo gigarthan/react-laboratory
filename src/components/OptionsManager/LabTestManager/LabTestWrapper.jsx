@@ -18,8 +18,6 @@ import {renderTextField} from "../../MaterialUi";
 
 
 
-import  LabTestTable from './LabTestTabel';
-
 import LabTestCategoryTable from './LabTestCategoryTable';
 import LabTestSubTable from './LabTestSubTable';
 
@@ -83,7 +81,6 @@ class LabTestWrapper extends Component {
     componentDidMount(){
 
         this.props.getLabTestCategories();
-        this.props.getLabTests();
         this.props.getBasicAddedLabTests();
 
     }
