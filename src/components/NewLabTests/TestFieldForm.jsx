@@ -21,6 +21,14 @@ import SwipeableViews from 'react-swipeable-views';
 import TestRequestTable from './ViewTest/TestRequestTable';
 import {connect} from "react-redux";
 import { getAddedLabTests } from 'store/actions/index';
+import {Field, reduxForm} from 'redux-form';
+import {renderTextField} from "../MaterialUi";
+import {renderSelectField} from "../MaterialUi";
+//import Save from '@material-ui/icons/Save';
+import { addTestsFields } from 'store/actions/labTestField';
+import classNames from "classnames";
+import { addTests } from 'store/actions/labTest';
+
 
 function TabContainer(props) {
     const { children, dir } = props;
@@ -198,35 +206,25 @@ class TestFieldForm extends React.Component {
         });
     };
 
+    submit = values => {
+        this.props.addTestsFields(values);
+    };
+
     render() {
         const {classes, theme} = this.props;
         const { value } = this.state;
         const { columnData } = this.state;
+        const { handleSubmit } = this.props;
 
         return (
-            <form className={classes.container} noValidate autoComplete="off">
+            <form onSubmit={handleSubmit(this.submit)}>
 
-                <TextField
-                    id="TestName"
-                    select
+                <Field
+                    name="testName"
                     label="Select Test Name"
-                    className={classes.textField}
-                    value={this.state.TestName}
-                    onChange={this.handleChange_TestName('TestName')}
-                    SelectProps={{
-                        MenuProps: {
-                            className: classes.menu,
-                        },
-                    }}
-
-                    margin="normal"
-                >
-                    {TestName.map(option => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField><br/>
+                    component={renderSelectField}
+                />
+                <br/>
 
                 <Button variant="contained" onClick={this.handleClickOpen}>Add Test Field</Button>
                 <Dialog
@@ -238,96 +236,55 @@ class TestFieldForm extends React.Component {
                     <DialogTitle id="form-dialog-title">Field Details</DialogTitle>
                     <DialogContent>
 
-                        <TextField
-                            id="TestField"
+                        <Field
+                            name="testField"
                             label="Test Field"
-                            className={classes.textField}
-                            value={this.state.TestField}
-                            onChange={this.handleChange_TestField('TestField')}
-                            margin="normal"
-
+                            component={renderTextField}
                         />
 
-                        <TextField
-                            id="SubField"
+                        <Field
+                            name="subField"
                             label="Sub Field"
-                            className={classes.textField}
-                            value={this.state.SubField}
-                            onChange={this.handleChange_SubField('SubField')}
-                            margin="normal"
-
+                            component={renderTextField}
                         />
 
-                        <TextField
-                            id="Gender"
-                            select
+                        <Field
+                            name="gender"
                             label="Gender"
-                            className={classes.textField}
-                            value={this.state.Gender}
-                            onChange={this.handleChange_Gender('Gender')}
-                            SelectProps={{
-                                MenuProps: {
-                                    className: classes.menu,
-                                },
-                            }}
-                            //helperText="Select the gender"
-                            margin="normal"
+                            component={renderSelectField}
                         >
-                            {Gender.map(option => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
+                            <MenuItem value="male">Male</MenuItem>
+                            <MenuItem value="female">Female</MenuItem>
+                        </Field>
 
-                        <TextField
-                            id="MinAge"
+                        <Field
+                            name="minAge"
                             label="Minimum Age"
-                            className={classes.textField}
-                            value={this.state.MinAge}
-                            onChange={this.handleChange_MinAge('MinAge')}
-                            margin="normal"
-
+                            component={renderTextField}
                         />
 
-                        <TextField
-                            id="MaxAge"
+                        <Field
+                            name="maxAge"
                             label="Maximum Age"
-                            className={classes.textField}
-                            value={this.state.MaxAge}
-                            onChange={this.handleChange_MaxAge('MaxAge')}
-                            margin="normal"
-
+                            component={renderTextField}
                         />
 
-                        <TextField
-                            id="MinValue"
+                        <Field
+                            name="minValue"
                             label="Minimum Value"
-                            className={classes.textField}
-                            value={this.state.MinValue}
-                            onChange={this.handleChange_MinValue('MinValue')}
-                            margin="normal"
-
+                            component={renderTextField}
                         />
 
-                        <TextField
-                            id="MaxValue"
+                        <Field
+                            name="maxValue"
                             label="Maximum Value"
-                            className={classes.textField}
-                            value={this.state.MaxValue}
-                            onChange={this.handleChange_MaxValue('MaxValue')}
-                            margin="normal"
-
+                            component={renderTextField}
                         />
 
-                        <TextField
-                            id="Unit"
+                        <Field
+                            name="unit"
                             label="Unit"
-                            className={classes.textField}
-                            value={this.state.Unit}
-                            onChange={this.handleChange_Unit('Unit')}
-                            margin="normal"
-
+                            component={renderTextField}
                         />
 
                     </DialogContent>
@@ -384,13 +341,19 @@ TestFieldForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-
 const withStylesComponent = withStyles(styles)(TestFieldForm);
 
 function mapStateToProps({ testField }) {
     return { testField };
 }
 
-const mapDispatchToProps = {getAddedLabTests};
+const mapDispatchToProps = {
+    getAddedLabTests,
+    addTestsFields
+};
+const MyForm = reduxForm({
+    form: "labTestField",
+})(withStylesComponent);
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStylesComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(MyForm);;
+
