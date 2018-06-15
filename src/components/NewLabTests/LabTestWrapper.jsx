@@ -56,9 +56,7 @@ class LabTestWrapper extends Component {
                     <Divider />
 
                     <br/>
-                    <TabContainer>
-                        <RequestButton />
-                    </TabContainer>
+
                     <br/>
                     <Typography padding="3*3" variant="title" color="inherit">
                         <u>Test Fields</u>
