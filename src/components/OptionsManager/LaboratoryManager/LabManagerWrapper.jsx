@@ -1,6 +1,5 @@
 //IT16139640
 
-
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -25,8 +24,8 @@ import  LabTypeTable from './LabTypeTable';
 
 
 
-import { getLabs } from 'store/actions/index';
-import {addLabs} from 'store/actions/index';
+import { getLabs, addLabs, addLabDepartments,getLabDepartments,getLabTypes,addLabTypes } from 'store/actions/laboratory';
+
 
 import { connect } from 'react-redux';
 
@@ -69,7 +68,8 @@ class LabManagerWrapper extends Component {
 
             labTypeColumns:[
                 'Lab Type'
-            ]
+            ],
+            labTypes: ''
         };
 
 
@@ -78,7 +78,14 @@ class LabManagerWrapper extends Component {
     componentDidMount(){
 
         this.props.getLabs();
+        this.props.getLabDepartments();
+        this.props.getLabTypes();
 
+    };
+
+    submit = values => {
+        this.props.addLabs(values);
+        this.handleClose();
     };
 
     handleClickOpen = () => {
@@ -97,9 +104,20 @@ class LabManagerWrapper extends Component {
         this.setState({ value });
     };
 
-    submit = values => {
-        this.props.addLabs(this.props.id, values);
-    };
+    formChange = name => event => {
+        this.setState({ [name]: event.target.value });
+    }
+
+    submitLabForm = event => {
+        event.preventDefault();
+       // this.props.addLabTypes(this.state.labTypes);
+        this.props.addLabDepartments(this.state.labDepartments);
+
+        this.handleClose();
+    }
+
+
+
 
 
 
@@ -134,7 +152,7 @@ class LabManagerWrapper extends Component {
                         />
 
 
-                        <LabTypeTable columnData={labTypeColumns} data={this.props.laboratory}/>
+                        <LabTypeTable columnData={labTypeColumns} data={this.props.labTypes}/>
 
                         <Button onClick={this.handleClickOpen}>Add New Laboratory Type</Button>
 
@@ -152,7 +170,13 @@ class LabManagerWrapper extends Component {
                                     id="type"
                                     label="Laboratory Type"
                                     fullWidth
+                                    value={this.state.labTypes}
+                                    onChange={this.formChange('labTypes')}
                                 />
+
+                                <Button onClick={this.submitLabForm} color="primary">
+                                    Save
+                                </Button>
 
 
                             </DialogContent>
@@ -160,9 +184,7 @@ class LabManagerWrapper extends Component {
                                 <Button onClick={this.handleClose} color="primary">
                                     Cancel
                                 </Button>
-                                <Button onClick={this.handleSave} color="primary">
-                                    Save
-                                </Button>
+
                             </DialogActions>
                         </Dialog>
 
@@ -199,18 +221,22 @@ class LabManagerWrapper extends Component {
                                     autoFocus
                                     margin="dense"
                                     id="labDep"
-                                    label="Laboratory Department"
-                                    fullWidth
+                                    value={this.state.labDepartments}
+                                    onChange={this.formChange('labDepartments')}
+
+
                                 />
+
+                                <Button type="submit" color="primary">
+                                    Save
+                                </Button>
 
                             </DialogContent>
                             <DialogActions>
                                 <Button onClick={this.handleClose} color="primary">
                                     Cancel
                                 </Button>
-                                <Button onClick={this.handleSave} color="primary">
-                                    Save
-                                </Button>
+
                             </DialogActions>
                         </Dialog>
 
@@ -231,15 +257,17 @@ class LabManagerWrapper extends Component {
                                     fullWidth
                                 />
 
+                                <Button type="submit" color="primary">
+                                    Save
+                                </Button>
+
 
                             </DialogContent>
                             <DialogActions>
                                 <Button onClick={this.handleClose} color="primary">
                                     Cancel
                                 </Button>
-                                <Button onClick={this.handleSave} color="primary">
-                                    Save
-                                </Button>
+
                             </DialogActions>
                         </Dialog>
 
@@ -247,16 +275,6 @@ class LabManagerWrapper extends Component {
                     </TabContainer>}
                     {value === "Labs" &&
                     <TabContainer>
-
-                        <TextField
-                            id="search"
-                            label="Search Labs"
-                            type="search"
-                            className={classes.textField}
-                            margin="right"
-                        />
-
-
                         <LabManagerTable columnData={columnData} data={this.props.laboratory} />
 
                         <Button onClick={this.handleClickOpen}>Add New Laboratory</Button>
@@ -270,7 +288,7 @@ class LabManagerWrapper extends Component {
                             <DialogContent>
                                 <form onSubmit={handleSubmit(this.submit)} >
                                 <Field
-                                    name="labType"
+                                    name="labTypes"
                                     label="Lab Type"
                                     component={renderTextField}
                                 />
@@ -280,12 +298,12 @@ class LabManagerWrapper extends Component {
                                     component={renderTextField}
                                 />
                                 <Field
-                                    name="depCount"
+                                    name="count"
                                     label="Department Count"
                                     component={renderTextField}
                                 />
                                 <Field
-                                    name="labName"
+                                    name="name"
                                     label="Lab Name"
                                     component={renderTextField}
                                 />
@@ -320,6 +338,10 @@ class LabManagerWrapper extends Component {
                                     component={renderTextField}
                                 />
 
+                                    <Button type="submit"  color="primary" >
+                                        Submit
+                                    </Button>
+
 
                                 </form>
                             </DialogContent>
@@ -327,9 +349,7 @@ class LabManagerWrapper extends Component {
                                 <Button onClick={this.handleClose} color="primary">
                                     Cancel
                                 </Button>
-                                <Button type="submit" onClick={this.submit && this.handleClose} color="primary" >
-                                    Submit
-                                </Button>
+
 
                             </DialogActions>
 
@@ -360,14 +380,14 @@ LabManagerWrapper.propTypes = {
 const withStylesComponent = withStyles(styles)(LabManagerWrapper);
 
 
-function mapStateToProps({ laboratory }) {
-    return { laboratory };
+function mapStateToProps({ laboratory, labTypes }) {
+    return { laboratory, labTypes };
 }
 
-const mapDispatchToProps = {getLabs,addLabs};
+const mapDispatchToProps = {getLabs,addLabs, addLabDepartments,getLabDepartments,getLabTypes,addLabTypes };
 
 const MyForm = reduxForm({
-    form: "labTypes",
+    form: "labManager",
 })(withStylesComponent);
 
 
