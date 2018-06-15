@@ -253,7 +253,7 @@ function mapStateToProps({ labCategories , basicTestField}) {
     return { labCategories , basicTestField };
 }
 
-const mapD
+
 const mapDispatchToProps = {getLabTestCategories, getBasicAddedLabTests};
 
 
