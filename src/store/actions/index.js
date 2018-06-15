@@ -2,7 +2,11 @@ import axios from 'axios';
 import {GET_ORDER, GET_ORDERS} from '../types';
 import { GET_LABS } from '../types';
 import { GET_LAB_TEST_CATEGORIES } from '../types';
+<<<<<<< HEAD
 import { GET_LAB_TESTS } from '../types';
+=======
+import { GET_SAMPLE_CENTERS } from '../types';
+>>>>>>> ab301b904b6df557551f98d042ca6ac6dbd9178c
 import {GET_TESTS} from "../types";
 import {GET_BASIC_TESTS} from "../types";
 import { GET_SAMPLE_CENTER_TYPES } from '../types';

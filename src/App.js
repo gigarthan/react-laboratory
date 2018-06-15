@@ -12,12 +12,15 @@ import MainWrapper from "containers/MainWrapper";
 import Login from 'components/Login';
 import Home from 'containers/Home';
 import LabTestWrapper from './components/NewLabTests/LabTestWrapper';
-
+import NotificationWrapper from './containers/ViewNotification/NotificationWrapper';
 import LabTestManagerWrapper from './components/OptionsManager/LabTestManagerWrapper';
+
 import LaboratoryManagerWrapper from './components/OptionsManager/LaboratoryManagerWrapper';
 import SampleCenterManagerWrapper from './components/OptionsManager/SampleCenterManagerWrapper';
 import SpecimenInformationWrapper from './components/LabOrders/SpecimenInformationWrapper';
 
+//Erandi
+import TestOrder from './components/TestOrder/TestOrderHome';
 import ViewTestRequestsHome from './components/TestRequestsView/ViewTestRequestsHome';
 import TestResultsWrapper from './components/LabOrders/TestResultsWrapper';
 
@@ -48,13 +51,17 @@ class App extends Component {
                 <Route path="/" exact component={Home} />
                <Route path="/lab-tests" exact component={LabTestWrapper} />
 
-               {/*<Route path="/lab-tests" exact component={LabTestWrapper}/>*/}
+               <Route path="/notify" exact component={NotificationWrapper}/>
                 <Route path="/lab-test-managers" exact component={LabTestManagerWrapper} />
                 <Route path="/lab-managers" exact component={LaboratoryManagerWrapper} />
                 <Route path="/sample-centers" exact component={SampleCenterManagerWrapper} />
                 <Route path="/specimen-details" exact component={SpecimenInformationWrapper} />
                 <Route path="/requests/:reqId/specimen-details" component={SpecimenInformationWrapper} />
+
                 <Route path="/requests/:reqId/test-results" component={TestResultsWrapper} />
+                {/* Erandi*/}
+                <Route path="/orders" exact component={TestOrder}/>
+
                 <Route path="/test-requests-view" exact component={ViewTestRequestsHome}/>
               </MainWrapper>
             </Grid>
