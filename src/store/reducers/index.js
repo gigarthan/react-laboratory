@@ -10,6 +10,10 @@ import labManagerReducer from './reduce_labManager';
 
 import labTestCategoryReducer from './reduce_labTestCategory';
 
+import getLabTestManagerReducer from './reduce_getLabTestManager';
+import getBasicLabTestManagerReducer from './reduce_getBasicLabTestManager';
+import getNotificationManagerReducer from './reduce_getNotificationManager';
+
 const rootReducer = combineReducers({
     form: formReducer,
     orders: orderReducer,
@@ -35,6 +39,25 @@ const rootReducer = combineReducers({
     labTestCategory : labTestCategoryReducer,
 
 
+    labTests:labTestManagerReducer,
+
+
+    ///////////////////// GetTests ////////////////
+
+
+    testField:getLabTestManagerReducer,
+
+
+    ///////////////////// GetBasicLabTests ////////////////
+
+
+    basicTestField:getBasicLabTestManagerReducer,
+
+
+    ///////////////////// GetNotifications ////////////////
+
+
+    notification:getNotificationManagerReducer
 
 });
 
