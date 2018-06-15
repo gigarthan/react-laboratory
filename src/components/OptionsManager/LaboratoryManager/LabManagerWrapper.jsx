@@ -1,4 +1,6 @@
 //IT16139640
+
+
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -19,10 +21,14 @@ import LabManagerTable from "./LabManagerTable";
 import LabDepTable from "./LabDepTable";
 import LabTypeTable from "./LabTypeTable";
 
-import { getLabs } from "store/actions/index";
-import { addLabs } from "store/actions/index";
 
-import { connect } from "react-redux";
+import { getLabs, addLabs, addLabDepartments,getLabDepartments,getLabTypes,addLabTypes } from 'store/actions/laboratory';
+
+
+import { connect } from 'react-redux';
+
+
+
 
 function TabContainer(props) {
   return (
@@ -33,14 +39,14 @@ function TabContainer(props) {
 }
 
 TabContainer.propTypes = {
-  children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
 };
 
 class LabManagerWrapper extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: "labTypes",
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: 'labTypes',
 
       columnData: [
         "Lab Name",
@@ -53,296 +59,334 @@ class LabManagerWrapper extends Component {
         "Contact 2"
       ],
 
-      labDepColumns: ["Department"],
+            labDepColumns:[
+                'Department'
+            ],
 
-      labTypeColumns: ["Lab Type"]
+            labTypeColumns:[
+                'Lab Type'
+            ]
+        };
+
+
+    }
+
+    componentDidMount(){
+
+        this.props.getLabs();
+        this.props.getLabDepartments();
+        this.props.getLabTypes();
+
     };
-  }
 
-  componentDidMount() {
-    this.props.getLabs();
-  }
+    submit = values => {
+        this.props.addLabs(values);
+        this.handleClose();
+    };
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
+    handleClickOpen = () => {
+        this.setState({ open: true });
+    };
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+    handleClose = () => {
+        this.setState({ open: false });
+    };
 
-  handleSave = () => {
-    this.setState({ open: false });
-  };
+    handleSave = () => {
+        this.setState({ open: false });
+    };
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
+    handleChange = (event, value) => {
+        this.setState({ value });
+    };
 
-  submit = values => {
-    this.props.addLabs(this.props.id, values);
-  };
+    formChange = name => event => {
+        this.setState({ [name]: event.target.value });
+    }
 
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
-    const { columnData, labDepColumns, labTypeColumns } = this.state;
-    const { handleSubmit } = this.props;
+    submitLabForm = event => {
+        event.preventDefault();
+       // this.props.addLabTypes(this.state.labTypes);
+        this.props.addLabDepartments(this.state.labDepartments);
 
-    return (
-      <div>
-        <div className={classes.root}>
-          <AppBar position="static">
-            <Tabs value={value} onChange={this.handleChange}>
-              <Tab value="labTypes" label="Lab Types" />
-              <Tab value="LabDepartments" label="Laboratory Departments" />
-              <Tab value="Labs" label="Laboratories" />
-            </Tabs>
-          </AppBar>
-          {value === "labTypes" && (
-            <TabContainer>
-              <TextField
-                id="search"
-                label="Search Lab Types"
-                type="search"
-                className={classes.textField}
-                margin="right"
-              />
+        this.handleClose();
+    }
 
-              <LabTypeTable
-                columnData={labTypeColumns}
-                data={this.props.laboratory}
-              />
 
-              <Button onClick={this.handleClickOpen}>
-                Add New Laboratory Type
-              </Button>
 
-              <Dialog
-                open={this.state.open}
-                onClose={this.handleClose}
-                aria-labelledby="form-dialog-title"
-              >
-                <DialogTitle id="form-dialog-title">
-                  New Laboratory Type
-                </DialogTitle>
-                <DialogContent>
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="type"
-                    label="Laboratory Type"
-                    fullWidth
-                  />
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={this.handleClose} color="primary">
-                    Cancel
-                  </Button>
-                  <Button onClick={this.handleSave} color="primary">
-                    Save
-                  </Button>
-                </DialogActions>
-              </Dialog>
-            </TabContainer>
-          )}
 
-          {value === "LabDepartments" && (
-            <TabContainer>
-              <TextField
-                id="search"
-                label="Search Lab Departments"
-                type="search"
-                className={classes.textField}
-                margin="right"
-              />
 
-              <LabDepTable
-                columnData={labDepColumns}
-                data={this.props.laboratory}
-              />
 
-              <Button onClick={this.handleClickOpen}>Add New Department</Button>
+    render() {
+        const {classes} = this.props;
+        const {value} = this.state;
+        const {columnData,labDepColumns,labTypeColumns} = this.state;
+        const { handleSubmit } = this.props;
 
-              <Dialog
-                open={this.state.open}
-                onClose={this.handleClose}
-                aria-labelledby="form-dialog-title"
-              >
-                <DialogTitle id="form-dialog-title">
-                  Department Name
-                </DialogTitle>
-                <DialogContent>
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="labDep"
-                    label="Laboratory Department"
-                    fullWidth
-                  />
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={this.handleClose} color="primary">
-                    Cancel
-                  </Button>
-                  <Button onClick={this.handleSave} color="primary">
-                    Save
-                  </Button>
-                </DialogActions>
-              </Dialog>
 
-              <Dialog
-                open={this.state.open}
-                onClose={this.handleClose}
-                aria-labelledby="form-dialog-title"
-              >
-                <DialogTitle id="form-dialog-title">
-                  Add new Lab Department
-                </DialogTitle>
-                <DialogContent>
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="depName"
-                    label="Lab Department"
-                    fullWidth
-                  />
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={this.handleClose} color="primary">
-                    Cancel
-                  </Button>
-                  <Button onClick={this.handleSave} color="primary">
-                    Save
-                  </Button>
-                </DialogActions>
-              </Dialog>
-            </TabContainer>
-          )}
-          {value === "Labs" && (
-            <TabContainer>
-              <TextField
-                id="search"
-                label="Search Labs"
-                type="search"
-                className={classes.textField}
-                margin="right"
-              />
 
-              <LabManagerTable
-                columnData={columnData}
-                data={this.props.laboratory}
-              />
 
-              <Button onClick={this.handleClickOpen}>Add New Laboratory</Button>
+            return (
+            <div>
+                <div className={classes.root}>
+                    <AppBar position="static">
+                        <Tabs value={value} onChange={this.handleChange}>
+                            <Tab value="labTypes" label="Lab Types" />
+                            <Tab value="LabDepartments" label="Laboratory Departments" />
+                            <Tab value="Labs" label="Laboratories" />
+                        </Tabs>
+                    </AppBar>
+                    {value === "labTypes" &&
+                    <TabContainer>
 
-              <Dialog
-                open={this.state.open}
-                onClose={this.handleClose}
-                aria-labelledby="form-dialog-title"
-              >
-                <DialogTitle id="form-dialog-title">
-                  Add New Laboratory
-                </DialogTitle>
-                <DialogContent>
-                  <form onSubmit={handleSubmit(this.submit)}>
-                    <Field
-                      name="labType"
-                      label="Lab Type"
-                      component={renderTextField}
-                    />
-                    <Field
-                      name="department"
-                      label="Department"
-                      component={renderTextField}
-                    />
-                    <Field
-                      name="depCount"
-                      label="Department Count"
-                      component={renderTextField}
-                    />
-                    <Field
-                      name="labName"
-                      label="Lab Name"
-                      component={renderTextField}
-                    />
+                        <TextField
+                            id="search"
+                            label="Search Lab Types"
+                            type="search"
+                            className={classes.textField}
+                            margin="right"
+                        />
 
-                    <Field
-                      name="labIncharge"
-                      label="Lab Incharge"
-                      component={renderTextField}
-                    />
 
-                    <Field
-                      name="location"
-                      label="Location"
-                      component={renderTextField}
-                    />
+                        <LabTypeTable columnData={labTypeColumns} data={this.props.labTypes}/>
 
-                    <Field
-                      name="email"
-                      label="Email"
-                      component={renderTextField}
-                    />
+                        <Button onClick={this.handleClickOpen}>Add New Laboratory Type</Button>
 
-                    <Field
-                      name="contact1"
-                      label="Contact 1"
-                      component={renderTextField}
-                    />
+                        <Dialog
+                            open={this.state.open}
+                            onClose={this.handleClose}
+                            aria-labelledby="form-dialog-title"
+                        >
+                            <DialogTitle id="form-dialog-title">New Laboratory Type</DialogTitle>
+                            <DialogContent>
 
-                    <Field
-                      name="contact2"
-                      label="Contact 2"
-                      component={renderTextField}
-                    />
-                  </form>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={this.handleClose} color="primary">
-                    Cancel
-                  </Button>
-                  <Button
-                    type="submit"
-                    onClick={this.submit && this.handleClose}
-                    color="primary"
-                  >
-                    Submit
-                  </Button>
-                </DialogActions>
-              </Dialog>
-            </TabContainer>
-          )}
-        </div>
-      </div>
-    );
-  }
+                                <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    id="type"
+                                    label="Laboratory Type"
+                                    fullWidth
+                                    value={this.state.labTypes}
+                                    onChange={this.formChange('labTypes')}
+                                />
+
+                                <Button onClick={this.submitLabForm} color="primary">
+                                    Save
+                                </Button>
+
+
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={this.handleClose} color="primary">
+                                    Cancel
+                                </Button>
+
+                            </DialogActions>
+                        </Dialog>
+
+
+
+                    </TabContainer>}
+
+
+                    {value === "LabDepartments" &&
+                    <TabContainer>
+
+                        <TextField
+                            id="search"
+                            label="Search Lab Departments"
+                            type="search"
+                            className={classes.textField}
+                            margin="right"
+                        />
+
+
+                        <LabDepTable columnData={labDepColumns} data={this.props.laboratory} />
+
+                        <Button onClick={this.handleClickOpen}>Add New Department</Button>
+
+                        <Dialog
+                            open={this.state.open}
+                            onClose={this.handleClose}
+                            aria-labelledby="form-dialog-title"
+                        >
+                            <DialogTitle id="form-dialog-title">Department Name</DialogTitle>
+                            <DialogContent>
+
+                                <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    id="labDep"
+                                    value={this.state.labDepartments}
+                                    onChange={this.formChange('labDepartments')}
+
+
+                                />
+
+                                <Button type="submit" color="primary">
+                                    Save
+                                </Button>
+
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={this.handleClose} color="primary">
+                                    Cancel
+                                </Button>
+
+                            </DialogActions>
+                        </Dialog>
+
+
+                        <Dialog
+                            open={this.state.open}
+                            onClose={this.handleClose}
+                            aria-labelledby="form-dialog-title"
+                        >
+                            <DialogTitle id="form-dialog-title">Add new Lab Department</DialogTitle>
+                            <DialogContent>
+
+                                <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    id="depName"
+                                    label="Lab Department"
+                                    fullWidth
+                                />
+
+                                <Button type="submit" color="primary">
+                                    Save
+                                </Button>
+
+
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={this.handleClose} color="primary">
+                                    Cancel
+                                </Button>
+
+                            </DialogActions>
+                        </Dialog>
+
+
+                    </TabContainer>}
+                    {value === "Labs" &&
+                    <TabContainer>
+                        <LabManagerTable columnData={columnData} data={this.props.laboratory} />
+
+                        <Button onClick={this.handleClickOpen}>Add New Laboratory</Button>
+
+                        <Dialog
+                            open={this.state.open}
+                            onClose={this.handleClose}
+                            aria-labelledby="form-dialog-title"
+                        >
+                            <DialogTitle id="form-dialog-title">Add New Laboratory</DialogTitle>
+                            <DialogContent>
+                                <form onSubmit={handleSubmit(this.submit)} >
+                                <Field
+                                    name="labTypes"
+                                    label="Lab Type"
+                                    component={renderTextField}
+                                />
+                                <Field
+                                    name="department"
+                                    label="Department"
+                                    component={renderTextField}
+                                />
+                                <Field
+                                    name="count"
+                                    label="Department Count"
+                                    component={renderTextField}
+                                />
+                                <Field
+                                    name="name"
+                                    label="Lab Name"
+                                    component={renderTextField}
+                                />
+
+                                <Field
+                                    name="labIncharge"
+                                    label="Lab Incharge"
+                                    component={renderTextField}
+                                />
+
+                                <Field
+                                    name="location"
+                                    label="Location"
+                                    component={renderTextField}
+                                />
+
+                                <Field
+                                    name="email"
+                                    label="Email"
+                                    component={renderTextField}
+                                />
+
+                                <Field
+                                    name="contact1"
+                                    label="Contact 1"
+                                    component={renderTextField}
+                                />
+
+                                <Field
+                                    name="contact2"
+                                    label="Contact 2"
+                                    component={renderTextField}
+                                />
+
+                                    <Button type="submit"  color="primary" >
+                                        Submit
+                                    </Button>
+
+
+                                </form>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={this.handleClose} color="primary">
+                                    Cancel
+                                </Button>
+
+
+                            </DialogActions>
+
+                        </Dialog>
+
+                    </TabContainer>}
+
+                </div>
+            </div>
+        );
+    }
 }
 
+
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper
-  }
+    root: {
+        flexGrow: 1,
+        backgroundColor: theme.palette.background.paper,
+    },
 });
 
 LabManagerWrapper.propTypes = {
-  classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired
 };
+
+
 
 const withStylesComponent = withStyles(styles)(LabManagerWrapper);
 
-function mapStateToProps({ laboratory }) {
-  return { laboratory };
+
+function mapStateToProps({ laboratory, labTypes }) {
+    return { laboratory, labTypes };
 }
 
-const mapDispatchToProps = { getLabs, addLabs };
+const mapDispatchToProps = {getLabs,addLabs, addLabDepartments,getLabDepartments,getLabTypes,addLabTypes };
 
 const MyForm = reduxForm({
-  form: "labTypes"
+    form: "labManager",
 })(withStylesComponent);
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MyForm);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyForm);
+
+

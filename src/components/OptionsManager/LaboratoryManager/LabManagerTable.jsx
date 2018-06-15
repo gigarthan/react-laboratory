@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -37,7 +36,7 @@ function LabManagerTable(props) {
                     {
                         data.map( data => {
                             return (
-                                <TableRow>
+                                <TableRow key={data.name}>
                                     <TableCell>{data.name}</TableCell>
                                     <TableCell>{data.labTypes}</TableCell>
                                     <TableCell>{data.department}</TableCell>
@@ -47,6 +46,8 @@ function LabManagerTable(props) {
                                     <TableCell>{data.email}</TableCell>
                                     <TableCell>{data.contact1}</TableCell>
                                     <TableCell>{data.contact2}</TableCell>
+
+
                                     <TableCell><Button variant="contained" color="primary" className={classes.button}>
                                         Edit
                                     </Button>
