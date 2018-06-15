@@ -1,8 +1,7 @@
 import axios from "axios/index";
 
-import {ADD_ORDER, GET_LAB_DETAILS} from "../types";
-
-const BASE_URL = 'http://localhost:8000/api';
+import {ADD_ORDER, GET_LAB_DETAILS, BASE_URL} from "../types";
+import Swal from 'sweetalert2';
 
 
 export function addNewRequest(values) {
@@ -16,6 +15,11 @@ export function addNewRequest(values) {
                 payload: res.data
             });
             console.log('New Order Request Added.');
+            Swal(
+                'Success',
+                'New Order Request Added',
+                'success'
+              );
         }
         catch (error) {
             console.log(error);

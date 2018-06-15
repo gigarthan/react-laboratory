@@ -32,7 +32,7 @@ class TestResultForm extends Component {
             <Grid container justify="center" spacing={24}>
               {this.renderTestFields()}
               <Grid item md={12}>
-                <Button type="submit" variant="contained" color="primary" fullWidth>
+                <Button type="submit" variant="contained" color="primary" fullWidth disabled={this.props.fields.length < 1} >
                   Add Results
                 </Button>
               </Grid>

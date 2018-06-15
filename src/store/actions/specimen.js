@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { BASE_URL, ADD_SPECIMEN, GET_ORDER } from '../types.js';
+import Swal from 'sweetalert2'
 
 export function addSpecimen(id, values) {
     return async dispatch => {
@@ -9,10 +10,19 @@ export function addSpecimen(id, values) {
             dispatch({
                 type: ADD_SPECIMEN
             });
-            console.log('added specimen');
+            Swal(
+                'Success',
+                'Specimen Added Successfully',
+                'success'
+              );
         }
         catch (error) {
             console.log('[ADD_SPECIMEN]', error);
+            Swal(
+                ':(',
+                'Something went wrong!!!',
+                'error'
+              );
         }
     }
 }

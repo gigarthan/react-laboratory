@@ -68,7 +68,7 @@ export function addLabDepartments(values) {
     return async dispatch => {
         const url = BASE_URL + '/lab-departments/';
         try {
-            const res = await axios.post(url, values);
+            const res = await axios.post(url, { name: values});
             dispatch({
                 type: ADD_LAB_DEPARTMENTS,
                 payload: res.data

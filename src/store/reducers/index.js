@@ -60,7 +60,6 @@ const rootReducer = combineReducers({
     ///////////////////// Sample centers ////////////////
 
     sampleCenters:sampleCenterReducer,
-
     sampleCenterTypes:sampleCenterTypesReducer,
 
 
@@ -105,7 +104,6 @@ const rootReducer = combineReducers({
 
     test:addTestReducer,
     lab:ageLaboratoryReducer,
-    testField:addTestFieldReducer
 
 
 });

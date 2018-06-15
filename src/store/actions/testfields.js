@@ -1,5 +1,7 @@
 import { GET_TEST_RESULT_FIELDS, BASE_URL, ADD_TEST_RESULTS } from './../types';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+
 
 export function getTestResultFields(id) {
     return async dispatch => {
@@ -27,6 +29,11 @@ export function addTestResults(id, values) {
             dispatch({
                 type: ADD_TEST_RESULTS
             });
+            Swal(
+                'Success',
+                'Test Results added',
+                'success'
+              );
         } catch( error ) {
             console.log('[ADD_TEST_RESULTS]', error);
         }

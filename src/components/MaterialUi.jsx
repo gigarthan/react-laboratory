@@ -41,7 +41,6 @@ export const renderSelectField = ({
   <div>
     <InputLabel htmlFor={label} >{label}</InputLabel>
     <Select
-      errorText={touched && error}
       {...input}
       onChange={value => input.onChange(value)}
       children={children}

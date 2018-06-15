@@ -1,13 +1,16 @@
 import React, {Component} from "react";
-import {reduxForm, Field} from "redux-form";
+import {reduxForm, Field, formValueSelector} from "redux-form";
 import {Card, CardContent, Grid, Typography, MenuItem} from "@material-ui/core";
 import {renderTextField, renderDatePicker, renderSelectField} from "components/MaterialUi";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
-import {addNewRequest, getLabTestDetails} from 'store/actions/newOrder';
+import {addNewRequest, } from 'store/actions/newOrder';
+import {getLabTestCategories} from 'store/actions/index';
 import {connect} from 'react-redux';
+import { getTests } from 'store/actions/labTest';
+
 
 class OrderForm extends Component {
 
@@ -16,12 +19,12 @@ class OrderForm extends Component {
     };
 
     componentDidMount() {
-        this.props.getLabTestDetails();
+        this.props.getLabTestCategories();
+        this.props.getTests();
     }
 
     render() {
         const {handleSubmit} = this.props;
-        const {category, subCategory, testName} = this.props;
         return(
             <Card>
                 <CardContent>
@@ -38,7 +41,7 @@ class OrderForm extends Component {
                                     </AppBar>
                                 </Grid>
                                 <br/>
-                                <Grid item md={6}>
+                                <Grid item md={12}>
                                     <Field
                                         label="Patient HIN"
                                         name="patientHIN"
@@ -46,27 +49,27 @@ class OrderForm extends Component {
                                     />
                                 </Grid>
                                 <br/>
-                                <Grid item md={6}>
+                                <Grid item md={12}>
                                     <Field
                                         label="Full Name"
-                                        name="name"
+                                        name="fullName"
                                         component={renderTextField}
                                     />
                                 </Grid>
                                 <br/>
-                                <Grid item md={6}>
+                                <Grid item md={12}>
                                     <Field
                                         label="Gender"
                                         name="gender"
                                         component={renderSelectField}
                                     >
                                         <MenuItem value="male">male</MenuItem>
-                                        <MenuItem value="male">female</MenuItem>
+                                        <MenuItem value="female">female</MenuItem>
                                     </Field>
                                     <br/>
                                     <br/>
                                 </Grid>
-                                <Grid item md={6}>
+                                <Grid item md={12}>
                                     <Field
                                         label="Date Of birth"
                                         type="date"
@@ -90,31 +93,25 @@ class OrderForm extends Component {
                                     </AppBar>
                                 </Grid>
                                 <br/>
-                                <Grid item md={6}>
+                                <Grid item md={12}>
                                     <Field
-                                        name="requestedPerson"
+                                        name="reqPerson"
                                         label="Person Requesting"
                                         component={renderTextField}
                                     />
                                 </Grid>
                                 <br/>
-                                <Grid item md={6}>
+                                <Grid item md={12}>
                                     <Field
-                                        name="requestedDepart"
+                                        name="department"
                                         label="Department"
                                         component={renderTextField}
                                     />
                                 </Grid>
                                 <br/>
-                                <Grid item md={6}>
-                                    <Field
-                                        name="requestedDate"
-                                        label="Date Requested"
-                                        component={renderDatePicker}
-                                    />
-                                </Grid>
+                              
                                 <br/>
-                                <Grid item md={6}>
+                                <Grid item md={12}>
                                     <Field
                                         name="dueDate"
                                         label="Due Date"
@@ -136,31 +133,22 @@ class OrderForm extends Component {
                                     </AppBar>
                                 </Grid>
                                 <br/><br/>
-                                <Grid item md={6}>
+                                <Grid item md={12}>
                                     <Field
                                         name="category"
                                         select
                                         label="Select category"
                                         component={renderSelectField}
                                     >
-
+                                        { 
+                                            this.props.labTestCategories.map(cat => {
+                                                return(<MenuItem key={cat._id} value={cat.name} >{cat.name}</MenuItem>)
+                                            })
+                                         }
                                     </Field>
                                 </Grid>
-                                <br/>
-
-                                <Grid item md={6}>
-                                    <Field
-                                        name="category"
-                                        select
-                                        label="Select category"
-                                        component={renderSelectField}
-                                    >
-
-                                    </Field>
-                                </Grid>
-                                <br/>
-
-                                <Grid item md={6}>
+                                <br/>           
+                                <Grid item md={12}>
                                     <Field
                                         name="testName"
                                         select
@@ -168,10 +156,17 @@ class OrderForm extends Component {
                                         component={renderSelectField}
 
                                     >
+                                    {
+                                        this.props.test
+                                            .filter( t => t.category === this.props.categoryValue )
+                                            .map(t => {
+                                                return(<MenuItem key={t.testName} value={t.testName} >{t.testName}</MenuItem>)
+                                            })
+                                    }
                                     </Field>
                                 </Grid>
                                 <br/>
-                                <Grid item md={6}>
+                                <Grid item md={12}>
                                     <Field
                                         name="priority"
                                         select
@@ -185,7 +180,7 @@ class OrderForm extends Component {
                                     </Field>
                                 </Grid>
                                 <br/>
-                                <Grid item md={6}>
+                                <Grid item md={12}>
                                     <Field
                                         name="comment"
                                         label="Comment"
@@ -193,8 +188,8 @@ class OrderForm extends Component {
                                     />
                                 </Grid>
                                 <br/><br/><br/><br/>
-                                <Grid item md={6}>
-                                    <Button variant="contained" size="medium">
+                                <Grid item md={12}>
+                                    <Button type="submit" variant="contained" size="medium">
                                         Submit Request
                                     </Button>
 
@@ -209,17 +204,23 @@ class OrderForm extends Component {
     }
 }
 
+// Decorate with connect to read form values
+const selector = formValueSelector('OrderForm');
 
-function mapStateToProps({newOrder, labDetails}) {
-    return {newOrder, labDetails};
+function mapStateToProps(state) {
+    const {newOrder, labDetails, labTestCategories, test } = state;
+    const categoryValue = selector(state, 'category')
+    return {newOrder, labDetails,labTestCategories, test,categoryValue};
 }
 
 const mapDispatchToProps = {
-    addNewRequest, getLabTestDetails
+    addNewRequest, getLabTestCategories, getTests
 
 };
 const MyOrderForm = reduxForm({
     form: "OrderForm"
 })(OrderForm);
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyOrderForm);

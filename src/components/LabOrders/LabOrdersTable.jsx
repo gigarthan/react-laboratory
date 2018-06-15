@@ -257,6 +257,14 @@ class LabOrdersTable extends React.Component {
       }
   };
 
+  formatText(text) {
+    return(text.replace('_', ' ').toUpperCase());
+  }
+
+  formatDate(date){
+    return(new Date(date).toLocaleString());
+  }
+
 
   render() {
     const { classes } = this.props;
@@ -289,12 +297,12 @@ class LabOrdersTable extends React.Component {
                       { this.renderActions(n) }
                     </TableCell>
                     <TableCell >{n.priority}</TableCell>
-                    <TableCell >{n.status}</TableCell>
+                    <TableCell >{this.formatText(n.status)}</TableCell>
                     <TableCell >{n._id}</TableCell>
                     <TableCell >{n.patientHIN}</TableCell>
                     <TableCell >{n.testName}</TableCell>
-                    <TableCell >{n.reqDate}</TableCell>
-                    <TableCell >{n.dueDate}</TableCell>
+                    <TableCell >{this.formatDate(n.reqDate)}</TableCell>
+                    <TableCell >{this.formatDate(n.dueDate)}</TableCell>
                     <TableCell >{n.reqPerson}</TableCell>
                     <TableCell >{n.comment}</TableCell>                    
                   </TableRow>

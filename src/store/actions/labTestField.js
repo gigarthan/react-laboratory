@@ -5,7 +5,7 @@ const BASE_URL = 'http://localhost:8000/api';
 
 export function addTestsFields(values) {
     return async dispatch => {
-        const url = BASE_URL + '/addFields';
+        const url = BASE_URL + '/test/fields';
         try {
             console.log('val',values);
             const res = await axios.post(url, values);

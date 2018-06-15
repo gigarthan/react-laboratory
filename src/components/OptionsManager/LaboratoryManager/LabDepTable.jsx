@@ -38,7 +38,7 @@ function LabDepTable(props) {
                         data.map( data => {
                             return (
                                 <TableRow key={data.name}>
-                                    <TableCell>{data.department}</TableCell>
+                                    <TableCell>{data.name}</TableCell>
                                     <TableCell>
                                         <Button variant="contained" color="primary" className={classes.button}>
                                             Edit

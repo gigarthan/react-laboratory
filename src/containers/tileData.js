@@ -12,13 +12,6 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 export const mailFolderListItems = (
   <div>
-
-      <ListItem button>
-          <SvgIcon>
-              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" color="grey" />
-          </SvgIcon>
-          <ListItemText><Link to="/"> Home </Link></ListItemText>
-      </ListItem>
     <ListItem button>
       <Link to="/" className="side-nav-a" >
         <ListItemIcon>
@@ -88,14 +81,5 @@ export const otherMailFolderListItems = (
       <ListItemText> Sample Center Manager </ListItemText>
       </Link>
     </ListItem>
-
-      <ListItem button>
-          <Link to="/notify" className="side-nav-a">
-              <ListItemIcon>
-                  <Icon>add</Icon>
-              </ListItemIcon>
-
-          </Link>
-      </ListItem>
   </div>
 );

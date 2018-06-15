@@ -10,24 +10,6 @@ import { connect } from 'react-redux';
 
 class SpecimenInformationWrapper extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      patient: {
-        fullName: 'Kumara',
-        gender: 'Male',
-        dob: '26/14/1998',
-        patientHIN: '123456'
-      },
-      testDetail: {
-        _id: '1234',
-        category: 'Blood & Disease',
-        subCategory: 'Blood Composition',
-        testName: 'Full Blood Count'
-      }
-    }
-  }
-
   componentDidMount() {
     const id = this.props.match.params.reqId;
     this.props.getDetails(id);

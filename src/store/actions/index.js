@@ -10,11 +10,9 @@ import {GET_NOTIFICATIONS} from '../types';
 
 
 import {VIEW_REQUESTS, ADD_ORDER} from '../types';
-import { ADD_LAB_TEST_CATEGORY } from './../types';
+import { ADD_LAB_TEST_CATEGORY, BASE_URL, GET_TESTS_FIELDS } from './../types';
 
 
-
-const BASE_URL = 'http://localhost:8000/api';
 
 export function getOrders() {
     return async dispatch => {
@@ -154,15 +152,14 @@ export function getLabTestCategories() {
 ///////////////////// Get Lab test manager ////////////////
 
 
-export function getAddedLabTests() {
+export function getAddedLabTestFields() {
     return async dispatch => {
-        const url = BASE_URL + '/field/getFields';
+        const url = BASE_URL + '/test/fields';
 
         try {
             const res = await axios.get(url);
             dispatch({
-                type: GET_TESTS,
-
+                type: GET_TESTS_FIELDS,
                 payload: res.data
             });
         } catch (error) {
@@ -178,7 +175,7 @@ export function getAddedLabTests() {
 
 export function getBasicAddedLabTests() {
     return async dispatch => {
-        const url = BASE_URL + '/field/test';
+        const url = BASE_URL + '/test';
 
         try {
             const res = await axios.get(url);

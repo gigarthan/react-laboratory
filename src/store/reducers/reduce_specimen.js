@@ -7,7 +7,6 @@ export default function(state = {}, action) {
             const testDetails = {
                 _id: specimen._id,
                 category: specimen.category,
-                subCategory: specimen.subCategory,
                 testName: specimen.testName
             };
             const { fullName, patientHIN, dob, gender } = specimen;
