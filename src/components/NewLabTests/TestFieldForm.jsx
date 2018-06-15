@@ -16,12 +16,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-// import SwipeableViews from 'react-swipeable-views';
+import SwipeableViews from 'react-swipeable-views';
 //import TestRequestTable from './ViewTest/ViewTestRequestsHome';
 import TestRequestTable from './ViewTest/TestRequestTable';
-import TestRequestTable1 from './ViewTest/TestRequestTable1';
-
-
+import {connect} from "react-redux";
+import { getAddedLabTests } from 'store/actions/index';
 
 function TabContainer(props) {
     const { children, dir } = props;
@@ -105,7 +104,7 @@ class TestFieldForm extends React.Component {
         TestName:'',
         open: false,
         viewForm: false,
-        value: 0,
+        value: 'parentFields',
         columnData:  [
             { id: 'field', numeric: false, disablePadding: false, label: 'FieldName' },
             { id: 'gender', numeric: false, disablePadding: false, label: 'Gender' },
@@ -117,6 +116,10 @@ class TestFieldForm extends React.Component {
         ],
 
     };
+
+    componentDidMount(){
+        this.props.getAddedLabTests();
+    }
 
     handleChange = (event, value) => {
         this.setState({ value });
@@ -199,15 +202,6 @@ class TestFieldForm extends React.Component {
         const {classes, theme} = this.props;
         const { value } = this.state;
         const { columnData } = this.state;
-        const { columnData1 } = this.state;
-
-        const tableCellData = [
-            { priority: 'high', status: 'Report Issued', reqId: 1234, testName: 'blood test', patientHIN: '12475', reqDate: new Date().toString(), dueDate: new Date().toString(), reqPerson: 'wasamtha', comment: 'new test' }
-        ];
-
-        const tableCellData1 = [
-            { priority: 'high', status: 'Report Issued', reqId: 1234, testName: 'blood test', patientHIN: '12475', reqDate: new Date().toString(), dueDate: new Date().toString(), reqPerson: 'wasamtha', comment: 'new test' }
-        ];
 
         return (
             <form className={classes.container} noValidate autoComplete="off">
@@ -361,12 +355,11 @@ class TestFieldForm extends React.Component {
                                 <AppBar position="static">
                                     <Tabs value={value} onChange={this.handleChange}>
                                         <Tab value="parentFields" label="Parent Fields" />
-                                        <Tab value="subFields" label="Sub Fields" />
                                     </Tabs>
                                 </AppBar>
                                 {value === "parentFields" &&
                                 <TabContainer>
-                                    <TestRequestTable columnData={columnData} data={tableCellData} />
+                                    <TestRequestTable data={this.props.testField} />
                                 </TabContainer>}
                                 </div>
                             </div>
@@ -391,4 +384,13 @@ TestFieldForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TestFieldForm);
+
+const withStylesComponent = withStyles(styles)(TestFieldForm);
+
+function mapStateToProps({ testField }) {
+    return { testField };
+}
+
+const mapDispatchToProps = {getAddedLabTests};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStylesComponent);

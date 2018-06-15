@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import LabTestWrapper from './LabTestManager/LabTestWrapper';
+import LabTestCategoryWrapper from './LabTestManager/LabTestWrapper';
 
 export default class LabTestManagerWrapper extends Component {
   render() {
     return (
       <div>
-          <LabTestWrapper/>
+          <LabTestCategoryWrapper/>
       </div>
     )
   }

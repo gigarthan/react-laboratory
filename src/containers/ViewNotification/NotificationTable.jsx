@@ -19,7 +19,7 @@ const styles = theme => ({
     },
 });
 
-function TestRequestTable(props) {
+function NotificationTable(props) {
     const { classes, data } = props;
 
     return (
@@ -27,13 +27,10 @@ function TestRequestTable(props) {
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Field</TableCell>
-                        <TableCell>Gender</TableCell>
-                        <TableCell numeric>Minimum Age</TableCell>
-                        <TableCell numeric>Maximum Age</TableCell>
-                        <TableCell numeric>Minimum Value</TableCell>
-                        <TableCell numeric>Maximum Value</TableCell>
-                        <TableCell numeric>Unit</TableCell>
+                        <TableCell>Date</TableCell>
+                        <TableCell>Category</TableCell>
+                        <TableCell>Sub Category</TableCell>
+                        <TableCell>Test Name</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -41,14 +38,11 @@ function TestRequestTable(props) {
                         return (
                             <TableRow key={n.id}>
                                 <TableCell component="th" scope="row">
-                                    {n.field}
+                                    {n.date}
                                 </TableCell>
-                                <TableCell>{n.gender}</TableCell>
-                                <TableCell numeric>{n.minAge}</TableCell>
-                                <TableCell numeric>{n.maxAge}</TableCell>
-                                <TableCell numeric>{n.minValue}</TableCell>
-                                <TableCell numeric>{n.maxValue}</TableCell>
-                                <TableCell numeric>{n.unit}</TableCell>
+                                <TableCell>{n.category}</TableCell>
+                                <TableCell>{n.subCategory}</TableCell>
+                                <TableCell>{n.testName}</TableCell>
                             </TableRow>
                         );
                     })}
@@ -58,8 +52,8 @@ function TestRequestTable(props) {
     );
 }
 
-TestRequestTable.propTypes = {
+NotificationTable.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TestRequestTable);
+export default withStyles(styles)(NotificationTable);

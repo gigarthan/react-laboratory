@@ -6,7 +6,9 @@ export default class LaboratoryManagerWrapper extends Component {
   render() {
     return (
       <div>
+
         <LabManagerWrapper/>
+
       </div>
     )
   }

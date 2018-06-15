@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -20,11 +19,12 @@ const styles = theme => ({
     },
 });
 
-function LabTestTable(props) {
+function LabTypeTable(props) {
     const { classes, columnData, data } = props;
 
     return (
         <Paper className={classes.root}>
+
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
@@ -37,15 +37,12 @@ function LabTestTable(props) {
                     {
                         data.map( data => {
                             return (
-                                <TableRow>
-                                    <TableCell>{data.name}</TableCell>
-                                    <TableCell>{data.subCategoryName}</TableCell>
-                                    <TableCell>{data.specimenType}</TableCell>
-                                    <TableCell>{data.specimenRetentionType}</TableCell>
-                                    <TableCell>{data.duration}</TableCell>
-                                    <TableCell><Button variant="contained" color="primary" className={classes.button}>
-                                        Edit
-                                    </Button>
+                                <TableRow key={data.name}>
+                                    <TableCell>{data.labTypes}</TableCell>
+                                    <TableCell>
+                                        <Button variant="contained" color="primary" className={classes.button}>
+                                            Edit
+                                        </Button>
                                     </TableCell>
 
                                 </TableRow>
@@ -58,8 +55,4 @@ function LabTestTable(props) {
     );
 }
 
-
-
-
-
-export default withStyles(styles)(LabTestTable);
+export default withStyles(styles)(LabTypeTable);

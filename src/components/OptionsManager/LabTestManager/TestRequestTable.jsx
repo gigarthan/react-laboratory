@@ -27,13 +27,10 @@ function TestRequestTable(props) {
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Field</TableCell>
-                        <TableCell>Gender</TableCell>
-                        <TableCell numeric>Minimum Age</TableCell>
-                        <TableCell numeric>Maximum Age</TableCell>
-                        <TableCell numeric>Minimum Value</TableCell>
-                        <TableCell numeric>Maximum Value</TableCell>
-                        <TableCell numeric>Unit</TableCell>
+                        <TableCell>Laboratory</TableCell>
+                        <TableCell>Category</TableCell>
+                        <TableCell>SubCategory</TableCell>
+                        <TableCell>TestName</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -41,14 +38,11 @@ function TestRequestTable(props) {
                         return (
                             <TableRow key={n.id}>
                                 <TableCell component="th" scope="row">
-                                    {n.field}
+                                    {n.laboratory}
                                 </TableCell>
-                                <TableCell>{n.gender}</TableCell>
-                                <TableCell numeric>{n.minAge}</TableCell>
-                                <TableCell numeric>{n.maxAge}</TableCell>
-                                <TableCell numeric>{n.minValue}</TableCell>
-                                <TableCell numeric>{n.maxValue}</TableCell>
-                                <TableCell numeric>{n.unit}</TableCell>
+                                <TableCell>{n.category}</TableCell>
+                                <TableCell>{n.subCategory}</TableCell>
+                                <TableCell>{n.testName}</TableCell>
                             </TableRow>
                         );
                     })}
