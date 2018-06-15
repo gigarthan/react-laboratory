@@ -3,17 +3,24 @@ import { renderTextField } from "../../MaterialUi";
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button } from "@material-ui/core/";
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
+import { addLabTestCategories } from 'store/actions/index';
 
 
 class TestCategoriesForm extends Component {
+    
+    submit = values => {
+        this.props.addLabTestCategories(values);
+        this.props.onClose('openTestCategoriesDialog');
+    }
   render() {
+    const { handleSubmit } = this.props;
     return (
       <Dialog
         open={this.props.open}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Add New Test Categories</DialogTitle>
-        <form>
+        <form onSubmit={handleSubmit(this.submit)} >
         <DialogContent>
           
             <Field
@@ -22,7 +29,7 @@ class TestCategoriesForm extends Component {
               component={renderTextField}
             />
             <Field
-              name="subName"
+              name="subCategoryName"
               label="Sub Category Name"
               component={renderTextField}
             />
@@ -32,7 +39,7 @@ class TestCategoriesForm extends Component {
               component={renderTextField}
             />
             <Field
-              name="retentionType"
+              name="specimenRetentionType"
               label="Specimen Retention Type"
               component={renderTextField}
             />
@@ -64,4 +71,4 @@ const MyForm = reduxForm({
     form: "testCategoriesForm",
   })(TestCategoriesForm);
   
-export default MyForm;
+export default connect(null, {addLabTestCategories})(MyForm);

@@ -1,13 +1,31 @@
 import axios from 'axios';
-import {GET_ORDER, GET_ORDERS} from '../types';
-import { GET_LABS } from '../types';
-import { GET_LAB_TEST_CATEGORIES } from '../types';
-import { GET_LAB_TESTS } from '../types';
-import { GET_SAMPLE_CENTERS } from '../types';
-import {GET_TESTS} from "../types";
-import {GET_BASIC_TESTS} from "../types";
-import { GET_SAMPLE_CENTER_TYPES } from '../types';
-import {GET_NOTIFICATIONS} from '../types';
+import {
+    GET_ORDER,
+    GET_ORDERS
+} from '../types';
+import {
+    GET_LAB_TEST_CATEGORIES
+} from '../types';
+import {
+    GET_LAB_TESTS
+} from '../types';
+import {
+    GET_SAMPLE_CENTERS
+} from '../types';
+import {
+    GET_TESTS
+} from "../types";
+import {
+    GET_BASIC_TESTS
+} from "../types";
+import {
+    GET_SAMPLE_CENTER_TYPES
+} from '../types';
+import {
+    GET_NOTIFICATIONS,
+    ADD_LAB_TEST_CATEGORY,
+    GET_LABS
+} from '../types';
 
 const BASE_URL = 'http://localhost:8000/api';
 
@@ -98,8 +116,7 @@ export function addLabs(id) {
                 type: GET_LABS,
                 payload: res.data
             });
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error);
         }
     }
@@ -185,3 +202,18 @@ export function getNotifications() {
         }
     }
 };
+
+export function addLabTestCategories(values) {
+    return async dispatch => {
+        const url = BASE_URL + '/test-categories';
+        try {
+            const res = await axios.post(url, values);
+            dispatch({
+                type: ADD_LAB_TEST_CATEGORY,
+                payload: res.data
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}

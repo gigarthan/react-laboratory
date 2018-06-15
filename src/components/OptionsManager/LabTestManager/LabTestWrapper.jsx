@@ -45,15 +45,24 @@ class LabTestWrapper extends Component {
         "Specimen Retention Type",
         "Duration"
       ],
-      categoryColumn: ["Category Name"],
+      categoryColumn: [
+          "Category Name",
+          "Sub Category",
+          "Specimen",
+          "Specimen Retention Type",
+          "Duration"
+        ],
       subCategoryColumn: ["Sub Category Name"],
-      openTestCategoriesDialog: false
+      openTestCategoriesDialog: false,
+      
     };
   }
 
   componentDidMount() {
     this.props.getLabTestCategories();
     this.props.getBasicAddedLabTests();
+
+
   }
 
   handleClickOpen = dialogBox => event => {

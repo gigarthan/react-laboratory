@@ -1,5 +1,12 @@
 import axios from "axios/index";
-import { GET_LABS, ADD_LABS , GET_LAB_DEPARTMENTS,GET_LAB_TYPES ,ADD_LAB_DEPARTMENTS,ADD_LAB_TYPES} from '../types';
+import {
+    GET_LABS,
+    ADD_LABS,
+    GET_LAB_DEPARTMENTS,
+    GET_LAB_TYPES,
+    ADD_LAB_DEPARTMENTS,
+    ADD_LAB_TYPES
+} from '../types';
 
 const BASE_URL = 'http://localhost:8000/api';
 
@@ -27,7 +34,7 @@ export function getLabs() {
 
 export function addLabs(values) {
     return async dispatch => {
-        const url = BASE_URL + '/labs/' ;
+        const url = BASE_URL + '/labs/';
         try {
             console.log('val', values);
             const res = await axios.post(url, values);
@@ -35,8 +42,7 @@ export function addLabs(values) {
                 type: ADD_LABS,
                 payload: res.data
             });
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error);
         }
     }
@@ -60,15 +66,14 @@ export function getLabDepartments() {
 
 export function addLabDepartments(values) {
     return async dispatch => {
-        const url = BASE_URL + '/lab-departments/' ;
+        const url = BASE_URL + '/lab-departments/';
         try {
             const res = await axios.post(url, values);
             dispatch({
                 type: ADD_LAB_DEPARTMENTS,
                 payload: res.data
             });
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error);
         }
     }
@@ -93,15 +98,16 @@ export function getLabTypes() {
 
 export function addLabTypes(name) {
     return async dispatch => {
-        const url = BASE_URL + '/lab-types/' ;
+        const url = BASE_URL + '/lab-types/';
         try {
-            const res = await axios.post(url, { name });
+            const res = await axios.post(url, {
+                name
+            });
             dispatch({
                 type: ADD_LAB_TYPES,
                 payload: res.data
             });
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error);
         }
     }

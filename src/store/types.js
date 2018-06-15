@@ -4,7 +4,9 @@ export const GET_ORDER = 'GET_ORDER';
 export const ADD_SPECIMEN = 'ADD_SPECIMEN';
 export const GET_TEST_RESULT_FIELDS = 'TEST_RESULT_FIELDS';
 export const ADD_TEST_RESULTS = 'ADD_TEST_RESULTS';
-
+export const AUTHENTICATED = 'AUTHENTICATED';
+export const AUTHENTICATION_ERROR = 'AUTHENTICATION_ERROR';
+export const UNAUTHENTICATED = 'UNAUTHENTICATED';
 
 ///////////////////// Sample centers ////////////////
 
@@ -46,3 +48,5 @@ export const GET_BASIC_TESTS = 'GET_BASIC_TESTS';
 
 
 export const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS';
+
+export const ADD_LAB_TEST_CATEGORY = 'ADD_LAB_TEST_CATEGORY';

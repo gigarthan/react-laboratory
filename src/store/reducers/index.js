@@ -14,13 +14,14 @@ import labTestCategoryReducer from './reduce_labTestCategory';
 import getLabTestManagerReducer from './reduce_getLabTestManager';
 import getBasicLabTestManagerReducer from './reduce_getBasicLabTestManager';
 import getNotificationManagerReducer from './reduce_getNotificationManager';
+import authReducer from './reduce_authentication';
 
 const rootReducer = combineReducers({
     form: formReducer,
     orders: orderReducer,
     specimen: specimenReducer,
     testResults: resultReducer,
-
+    auth: authReducer,
 
     ///////////////////// Sample centers ////////////////
 

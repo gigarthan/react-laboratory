@@ -24,6 +24,8 @@ import TestOrder from './components/TestOrder/TestOrderHome';
 import ViewTestRequestsHome from './components/TestRequestsView/ViewTestRequestsHome';
 import TestResultsWrapper from './components/LabOrders/TestResultsWrapper';
 
+import requireAuth from 'containers/Require_Auth';
+
 
 
 class App extends Component {
@@ -48,21 +50,21 @@ class App extends Component {
           <Grid container>
             <Grid item md={12}>
               <MainWrapper >
-                <Route path="/" exact component={Home} />
-               <Route path="/lab-tests" exact component={LabTestWrapper} />
+                <Route path="/" exact component={requireAuth(Home)} />
+               <Route path="/lab-tests" exact component={requireAuth(LabTestWrapper)} />
 
-               <Route path="/notify" exact component={NotificationWrapper}/>
-                <Route path="/lab-test-managers" exact component={LabTestManagerWrapper} />
-                <Route path="/lab-managers" exact component={LaboratoryManagerWrapper} />
-                <Route path="/sample-centers" exact component={SampleCenterManagerWrapper} />
-                <Route path="/specimen-details" exact component={SpecimenInformationWrapper} />
-                <Route path="/requests/:reqId/specimen-details" component={SpecimenInformationWrapper} />
+               <Route path="/notify" exact component={requireAuth(NotificationWrapper)}/>
+                <Route path="/lab-test-managers" exact component={requireAuth(LabTestManagerWrapper)} />
+                <Route path="/lab-managers" exact component={requireAuth(LaboratoryManagerWrapper)} />
+                <Route path="/sample-centers" exact component={requireAuth(SampleCenterManagerWrapper)} />
+                <Route path="/specimen-details" exact component={requireAuth(SpecimenInformationWrapper)} />
+                <Route path="/requests/:reqId/specimen-details" component={requireAuth(SpecimenInformationWrapper)} />
 
-                <Route path="/requests/:reqId/test-results" component={TestResultsWrapper} />
+                <Route path="/requests/:reqId/test-results" component={requireAuth(TestResultsWrapper)} />
                 {/* Erandi*/}
-                <Route path="/orders" exact component={TestOrder}/>
+                <Route path="/orders" exact component={requireAuth(TestOrder)}/>
 
-                <Route path="/test-requests-view" exact component={ViewTestRequestsHome}/>
+                <Route path="/test-requests-view" exact component={requireAuth(ViewTestRequestsHome)}/>
               </MainWrapper>
             </Grid>
           </Grid>
