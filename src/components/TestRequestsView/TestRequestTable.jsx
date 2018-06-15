@@ -12,12 +12,12 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
+import { Link } from 'react-router-dom';
 
 
 const CustomTableCell = withStyles(theme => ({
@@ -155,7 +155,7 @@ TestRequestTableToolbar = withStyles(toolbarStyles)(TestRequestTableToolbar);
 
 const styles = theme => ({
     root: {
-        width: '65%',
+        width: '50%',
         marginTop: theme.spacing.unit ,
     },
     table: {
@@ -172,11 +172,11 @@ class TestRequestTable extends React.Component {
 
         this.state = {
             order: 'asc',
-            orderBy: 'regId',
+            orderBy: '_id',
             selected: [],
             data: [],
             page: 0,
-            rowsPerPage: 10,
+            rowsPerPage: 5,
         };
     }
 
@@ -240,9 +240,19 @@ class TestRequestTable extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+
+    renderActions = ({ status, _id }) => {
+      if (status === 'report_issued') {
+            return (
+                <Link to="">View Report</Link>
+            )
+        }
+    };
+
     render() {
         const { classes } = this.props;
-        const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+        const { order, orderBy, selected, rowsPerPage, page } = this.state;
+        const { data } = this.props;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
@@ -260,32 +270,36 @@ class TestRequestTable extends React.Component {
                         />
                         <TableBody className="test-request-table" >
                             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
-                                const isSelected = this.isSelected(n.id);
+                                //const isSelected = this.isSelected(n.id);
                                 return (
                                     <TableRow
                                         hover
                                         tabIndex={-1}
-                                        key={n.reqId}
+                                        key={n._id}
                                     >
-                                        <CustomTableCell numeric>{n.reqId}</CustomTableCell>
 
-                                        <CustomTableCell numeric>{n.status}</CustomTableCell>
+                                        <TableCell>
+                                            {this.renderActions(n)}
+                                        </TableCell>
+                                        <TableCell numeric>{n._id}</TableCell>
 
-                                        <CustomTableCell numeric>{n.patientHIN}</CustomTableCell>
-                                        <CustomTableCell numeric>{n.fullName}</CustomTableCell>
-                                        <CustomTableCell numeric>{n.gender}</CustomTableCell>
-                                        <CustomTableCell numeric>{n.dob}</CustomTableCell>
+                                        <TableCell numeric>{n.status}</TableCell>
 
-                                        <CustomTableCell numeric>{n.reqPerson}</CustomTableCell>
-                                        <CustomTableCell numeric>{n.reqDate}</CustomTableCell>
-                                        <CustomTableCell numeric>{n.dueDate}</CustomTableCell>
+                                        <TableCell numeric>{n.patientHIN}</TableCell>
+                                        <TableCell numeric>{n.fullName}</TableCell>
+                                        <TableCell numeric>{n.gender}</TableCell>
+                                        <TableCell numeric>{n.dob}</TableCell>
 
-                                        <CustomTableCell numeric>{n.category}</CustomTableCell>
-                                        <CustomTableCell numeric>{n.subCategory}</CustomTableCell>
-                                        <CustomTableCell numeric>{n.testName}</CustomTableCell>
-                                        <CustomTableCell numeric>{n.priority}</CustomTableCell>
+                                        <TableCell numeric>{n.reqPerson}</TableCell>
+                                        <TableCell numeric>{n.reqDate}</TableCell>
+                                        <TableCell numeric>{n.dueDate}</TableCell>
 
-                                        <CustomTableCell numeric>{n.comment}</CustomTableCell>
+                                        <TableCell numeric>{n.category}</TableCell>
+                                        <TableCell numeric>{n.subCategory}</TableCell>
+                                        <TableCell numeric>{n.testName}</TableCell>
+                                        <TableCell numeric>{n.priority}</TableCell>
+
+                                        <TableCell numeric>{n.comment}</TableCell>
 
                                     </TableRow>
                                 );

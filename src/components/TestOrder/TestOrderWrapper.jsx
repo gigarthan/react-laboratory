@@ -6,8 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import Divider from '@material-ui/core/Divider';
 
-import Details from './Request_Form';
-
+import OrderForm from './OrderForm'
 
 function TabContainer(props) {
     return (
@@ -41,7 +40,7 @@ render() {
                         </Toolbar>
                     </AppBar>
                     <TabContainer>
-                        <Details />
+                        <OrderForm />
                     </TabContainer>
 
                     <Divider />

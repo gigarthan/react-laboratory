@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { GET_ORDERS } from '../types';
 
-import {VIEW_REQUESTS} from '../types';
+import {VIEW_REQUESTS, ADD_ORDER} from '../types';
+
 
 const BASE_URL = 'http://localhost:8000/api';
 
@@ -23,7 +24,7 @@ export function getOrders() {
 
 
 
-//////////////////////////////////////--------------ERANDI --------------/////////////////////////////////////////////////////////////////
+///////////////////////////    TEST REQUESTS VIEW      ///////////////////////////////
 
 export function viewOrderRequests() {
     return async dispatch => {
@@ -40,3 +41,6 @@ export function viewOrderRequests() {
         }
     }
 };
+
+
+

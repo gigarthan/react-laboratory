@@ -128,9 +128,9 @@ class MainWrapper extends React.Component {
             <Typography variant="title" color="inherit" noWrap>
               Digital Pulz
             </Typography>
-              <ListItem button>
+              {/*<ListItem button>
                   <ListItemText><Link to="/login"> Login </Link></ListItemText>
-              </ListItem>
+              </ListItem>*/}
           </Toolbar>
         </AppBar>
         <Drawer

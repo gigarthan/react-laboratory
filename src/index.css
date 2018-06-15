@@ -10,3 +10,8 @@ body {
 .patient-detail-key, .test-detail-key {
   font-weight: 500;
 }
+
+.side-nav-a {
+  display: inherit;
+  text-decoration: none;
+}

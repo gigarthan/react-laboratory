@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 
 import TestRequestViewTable from './TestRequestTable';
+import SearchBar from './SearchBar';
 
 import { viewOrderRequests } from 'store/actions/index';
 import { connect } from 'react-redux';
@@ -28,6 +29,8 @@ class TestRequestViewWrapper extends Component {
         this.state = {
 
             columnData:  [
+
+                { id: '', numeric: false, disablePadding: false, label: '' },
 
                 { id: 'requestId', numeric: false, disablePadding: false, label: 'Request Id' },
                 { id: 'status', numeric: false, disablePadding: false, label: 'Status' },
@@ -65,11 +68,6 @@ class TestRequestViewWrapper extends Component {
         const { value } = this.state;
         const { columnData } = this.state;
 
-       /* const tableCellData = [
-            //{ priority: 'high', status: 'Report Issued', reqId: 1234, testName: 'blood test', patientHIN: '12475', reqDate: new Date().toString(), dueDate: new Date().toString(), reqPerson: 'wasamtha', comment: 'new test' },
-            //{ priority: 'high', status: 'Report Issued', reqId: 1234, testName: 'blood test', patientHIN: '12475', reqDate: new Date().toString(), dueDate: new Date().toString(), reqPerson: 'wasamtha', comment: 'new test' }
-        ];*/
-
         return (
             <div>
                 <div className={classes.root}>
@@ -81,7 +79,9 @@ class TestRequestViewWrapper extends Component {
                         </Toolbar>
                     </AppBar>
 
-
+                    <TabContainer>
+                        <SearchBar/>
+                    </TabContainer>
                     <TabContainer>
                         <TestRequestViewTable columnData={columnData} data={this.props.orders} />
                     </TabContainer>
