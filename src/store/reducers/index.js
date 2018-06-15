@@ -20,12 +20,25 @@ import viewRequestReducer from './reduce_newTestOrder';
 import newOrderReducer from './reduce_newOrder';
 import labDetailsReducer from './reduce_newOrder';
 
+import viewRequestReducer from './reduce_newTestOrder';
+import newOrderReducer from './reduce_newOrder';
+import labDetailsReducer from './reduce_newOrder';
+
 const rootReducer = combineReducers({
     form: formReducer,
     orders: orderReducer,
     specimen: specimenReducer,
     testResults: resultReducer,
     auth: authReducer,
+
+//<<<<<<< HEAD
+
+
+
+/////////////////    TEST REQUESTS VIEW     ////////////////////
+
+    viewOrders: viewRequestReducer,
+
 
 //<<<<<<< HEAD
 
