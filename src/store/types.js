@@ -27,3 +27,21 @@ export const GET_LABS = 'GET_LABS';
 
 
 export const GET_LAB_TEST_CATEGORIES = 'GET_LAB_TEST_CATEGORIES';
+
+
+///////////////////// Added Tests Manager////////////////
+
+
+export const GET_TESTS = 'GET_TESTS';
+
+
+///////////////////// Basic Added Tests Manager////////////////
+
+
+export const GET_BASIC_TESTS = 'GET_BASIC_TESTS';
+
+
+///////////////////// Notification Manager////////////////
+
+
+export const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS';
