@@ -19,7 +19,10 @@ import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
 //import TestRequestTable from './ViewTest/ViewTestRequestsHome';
 import TestRequestTable from './ViewTest/TestRequestTable';
-import TestRequestTable1 from './ViewTest/TestRequestTable1';
+
+import { connect } from 'react-redux';
+import { getAddedLabTests } from 'store/actions/index';
+
 
 
 
@@ -105,7 +108,7 @@ class TestFieldForm extends React.Component {
         TestName:'',
         open: false,
         viewForm: false,
-        value: 0,
+        value: 'parentFields',
         columnData:  [
             { id: 'field', numeric: false, disablePadding: false, label: 'FieldName' },
             { id: 'gender', numeric: false, disablePadding: false, label: 'Gender' },
@@ -117,6 +120,11 @@ class TestFieldForm extends React.Component {
         ],
 
     };
+
+    componentDidMount(){
+        this.props.getAddedLabTests();
+    }
+
 
     handleChange = (event, value) => {
         this.setState({ value });
@@ -361,12 +369,12 @@ class TestFieldForm extends React.Component {
                                 <AppBar position="static">
                                     <Tabs value={value} onChange={this.handleChange}>
                                         <Tab value="parentFields" label="Parent Fields" />
-                                        <Tab value="subFields" label="Sub Fields" />
+
                                     </Tabs>
                                 </AppBar>
                                 {value === "parentFields" &&
                                 <TabContainer>
-                                    <TestRequestTable columnData={columnData} data={tableCellData} />
+                                    <TestRequestTable data={this.props.testField} />
                                 </TabContainer>}
                                 </div>
                             </div>
@@ -391,4 +399,10 @@ TestFieldForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TestFieldForm);
+function mapStateToProps({ testField }) {
+    return { testField };
+};
+
+const withStyleComponent = withStyles(styles)(TestFieldForm);
+
+export default connect(mapStateToProps, { getAddedLabTests })(withStyleComponent);
