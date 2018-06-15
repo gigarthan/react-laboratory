@@ -58,8 +58,4 @@ function LabTestCategoryTable(props) {
     );
 }
 
-
-
-
-
 export default withStyles(styles)(LabTestCategoryTable);
