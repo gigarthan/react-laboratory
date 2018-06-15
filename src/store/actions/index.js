@@ -213,12 +213,12 @@ export function getNotifications() {
     }
 };
 
-export function addLabTestCategories() {
+export function addLabTestCategories(values) {
     return async dispatch => {
         const url = BASE_URL + '/test-categories';
 
         try {
-            const res = await axios.post(url);
+            const res = await axios.post(url, values);
             dispatch({
                 type: ADD_LAB_TEST_CATEGORY,
                 payload: res.data

@@ -59,11 +59,8 @@ class App extends Component {
                 <Route path="/specimen-details" exact component={requireAuth(SpecimenInformationWrapper)} />
                 <Route path="/requests/:reqId/specimen-details" component={requireAuth(SpecimenInformationWrapper)} />
                 <Route path="/requests/:reqId/test-results" component={requireAuth(TestResultsWrapper)} />
-                <Route path="/orders" exact component={requireAuth(TestOrder)}/>
-                <Route path="/test-requests-view" exact component={requireAuth(ViewTestRequestsHome)}/>
-                <Route path="/" exact component={Home} />           
-                <Route path="/test-requests-view" exact component={ViewTestRequestsHome}/>
-                <Route path="/order" exact component={TestOrder}/>
+                <Route path="/test-requests-view" exact component={requireAuth(ViewTestRequestsHome)}/>           
+                <Route path="/order" exact component={requireAuth(TestOrder)}/>
               </MainWrapper>
             </Grid>
           </Grid>
