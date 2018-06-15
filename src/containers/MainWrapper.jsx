@@ -15,19 +15,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from 'containers/tileData';
 
 
-import Button from '@material-ui/core/Button';
-import LoginButton from './LoginButton';
 // import LabTestNotification from './LabTestNotification';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Icon from '@material-ui/core/Icon';
-
-import { Link } from 'react-router-dom';
-import AlarmIcon from '@material-ui/icons/Alarm';
-
-
-
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';

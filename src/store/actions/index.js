@@ -10,6 +10,8 @@ import {GET_NOTIFICATIONS} from '../types';
 
 
 import {VIEW_REQUESTS, ADD_ORDER} from '../types';
+import { ADD_LAB_TEST_CATEGORY } from './../types';
+
 
 
 const BASE_URL = 'http://localhost:8000/api';
@@ -210,4 +212,20 @@ export function getNotifications() {
         }
     }
 };
+
+export function addLabTestCategories() {
+    return async dispatch => {
+        const url = BASE_URL + '/test-categories';
+
+        try {
+            const res = await axios.post(url);
+            dispatch({
+                type: ADD_LAB_TEST_CATEGORY,
+                payload: res.data
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
 

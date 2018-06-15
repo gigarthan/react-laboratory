@@ -16,9 +16,9 @@ import getBasicLabTestManagerReducer from './reduce_getBasicLabTestManager';
 import getNotificationManagerReducer from './reduce_getNotificationManager';
 import authReducer from './reduce_authentication';
 
-import viewRequestReducer from './reduce_newTestOrder';
-import newOrderReducer from './reduce_newOrder';
-import labDetailsReducer from './reduce_newOrder';
+// import viewRequestReducer from './reduce_newTestOrder';
+// import newOrderReducer from './reduce_newOrder';
+// import labDetailsReducer from './reduce_newOrder';
 import addTestReducer from './reduce_tests'
 import ageLaboratoryReducer from './reduce_tests'
 import addTestFieldReducer from './reduce_testsFields'
@@ -40,7 +40,7 @@ const rootReducer = combineReducers({
 
 /////////////////    TEST REQUESTS VIEW     ////////////////////
 
-    viewOrders: viewRequestReducer,
+    // viewOrders: viewRequestReducer,
 
 
 /////////////////    TEST REQUESTS VIEW     ////////////////////

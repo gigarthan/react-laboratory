@@ -24,7 +24,8 @@ import TestResultsWrapper from './components/LabOrders/TestResultsWrapper';
 import requireAuth from 'containers/Require_Auth';
 
 //import HomePage from './components/Home/HomePage';
-import LoginHome from './components/Login/Login';
+// import LoginHome from './components/Login/Login';
+import Login from './components/Login';
 
 
 class App extends Component {
@@ -45,7 +46,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/login" component={LoginHome} />
+          <Route path="/login" component={Login} />
           <Grid container>
             <Grid item md={12}>
               <MainWrapper >

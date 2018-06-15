@@ -10,37 +10,17 @@ export const AUTHENTICATION_ERROR = 'AUTHENTICATION_ERROR';
 export const UNAUTHENTICATED = 'UNAUTHENTICATED';
 
 
-//<<<<<<< HEAD
 ////////////////////     TEST REQUESTS VIEW     //////////////////////
-
 export const VIEW_REQUESTS = 'VIEW_REQUESTS';
-
-
-//<<<<<<< HEAD
-////////////////////     TEST REQUESTS VIEW     //////////////////////
-
-export const VIEW_REQUESTS = 'VIEW_REQUESTS';
-
 ////////////////////     TEST ORDER     //////////////////////
-
 export const ADD_ORDER = 'ADD_ORDER';
 export const GET_LAB_DETAILS = 'GET_LAB_DETAILS'
-
-
 ///////////////////// Sample centers ////////////////
-
 export const GET_SAMPLE_CENTERS = 'GET_SAMPLE_CENTERS';
-
 export const GET_SAMPLE_CENTER_TYPES = 'GET_SAMPLE_CENTER_TYPES';
-
 export const ADD_SAMPLE_CENTERS = 'ADD_SAMPLE_CENTERS';
-
 export const ADD_SAMPLE_CENTER_TYPES = 'ADD_SAMPLE_CENTER_TYPES';
-
-
 ///////////////////// Laboratory Manager////////////////
-
-
 export const GET_LABS = 'GET_LABS';
 
 export const ADD_LABS = 'ADD_LABS';
