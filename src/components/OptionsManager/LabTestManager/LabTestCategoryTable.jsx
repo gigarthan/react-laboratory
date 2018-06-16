@@ -39,7 +39,7 @@ function LabTestCategoryTable(props) {
                             return (
                                 <TableRow>
                                     <TableCell>{data.name}</TableCell>
-                                    <TableCell>{data.subCategoryName}</TableCell>
+                                    {/* <TableCell>{data.subCategoryName}</TableCell> */}
                                     <TableCell>{data.specimenType}</TableCell>
                                     <TableCell>{data.specimenRetentionType}</TableCell>
                                     <TableCell>{data.duration}</TableCell>

@@ -29,7 +29,7 @@ function TestRequestTable(props) {
                     <TableRow>
                         <TableCell>Laboratory</TableCell>
                         <TableCell>Category</TableCell>
-                        <TableCell>SubCategory</TableCell>
+                        {/* <TableCell>SubCategory</TableCell> */}
                         <TableCell>TestName</TableCell>
                     </TableRow>
                 </TableHead>
@@ -41,7 +41,7 @@ function TestRequestTable(props) {
                                     {n.laboratory}
                                 </TableCell>
                                 <TableCell>{n.category}</TableCell>
-                                <TableCell>{n.subCategory}</TableCell>
+                                {/* <TableCell>{n.subCategory}</TableCell> */}
                                 <TableCell>{n.testName}</TableCell>
                             </TableRow>
                         );

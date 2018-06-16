@@ -47,7 +47,7 @@ class LabTestWrapper extends Component {
       ],
       categoryColumn: [
           "Category Name",
-          "Sub Category",
+          // "Sub Category",
           "Specimen",
           "Specimen Retention Type",
           "Duration"
