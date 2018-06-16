@@ -2,6 +2,9 @@ import axios from 'axios';
 import { BASE_URL, ADD_SPECIMEN, GET_ORDER } from '../types.js';
 import Swal from 'sweetalert2'
 
+const token = localStorage.getItem('user');
+axios.defaults.headers.common['Authorization'] = `${token}`;
+
 export function addSpecimen(id, values) {
     return async dispatch => {
         const url = BASE_URL + '/requests/' + id;

@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://javabeings.herokuapp.com/api';
+// export const BASE_URL = 'https://javabeings.herokuapp.com/api';
+export const BASE_URL = 'http://localhost:8000/api'
 export const GET_ORDERS = 'GET_ORDERS';
 
 export const GET_ORDER = 'GET_ORDER';

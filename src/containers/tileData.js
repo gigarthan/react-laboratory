@@ -84,7 +84,7 @@ export const otherMailFolderListItems = (
     <ListItem button>
     <Link to="/logout" className="side-nav-a">
       <ListItemIcon>
-      <Icon>settings</Icon>        
+      <Icon>power_settings_new</Icon>        
       </ListItemIcon>
       <ListItemText> Logout </ListItemText>
       </Link>

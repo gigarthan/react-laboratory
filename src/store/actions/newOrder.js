@@ -3,6 +3,8 @@ import axios from "axios/index";
 import {ADD_ORDER, GET_LAB_DETAILS, BASE_URL} from "../types";
 import Swal from 'sweetalert2';
 
+const token = localStorage.getItem('user');
+axios.defaults.headers.common['Authorization'] = `${token}`;
 
 export function addNewRequest(values) {
     return async dispatch => {

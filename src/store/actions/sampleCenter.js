@@ -3,7 +3,8 @@ import {GET_SAMPLE_CENTER_TYPES,ADD_SAMPLE_CENTER_TYPES, ADD_SAMPLE_CENTERS, GET
 
 
 
-
+const token = localStorage.getItem('user');
+axios.defaults.headers.common['Authorization'] = `${token}`;
 
 
 export function addSampleCenters(values) {

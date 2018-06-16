@@ -12,7 +12,8 @@ import {GET_NOTIFICATIONS} from '../types';
 import {VIEW_REQUESTS, ADD_ORDER} from '../types';
 import { ADD_LAB_TEST_CATEGORY, BASE_URL, GET_TESTS_FIELDS } from './../types';
 
-
+const token = localStorage.getItem('user');
+axios.defaults.headers.common['Authorization'] = `${token}`;
 
 export function getOrders() {
     return async dispatch => {

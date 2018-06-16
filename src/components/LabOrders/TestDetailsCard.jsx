@@ -15,9 +15,9 @@ export default (props) => {
             <ListItem>
                 <Typography> <span className="test-detail-key" >  Category </span> : { test.category } </Typography>
             </ListItem>
-            <ListItem>
+            {/* <ListItem>
                 <Typography> <span className="test-detail-key" >  Sub Category </span> : { test.subCategory } </Typography>
-            </ListItem>
+            </ListItem> */}
             <ListItem>
                 <Typography> <span className="test-detail-key" >  Test Name </span> : { test.testName } </Typography>
             </ListItem>

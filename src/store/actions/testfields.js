@@ -2,6 +2,8 @@ import { GET_TEST_RESULT_FIELDS, BASE_URL, ADD_TEST_RESULTS } from './../types';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
+const token = localStorage.getItem('user');
+axios.defaults.headers.common['Authorization'] = `${token}`;
 
 export function getTestResultFields(id) {
     return async dispatch => {

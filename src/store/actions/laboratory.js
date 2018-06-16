@@ -10,7 +10,8 @@ import {
 } from '../types';
 
 
-
+const token = localStorage.getItem('user');
+axios.defaults.headers.common['Authorization'] = `${token}`;
 
 ///////////////////// Laboratory manager ////////////////
 

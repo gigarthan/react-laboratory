@@ -2,7 +2,8 @@ import axios from "axios/index";
 import {ADD_TESTS} from '../types';
 import {GET_LABORATORY, BASE_URL, GET_TESTS } from "../types";
 
-
+const token = localStorage.getItem('user');
+axios.defaults.headers.common['Authorization'] = `${token}`;
 
 export function addTests(values) {
     return async dispatch => {

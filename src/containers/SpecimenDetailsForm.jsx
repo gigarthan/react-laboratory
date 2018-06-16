@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
-import { Card, CardContent, Grid, Typography, Button } from "@material-ui/core";
-import { renderTextField, renderDatePicker } from "components/MaterialUi";
+import { Card, CardContent, Grid, Typography, Button, MenuItem } from "@material-ui/core";
+import { renderTextField, renderDatePicker, renderSelectField } from "components/MaterialUi";
 import { addSpecimen } from 'store/actions/specimen';
+import { getLabTestCategories } from 'store/actions/index';
 import { connect } from 'react-redux';
 
 class SpecimenDetailsForm extends Component {
@@ -11,9 +12,19 @@ class SpecimenDetailsForm extends Component {
         super(props);
     }
 
+    componentDidMount() {
+      this.props.getLabTestCategories();
+    }
+
   submit = values => {
     this.props.addSpecimen(this.props.id, values);
   };
+
+  renderSpecimenType = () => {
+    return this.props.labTestCategories.map( cat => {
+      return(<MenuItem key={cat._id} value={cat.specimenType} > { cat.specimenType }</MenuItem>)
+    });
+  }
 
   render() {
     const { handleSubmit } = this.props;
@@ -30,10 +41,12 @@ class SpecimenDetailsForm extends Component {
               <Grid item md={6}>
                 <Field
                   name="type"
-                  component={renderTextField}
+                  component={renderSelectField}
                   label="Specimen Type"
                   disabled={disable}
-                />
+                >
+                  { this.renderSpecimenType() }
+                </Field>
               </Grid>
               <Grid item md={6}>
                 <Field
@@ -93,8 +106,8 @@ const MyForm = reduxForm({
   enableReinitialize: true
 })(SpecimenDetailsForm);
 
-function mapStateToProps({ specimen }) {
-        return({ initialValues: specimen.specimenData });
+function mapStateToProps({ specimen, labTestCategories }) {
+        return({ initialValues: specimen.specimenData, labTestCategories });
 }
 
-export default connect(mapStateToProps, { addSpecimen })(MyForm);
+export default connect(mapStateToProps, { addSpecimen, getLabTestCategories })(MyForm);
