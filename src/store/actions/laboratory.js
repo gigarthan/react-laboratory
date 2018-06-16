@@ -5,10 +5,10 @@ import {
     GET_LAB_DEPARTMENTS,
     GET_LAB_TYPES,
     ADD_LAB_DEPARTMENTS,
-    ADD_LAB_TYPES
+    ADD_LAB_TYPES,
+    BASE_URL
 } from '../types';
 
-const BASE_URL = 'http://localhost:8000/api';
 
 
 

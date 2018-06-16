@@ -45,13 +45,7 @@ function LabManagerTable(props) {
                                     <TableCell>{data.location}</TableCell>
                                     <TableCell>{data.email}</TableCell>
                                     <TableCell>{data.contact1}</TableCell>
-                                    <TableCell>{data.contact2}</TableCell>
-
-
-                                    <TableCell><Button variant="contained" color="primary" className={classes.button}>
-                                        Edit
-                                    </Button>
-                                    </TableCell>
+                                    <TableCell>{data.contact2}</TableCell>                          
 
                                 </TableRow>
                             );

@@ -26,6 +26,7 @@ import requireAuth from 'containers/Require_Auth';
 //import HomePage from './components/Home/HomePage';
 // import LoginHome from './components/Login/Login';
 import Login from './components/Login';
+import SignOut from './components/SignOut';
 
 
 class App extends Component {
@@ -47,6 +48,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route path="/login" component={Login} />
+          <Route path="/logout" component={SignOut} />
           <Grid container>
             <Grid item md={12}>
               <MainWrapper >

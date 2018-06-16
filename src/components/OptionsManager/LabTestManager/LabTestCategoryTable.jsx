@@ -43,10 +43,7 @@ function LabTestCategoryTable(props) {
                                     <TableCell>{data.specimenType}</TableCell>
                                     <TableCell>{data.specimenRetentionType}</TableCell>
                                     <TableCell>{data.duration}</TableCell>
-                                    <TableCell><Button variant="contained" color="primary" className={classes.button}>
-                                        Edit
-                                    </Button>
-                                    </TableCell>
+                            
 
                                 </TableRow>
                             );

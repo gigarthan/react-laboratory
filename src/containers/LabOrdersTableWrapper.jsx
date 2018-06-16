@@ -64,10 +64,10 @@ class LabOrdersTablesWrapper extends Component {
           <div className={classes.root}>
             <AppBar position="static">
               <Tabs value={value} onChange={this.handleChange}>
-                <Tab value="opd" label="OPD" />
-                <Tab value="inward" label="Inward" />
+                <Tab value="opd" label="Requests" />
+                {/* <Tab value="inward" label="Inward" />
                 <Tab value="pcu" label="PCU" />
-                <Tab value="clinic" label="Clinic" />                
+                <Tab value="clinic" label="Clinic" />                 */}
               </Tabs>
             </AppBar>
             {value === "opd" && 

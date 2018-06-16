@@ -89,7 +89,7 @@ class LabTestWrapper extends Component {
             <Tabs value={value} onChange={this.handleChange}>
               <Tab value="testNames" label="Test Names" />
               <Tab value="testCategories" label="Test Categories" />
-              <Tab value="testSubCategories" label="Test SubCategories" />
+              {/* <Tab value="testSubCategories" label="Test SubCategories" /> */}
             </Tabs>
           </AppBar>
           {value === "testNames" && (
@@ -104,14 +104,14 @@ class LabTestWrapper extends Component {
                 columnData={categoryColumn}
                 data={this.props.labTestCategories}
               />
-              <Button onClick={this.handleClickOpen('openTestCategoriesDialog')} >
+              <Button variant="contained" onClick={this.handleClickOpen('openTestCategoriesDialog')} >
                 Add New Test Category
               </Button>
               <TestCategoriesDialog open={this.state.openTestCategoriesDialog} onClose={this.handleClose} />
             </TabContainer>
           )}
 
-          {value === "testSubCategories" && (
+          {/* {value === "testSubCategories" && (
             <TabContainer>   
               <LabTestSubTable
                 columnData={subCategoryColumn}
@@ -126,7 +126,7 @@ class LabTestWrapper extends Component {
                 Add New Test Sub category
               </Button>
             </TabContainer>
-          )}
+          )} */}
         </div>
       </div>
     );

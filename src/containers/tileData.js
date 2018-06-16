@@ -81,5 +81,13 @@ export const otherMailFolderListItems = (
       <ListItemText> Sample Center Manager </ListItemText>
       </Link>
     </ListItem>
+    <ListItem button>
+    <Link to="/logout" className="side-nav-a">
+      <ListItemIcon>
+      <Icon>settings</Icon>        
+      </ListItemIcon>
+      <ListItemText> Logout </ListItemText>
+      </Link>
+    </ListItem>
   </div>
 );

@@ -39,11 +39,7 @@ function LabTypeTable(props) {
                             return (
                                 <TableRow key={data.name}>
                                     <TableCell>{data.name}</TableCell>
-                                    <TableCell>
-                                        <Button variant="contained" color="primary" className={classes.button}>
-                                            Edit
-                                        </Button>
-                                    </TableCell>
+                                
 
                                 </TableRow>
                             );

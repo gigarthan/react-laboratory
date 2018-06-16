@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL, AUTHENTICATED, AUTHENTICATION_ERROR } from '../types';
+import { BASE_URL, AUTHENTICATED, AUTHENTICATION_ERROR, UNAUTHENTICATED } from '../types';
 
 export function signin({
     username,
@@ -24,5 +24,14 @@ export function signin({
                 payload: 'Invalid email or password'
             });
         }
+    }
+}
+
+export function signout() {
+    return async dispatch => {
+        localStorage.removeItem('user');
+        dispatch({
+            type: UNAUTHENTICATED
+        });
     }
 }

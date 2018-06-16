@@ -118,13 +118,7 @@ class sampleCenterTableWrapper extends Component {
                     <TabContainer>
 
 
-                        <TextField
-                            id="search"
-                            label="Search Sample Center Types"
-                            type="search"
-                            className={classes.textField}
-                            margin="right"
-                        />
+            
                         <SampleCenterTypeTable columnData={sampleCenterTypeColumns} data={this.props.sampleCenterTypes}/>
 
                         <Button onClick={this.handleClickOpen}>Add New Sample Center Type</Button>
@@ -163,13 +157,7 @@ class sampleCenterTableWrapper extends Component {
                     {value === "SampleCenters" &&
                     <TabContainer>
 
-                        <TextField
-                            id="search"
-                            label="Search Sample Centers"
-                            type="search"
-                            className={classes.textField}
-                            margin="right"
-                        />
+            
                         <SampleCenterTable columnData={columnData} data={this.props.sampleCenters} />
 
                         <Button onClick={this.handleClickOpen}>Add New Sample Center</Button>

@@ -55,6 +55,7 @@ class LabManagerWrapper extends Component {
         "Count",
         "Lab Incharge",
         "Location",
+        "email",
         "Contact 1",
         "Contact 2"
       ],
@@ -132,13 +133,7 @@ class LabManagerWrapper extends Component {
           </AppBar>
           {value === "labTypes" && (
             <TabContainer>
-              <TextField
-                id="search"
-                label="Search Lab Types"
-                type="search"
-                className={classes.textField}
-                margin="right"
-              />
+            
 
               <LabTypeTable
                 columnData={labTypeColumns}
@@ -183,14 +178,7 @@ class LabManagerWrapper extends Component {
 
           {value === "LabDepartments" && (
             <TabContainer>
-              <TextField
-                id="search"
-                label="Search Lab Departments"
-                type="search"
-                className={classes.textField}
-                margin="right"
-              />
-
+            
               <LabDepTable
                 columnData={labDepColumns}
                 data={this.props.labDepartments}

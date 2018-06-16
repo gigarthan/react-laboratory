@@ -1,7 +1,7 @@
 import axios from "axios/index";
-import {ADD_TESTS_FIELDS} from '../types';
+import {ADD_TESTS_FIELDS, BASE_URL} from '../types';
 
-const BASE_URL = 'http://localhost:8000/api';
+
 
 export function addTestsFields(values) {
     return async dispatch => {

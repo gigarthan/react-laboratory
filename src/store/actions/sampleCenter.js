@@ -1,7 +1,7 @@
 import axios from "axios/index";
-import {GET_SAMPLE_CENTER_TYPES,ADD_SAMPLE_CENTER_TYPES, ADD_SAMPLE_CENTERS, GET_SAMPLE_CENTERS} from '../types';
+import {GET_SAMPLE_CENTER_TYPES,ADD_SAMPLE_CENTER_TYPES, ADD_SAMPLE_CENTERS, GET_SAMPLE_CENTERS, BASE_URL} from '../types';
 
-const BASE_URL = 'http://localhost:8000/api';
+
 
 
 
