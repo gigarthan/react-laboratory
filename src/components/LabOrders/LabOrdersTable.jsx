@@ -249,8 +249,8 @@ class LabOrdersTable extends React.Component {
             <div>
               <Link to={viewUrl}>View Details</Link>
             </div>
-            <div>
-              <a href={reportUrl} target="_blank" >View Report</a>
+            <div onClick={(e) => { window.location.href = reportUrl}}>
+              <span >View Report</span>
             </div>
           </div>
         )
